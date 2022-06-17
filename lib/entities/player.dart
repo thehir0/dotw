@@ -6,6 +6,8 @@ class Player extends Entity {
   Rx<int> money;
 
   Player({
+    required super.name,
+    required super.description,
     required super.hp,
     required super.hpMax,
     required super.dmg,

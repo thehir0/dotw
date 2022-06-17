@@ -9,12 +9,15 @@ class ElevatedButtonEnemy extends Enemy {
 
   ElevatedButtonEnemy()
       : super(
+          name: 'Elevated Button',
+          description: 'bla bla',
           hp: 2.obs,
-          hpMax: 2.obs,
+          hpMax: 2,
           block: 0.obs,
           dmg: 1.obs,
           difficulty: 1,
           moveSet: [MoveSet.attack, MoveSet.block],
+          blockMax: 0,
         ) {
     render = ElevatedButton(
       onPressed: () async {
@@ -39,8 +42,9 @@ class ElevatedButtonEnemy extends Enemy {
   }
 
   @override
-  void onDeath(Entity attacker) {
+  Future<void> onDeath(Entity attacker) async {
     super.onDeath(attacker);
+    await Future.delayed(const Duration(milliseconds: 500));
     face.value = '>X(';
   }
 }

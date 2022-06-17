@@ -37,8 +37,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Enemy q = ElevatedButtonEnemy();
   Player player = Player(
+    name: 'Player',
+    description: 'you',
     hp: 3.obs,
-    hpMax: 3.obs,
+    hpMax: 3,
     dmg: 1.obs,
     block: 0.obs,
     energy: 3.obs,

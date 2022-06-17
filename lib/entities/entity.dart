@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
-import 'player.dart';
-
 class Entity {
+  final String name;
+  final String description;
   Rx<int> hp;
-  Rx<int> hpMax;
+  final int hpMax;
   Rx<int> dmg;
   Rx<int> block;
   late Widget render;
   var isDead = false.obs;
 
   Entity({
+    required this.name,
+    required this.description,
     required this.hp,
     required this.hpMax,
     required this.dmg,

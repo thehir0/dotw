@@ -6,6 +6,10 @@ import 'package:get/state_manager.dart';
 import 'entities/enemies/elevated_button_enemy.dart';
 import 'entities/enemies/enemy.dart';
 import 'entities/player.dart';
+import 'constants/colors.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:dotw/widgets/cards.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,64 +21,118 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'qwerty',
+      title: 'DOTW',
+      initialRoute: MainMenu.route,
+      routes: {
+        MainMenu.route: (context) => const MainMenu(),
+        GameScreen.route: (context) => const GameScreen(),
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MainMenu(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+class MainMenu extends StatefulWidget {
+  static const String route = '';
+
+  const MainMenu({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainMenu> createState() => _MainMenuState();
+
+class _MainMenuState extends State<MainMenu> {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.pushNamed(context, GameScreen.route);
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+      },
+      child: Text(
+        'Play',
+        style: GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+      ),
+    );
+  }
+}
+  
+class GameScreen extends StatefulWidget {
+  static const String route = '/dotw';
+
+  const GameScreen({Key? key}) : super(key: key);
+
+  @override
+  State<GameScreen> createState() => _GameScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  Enemy q = ElevatedButtonEnemy();
-  Player player = Player(
-    name: 'Player',
-    description: 'you',
-    hp: 3.obs,
-    hpMax: 3,
-    dmg: 1.obs,
-    block: 0.obs,
-    energy: 3.obs,
-    money: 0.obs,
-  );
-  var turn = 0;
+class _GameScreenState extends State<GameScreen> {
+  List<GameCard> allGameCards = [
+    const AttackCard(),
+    const DefenceCard(),
+    const AttackCard(),
+    const DefenceCard(),
+  ];
+  int acceptedData = 0;
 
   @override
   Widget build(BuildContext context) {
+    double startPosition = -30;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title:
-            Obx(() => Text('${player.hp}/${player.hpMax}    ${player.money}')),
-      ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Obx(() => Text('${q.hp}/${q.hpMax}')),
-                q.render,
-              ],
-            ),
-            ElevatedButton(
-              onPressed: () {
-                player.attack(q);
-              },
-              child: const Text('attack'),
-            ),
-          ],
+        appBar: AppBar(
+          backgroundColor: GameColors.barColor,
+          automaticallyImplyLeading: false,
+          elevation: 0,
         ),
-      ),
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 14,
+                child: DragTarget<int>(
+                  builder: (
+                    BuildContext context,
+                    List<dynamic> accepted,
+                    List<dynamic> rejected,
+                  ) {
+                    return Container(
+                      color: Colors.cyan,
+                      child: Center(
+                        child: Text('Value is updated $acceptedData',
+                            style: GoogleFonts.vt323(
+                                textStyle: const TextStyle(fontSize: 40))),
+                      ),
+                    );
+                  },
+                  onAccept: (int data) {
+                    setState(() {
+                      acceptedData += data;
+                    });
+                  },
+                ),
+              ),
+              Flexible(
+                flex: 3,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: allGameCards.map((e) {
+                    setState(() {
+                      startPosition += 60;
+                    });
+                    return Positioned(
+                      left: startPosition,
+                      child: e,
+                    );
+                  }).toList(),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }

@@ -37,6 +37,12 @@ class Enemy extends Entity {
     return currentMove.value;
   }
 
+  void blockMove() {
+    block.value = blockMax;
+  }
+
+  void supportMove() {}
+
   void move(Player player, int turn) {
     block.value = 0;
     if (getMove(turn + 1) == MoveSet.block) {
@@ -53,12 +59,6 @@ class Enemy extends Entity {
         break;
     }
   }
-
-  void blockMove() {
-    block.value = blockMax;
-  }
-
-  void supportMove() {}
 
   @override
   void onDeath(Entity attacker) {

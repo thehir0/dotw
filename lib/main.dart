@@ -1,4 +1,4 @@
-import 'dart:async';
+//import 'dart:async';
 
 import 'package:dotw/Leaderboard.dart';
 import 'package:dotw/cards/defensive_cards/basic_defense.dart';
@@ -9,6 +9,7 @@ import 'package:dotw/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
+import 'package:show_more_text_popup/show_more_text_popup.dart';
 
 import 'cards/card.dart';
 import 'entities/enemies/enemy.dart';
@@ -53,8 +54,6 @@ class MainMenu extends StatefulWidget {
 
   @override
   State<MainMenu> createState() => _MainMenuState();
-}
-
 }
 
 class _MainMenuState extends State<MainMenu> {
@@ -142,14 +141,14 @@ class _GameScreenState extends State<GameScreen> {
       For description window
      */
 
-    // ShowMoreTextPopup popup = ShowMoreTextPopup(context,
-    //     text: '123',
-    //     textStyle: const TextStyle(color: Colors.black),
-    //     height: 200,
-    //     width: 100,
-    //     backgroundColor: const Color(0xFF16CCCC),
-    //     padding: const EdgeInsets.all(4.0),
-    //     borderRadius: BorderRadius.circular(10.0));
+    ShowMoreTextPopup popup = ShowMoreTextPopup(context,
+        text: '123',
+        textStyle: TextStyle(color: Colors.black),
+        height: 200,
+        width: 100,
+        backgroundColor: Color(0xFF16CCCC),
+        padding: EdgeInsets.all(4.0),
+        borderRadius: BorderRadius.circular(10.0));
 
     double startPosition = -30.0.obs;
     return Scaffold(
@@ -220,7 +219,7 @@ class _GameScreenState extends State<GameScreen> {
                               text: '${currentEnemy.name} ',
                               style: GoogleFonts.vt323(
                                   textStyle: const TextStyle(fontSize: 30),
-                                  color: Colors.red),
+                                  color: Colors.black),
                               children: <TextSpan>[
                                 TextSpan(
                                   text:

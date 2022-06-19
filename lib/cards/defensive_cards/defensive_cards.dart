@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants/colors.dart';
 
-
 class DefensiveCard extends GameCard {
   final int block;
 
@@ -19,7 +18,7 @@ class DefensiveCard extends GameCard {
   });
 
   @override
-  Widget render(){
+  Widget render() {
     return Draggable<GameCard>(
       childWhenDragging: Container(),
       data: this,
@@ -30,7 +29,6 @@ class DefensiveCard extends GameCard {
         ),
         height: GameCard.cardHeight,
         width: GameCard.cardWidth,
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +61,7 @@ class DefensiveCard extends GameCard {
         ),
         height: GameCard.cardHeight,
         width: GameCard.cardWidth,
-        child:Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -87,7 +85,6 @@ class DefensiveCard extends GameCard {
             ),
           ],
         ),
-
       ),
     );
   }

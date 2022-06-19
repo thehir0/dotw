@@ -1,16 +1,14 @@
-# dotw
+# DOTW - Defense of the Widgets
 
-A new Flutter project.
+The main task - using two types of cards: attacking and defensive, win battles against Widgets opponents.
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+The main screen contains two buttons: Play and Leaderboard:
 
-A few resources to get you started if this is your first Flutter project:
+<img width="271" alt="Снимок экрана 2022-06-19 в 23 02 45" src="https://user-images.githubusercontent.com/64196918/174498437-f9672431-a539-4abb-abcf-1905cc828c62.png">
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The Leaderboard button will take you to a page with records of players who have played before you:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width="277" alt="Снимок экрана 2022-06-19 в 23 03 32" src="https://user-images.githubusercontent.com/64196918/174498460-b8607e0f-ea7b-48a1-8fd5-674b3b4a9047.png">
+

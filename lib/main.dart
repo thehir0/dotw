@@ -41,7 +41,6 @@ class MyApp extends StatelessWidget {
       routes: {
         MainMenu.route: (context) => const MainMenu(),
         GameScreen.route: (context) => const GameScreen(),
-
         Leaderboard.route: (context) => const Leaderboard(),
       },
       theme: AppTheme.lightTheme,
@@ -62,32 +61,32 @@ class MainMenu extends StatefulWidget {
 class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, GameScreen.route);
-              SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
-            },
-            child: Text(
-              'Play',
-              style:
-                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+            padding: const EdgeInsets.only(bottom: 25),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, GameScreen.route);
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+              },
+              child: Text(
+                'Play',
+                style:
+                    GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+              ),
+            )),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, Leaderboard.route);
+          },
+          child: Text(
+            'Leaderboard',
+            style: GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, Leaderboard.route);
-            },
-            child: Text(
-              'Leaderboard',
-              style:
-                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

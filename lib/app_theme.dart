@@ -16,7 +16,11 @@ class AppTheme {
 
   static final ThemeData lightTheme = ThemeData(
       appBarTheme: const AppBarTheme(
-        titleTextStyle: TextStyle(color:_darkSecondaryColor,fontFamily: "Roboto",fontWeight: FontWeight.bold,fontSize: 26 ),
+        titleTextStyle: TextStyle(
+            color: _darkSecondaryColor,
+            fontFamily: "Roboto",
+            fontWeight: FontWeight.bold,
+            fontSize: 26),
         color: _lightPrimaryVariantColor,
         iconTheme: IconThemeData(color: _lightOnPrimaryColor),
       ),
@@ -29,11 +33,7 @@ class AppTheme {
         color: _iconColor,
       ),
       textTheme: _lightTextTheme,
-      dividerTheme: const DividerThemeData(
-          color: Colors.black12
-      )
-
-  );
+      dividerTheme: const DividerThemeData(color: Colors.black12));
 
   static final ThemeData darkTheme = ThemeData(
       scaffoldBackgroundColor: _darkPrimaryVariantColor,
@@ -51,9 +51,7 @@ class AppTheme {
         color: _iconColor,
       ),
       textTheme: _darkTextTheme,
-      dividerTheme: const DividerThemeData(
-          color: Colors.black
-      )  );
+      dividerTheme: const DividerThemeData(color: Colors.black));
 
   static const TextTheme _lightTextTheme = TextTheme(
     headline1: _lightScreenHeading1TextStyle,
@@ -63,10 +61,12 @@ class AppTheme {
     headline1: _darkScreenHeading1TextStyle,
   );
 
-  static const TextStyle _lightScreenHeading1TextStyle =
-  TextStyle(fontSize: 40.0,fontWeight:FontWeight.bold, color: _lightOnPrimaryColor,fontFamily: "Roboto");
+  static const TextStyle _lightScreenHeading1TextStyle = TextStyle(
+      fontSize: 40.0,
+      fontWeight: FontWeight.bold,
+      color: _lightOnPrimaryColor,
+      fontFamily: "Roboto");
 
   static final TextStyle _darkScreenHeading1TextStyle =
-  _lightScreenHeading1TextStyle.copyWith(color: _darkOnPrimaryColor);
-
+      _lightScreenHeading1TextStyle.copyWith(color: _darkOnPrimaryColor);
 }

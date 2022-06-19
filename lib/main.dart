@@ -17,6 +17,7 @@ import 'entities/player.dart';
 import 'constants/colors.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_theme.dart';
 
 import 'app_theme.dart';
 
@@ -219,7 +220,7 @@ class _GameScreenState extends State<GameScreen> {
                               text: '${currentEnemy.name} ',
                               style: GoogleFonts.vt323(
                                   textStyle: const TextStyle(fontSize: 30),
-                                  color: Colors.black),
+                                  color: Colors.red),
                               children: <TextSpan>[
                                 TextSpan(
                                   text:

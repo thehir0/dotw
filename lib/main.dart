@@ -1,115 +1,373 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-void main() {
+import 'package:dotw/Leaderboard.dart';
+import 'package:dotw/cards/defensive_cards/basic_defense.dart';
+import 'package:dotw/cards/offensive_cards/basic_attack.dart';
+import 'package:dotw/entities/enemies/move_set.dart';
+import 'package:dotw/entities/enemies/text_field_enemy.dart';
+import 'package:dotw/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
+// import 'package:show_more_text_popup/show_more_text_popup.dart';
+
+import 'cards/card.dart';
+import 'entities/enemies/elevated_button_enemy.dart';
+import 'entities/enemies/enemy.dart';
+import 'entities/player.dart';
+import 'constants/colors.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'dautov',
+      title: 'DOTW',
+      initialRoute: MainMenu.route,
+      routes: {
+        MainMenu.route: (context) => const MainMenu(),
+        GameScreen.route: (context) => const GameScreen(),
+        Leaderboard.route: (context) => const Leaderboard(),
+      },
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MainMenu(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class MainMenu extends StatefulWidget {
+  static const String route = '';
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  const MainMenu({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainMenu> createState() => _MainMenuState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+class _MainMenuState extends State<MainMenu> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, GameScreen.route);
+              SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+            },
+            child: Text(
+              'Play',
+              style:
+                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, Leaderboard.route);
+            },
+            child: Text(
+              'Leaderboard',
+              style:
+                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+            ),
+          ),
+        ],
+      ),
+    );
   }
+}
+
+class GameScreen extends StatefulWidget {
+  static const String route = '/dotw';
+
+  const GameScreen({Key? key}) : super(key: key);
+
+  @override
+  State<GameScreen> createState() => _GameScreenState();
+}
+
+class _GameScreenState extends State<GameScreen> {
+  late Player player;
+
+  late Enemy currentEnemy;
+  late RxList<GameCard> hand;
+  int turn = 0;
+
+  @override
+  initState() {
+    super.initState();
+    player = Player(
+      energy: 5.obs,
+      dmg: 1.obs,
+      description: 'You',
+      hpMax: 5.obs,
+      money: 86.obs,
+      hp: 5.obs,
+      block: 0.obs,
+      name: 'Player',
+      energyMax: 5.obs,
+      deck: (List<GameCard>.of([
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
+        BasicDefense(),
+        BasicDefense(),
+        BasicDefense(),
+      ])).obs,
+    );
+    hand = player.getHand().obs;
+    currentEnemy = TextFieldEnemy();
+  }
+
+  int acceptedData = 0;
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    /*
+      For description window
+     */
+
+    // ShowMoreTextPopup popup = ShowMoreTextPopup(context,
+    //     text: '123',
+    //     textStyle: const TextStyle(color: Colors.black),
+    //     height: 200,
+    //     width: 100,
+    //     backgroundColor: const Color(0xFF16CCCC),
+    //     padding: const EdgeInsets.all(4.0),
+    //     borderRadius: BorderRadius.circular(10.0));
+
+    double startPosition = -30.0.obs;
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        appBar: AppBar(
+          backgroundColor: GameColors.barColor,
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          centerTitle: false,
+          title: Row(
+            children: [
+              const Icon(
+                Icons.favorite,
+                size: 40,
+                color: Colors.redAccent,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Obx(() => Text(
+                    '${player.hp.value}/${player.hpMax}',
+                    style: GoogleFonts.vt323(
+                        textStyle: const TextStyle(fontSize: 30),
+                        color: Colors.redAccent),
+                  )),
+              const SizedBox(
+                width: 30,
+              ),
+              const Icon(
+                Icons.attach_money_sharp,
+                size: 35,
+                color: Colors.green,
+              ),
+              Obx(() => Text(
+                    '${player.money.value}',
+                    style: GoogleFonts.vt323(
+                        textStyle: const TextStyle(fontSize: 30),
+                        color: Colors.green),
+                  )),
+              const SizedBox(
+                width: 30,
+              ),
+              const Icon(
+                Icons.shield,
+                size: 35,
+                color: Colors.blue,
+              ),
+              Obx(() => Text(
+                    '${player.block.value}',
+                    style: GoogleFonts.vt323(
+                        textStyle: const TextStyle(fontSize: 30),
+                        color: Colors.blue),
+                  )),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                  flex: 28,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Obx(
+                        () => RichText(
+                          text: TextSpan(
+                              text: '${currentEnemy.name} ',
+                              style: GoogleFonts.vt323(
+                                  textStyle: const TextStyle(fontSize: 30),
+                                  color: Colors.black),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text:
+                                      '[${currentEnemy.hp}/${currentEnemy.hpMax} ',
+                                  style: GoogleFonts.vt323(
+                                      textStyle: const TextStyle(fontSize: 30),
+                                      color: Colors.redAccent),
+                                ),
+                                TextSpan(
+                                  text:
+                                      '${currentEnemy.block}/${currentEnemy.blockMax}]',
+                                  style: GoogleFonts.vt323(
+                                      textStyle: const TextStyle(fontSize: 30),
+                                      color: Colors.blue),
+                                ),
+                              ]),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Obx(
+                        () => Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (currentEnemy.getMove(turn) ==
+                                MoveSet.attack) ...[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.umbrella_sharp,
+                                    size: 20,
+                                    color: Colors.redAccent,
+                                  ),
+                                  Text(
+                                    '${currentEnemy.dmg}',
+                                    style: GoogleFonts.vt323(
+                                        textStyle:
+                                            const TextStyle(fontSize: 30),
+                                        color: Colors.blue),
+                                  ),
+                                ],
+                              ),
+                            ] else if (currentEnemy.getMove(turn) ==
+                                MoveSet.block) ...[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.shield,
+                                    size: 20,
+                                    color: Colors.blue,
+                                  ),
+                                  Text(
+                                    '${currentEnemy.block}',
+                                    style: GoogleFonts.vt323(
+                                        textStyle:
+                                            const TextStyle(fontSize: 30),
+                                        color: Colors.blue),
+                                  ),
+                                ],
+                              )
+                            ]
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      DragTarget<GameCard>(
+                        builder: (
+                          BuildContext context,
+                          List<dynamic> accepted,
+                          List<dynamic> rejected,
+                        ) {
+                          return currentEnemy.render;
+                        },
+                        onAccept: (GameCard card) {
+                          if (player.energy.value >= card.cost) {
+                            card.play(player, currentEnemy);
+                            player.energy.value--;
+
+                            int num = -1;
+                            hand.firstWhere((element) {
+                              num++;
+                              return element == card;
+                            });
+                            hand.removeAt(num);
+                          }
+                        },
+                      ),
+                    ],
+                  )),
+              Flexible(
+                  flex: 2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.flash_on_sharp,
+                            size: 35,
+                            color: GameColors.goldColor,
+                          ),
+                          Obx(() => Text(
+                                '${player.energy.value}/${player.energyMax.value}',
+                                style: GoogleFonts.vt323(
+                                    textStyle: const TextStyle(fontSize: 30),
+                                    color: GameColors.goldColor),
+                              )),
+                        ],
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          player.energy.value = player.energyMax.value;
+                          currentEnemy.move(player, turn);
+                          player.block.value = 0;
+                          turn++;
+                          hand.value = player.getHand().obs;
+                        },
+                        child: Text(
+                          'End turn',
+                          style: GoogleFonts.vt323(
+                              textStyle: const TextStyle(fontSize: 20)),
+                        ),
+                      )
+                    ],
+                  )),
+              Flexible(
+                flex: 7,
+                child: Obx(() {
+                  startPosition = 0;
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: hand.map((card) {
+                      startPosition += 50;
+                      return Positioned(
+                        left: startPosition,
+                        child: card.render(),
+                      );
+                    }).toList(),
+                  );
+                }),
+              )
+            ],
+          ),
+        ));
   }
 }

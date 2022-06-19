@@ -1,4 +1,5 @@
 import 'package:dotw/cards/card.dart';
+
 import 'package:dotw/constants/colors.dart';
 import 'package:dotw/entities/enemies/enemy.dart';
 import 'package:dotw/entities/player.dart';
@@ -17,6 +18,7 @@ class OffensiveCard extends GameCard {
 
   @override
   Widget render() {
+
     var player;
     return Draggable<GameCard>(
       childWhenDragging: Container(
@@ -30,6 +32,7 @@ class OffensiveCard extends GameCard {
         ),
         height: GameCard.cardHeight,
         width: GameCard.cardWidth,
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,6 +89,7 @@ class OffensiveCard extends GameCard {
             ),
           ],
         ),
+
       ),
     );
   }

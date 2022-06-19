@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dotw/cards/card.dart';
 import 'package:dotw/entities/entity.dart';
 import 'package:get/get.dart';
@@ -7,6 +9,8 @@ class Player extends Entity {
   Rx<int> money;
   Rx<int> energyMax;
   RxList<GameCard> deck;
+  int score = 0;
+
 
   Player({
     required super.name,

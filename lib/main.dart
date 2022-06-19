@@ -1,22 +1,32 @@
-//import 'dart:async';
+import 'dart:async';
 
+import 'package:dotw/Leaderboard.dart';
 import 'package:dotw/cards/defensive_cards/basic_defense.dart';
 import 'package:dotw/cards/offensive_cards/basic_attack.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
 import 'package:dotw/entities/enemies/text_field_enemy.dart';
+import 'package:dotw/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 // import 'package:show_more_text_popup/show_more_text_popup.dart';
 
 import 'cards/card.dart';
+import 'entities/enemies/elevated_button_enemy.dart';
 import 'entities/enemies/enemy.dart';
 import 'entities/player.dart';
 import 'constants/colors.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'app_theme.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -31,6 +41,8 @@ class MyApp extends StatelessWidget {
       routes: {
         MainMenu.route: (context) => const MainMenu(),
         GameScreen.route: (context) => const GameScreen(),
+
+        Leaderboard.route: (context) => const Leaderboard(),
       },
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
@@ -41,7 +53,6 @@ class MyApp extends StatelessWidget {
 
 class MainMenu extends StatefulWidget {
   static const String route = '';
-
   const MainMenu({Key? key}) : super(key: key);
 
   @override
@@ -51,14 +62,31 @@ class MainMenu extends StatefulWidget {
 class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.pushNamed(context, GameScreen.route);
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
-      },
-      child: Text(
-        'Play',
-        style: GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+    return Center(
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, GameScreen.route);
+              SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+            },
+            child: Text(
+              'Play',
+              style:
+                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, Leaderboard.route);
+            },
+            child: Text(
+              'Leaderboard',
+              style:
+                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -36,6 +36,9 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^3.0.1
   show_more_text_popup: ^0.3.0
+  firebase_core: ^1.18.0
+  firebase_database: ^9.0.16
+
 
 dev_dependencies:
   flutter_test:

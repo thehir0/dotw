@@ -3,6 +3,7 @@ import 'package:dotw/entities/enemies/move_set.dart';
 import 'package:dotw/entities/entity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ElevatedButtonEnemy extends Enemy {
   var face = '>:('.obs;
@@ -12,22 +13,29 @@ class ElevatedButtonEnemy extends Enemy {
           name: 'Elevated Button',
           description: 'bla bla',
           hp: 2.obs,
-          hpMax: 2,
-          block: 0.obs,
+          hpMax: 2.obs,
           dmg: 1.obs,
           difficulty: 1,
           moveSet: [MoveSet.attack, MoveSet.block],
-          blockMax: 0,
+          blockMax: 1,
         ) {
-    render = ElevatedButton(
-      onPressed: () async {
-        if (!isDead.value) {
-          face.value = '>;)';
-          await Future.delayed(const Duration(seconds: 1));
-          face.value = '>:(';
-        }
-      },
-      child: Obx(() => Text(face.value)),
+    render = SizedBox(
+      height: 80,
+      width: 160,
+      child: ElevatedButton(
+        onPressed: () async {
+          if (!isDead.value) {
+            face.value = '>;)';
+            await Future.delayed(const Duration(seconds: 1));
+            face.value = '>:(';
+          }
+        },
+        child: Obx(() => Text(
+              face.value,
+              style:
+                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 50)),
+            )),
+      ),
     );
   }
 

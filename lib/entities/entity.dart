@@ -1,3 +1,4 @@
+import 'package:dotw/entities/player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
@@ -5,7 +6,7 @@ class Entity {
   final String name;
   final String description;
   Rx<int> hp;
-  final int hpMax;
+  Rx<int> hpMax;
   Rx<int> dmg;
   Rx<int> block;
   late Widget render;
@@ -31,7 +32,13 @@ class Entity {
   }
 
   void onAttack(Entity attacker) {
-    hp.value -= (attacker.dmg.value - block.value);
+    final damage = (attacker.dmg.value - block.value);
+    hp.value -= damage;
+    if (attacker is Player) {
+      attacker.score += damage;
+    } else {
+      (this as Player).score -= damage;
+    }
     block = 0.obs;
     if (hp <= 0) {
       onDeath(attacker);

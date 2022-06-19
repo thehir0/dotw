@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "48253334540",
+    "project_id": "dotw-409a5",
+    "storage_bucket": "dotw-409a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48253334540:android:ccac058c76247517f86a29",
+        "android_client_info": {
+          "package_name": "com.example.dotw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48253334540-lphk1cstuc7v207jfv7rk5u3ebk9hn8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxSU09aWAquJaSYwKLDD9EDSHF6h1qnhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48253334540-lphk1cstuc7v207jfv7rk5u3ebk9hn8b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "48253334540-ss54bptjgmrba4bcl0c72hhrc5uai8c3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dotw"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

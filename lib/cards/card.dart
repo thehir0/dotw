@@ -2,11 +2,13 @@ import 'package:dotw/entities/enemies/enemy.dart';
 import 'package:dotw/entities/player.dart';
 import 'package:flutter/cupertino.dart';
 
-class GameCard {
+abstract class GameCard {
+  static const double cardHeight = 132;
+  static const double cardWidth = 85;
+
   final String title;
   final String description;
   final int cost;
-  late Widget render;
 
   GameCard({
     required this.title,
@@ -14,5 +16,7 @@ class GameCard {
     required this.cost,
   });
 
-  void play(Player player, Enemy enemy) {}
+  Widget render();
+
+  void play(Player player, Enemy enemy);
 }

@@ -5,18 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class ElevatedButtonEnemy extends Enemy {
   var face = '>:('.obs;
-
 
   ElevatedButtonEnemy()
       : super(
           name: 'Elevated Button',
           description: 'bla bla',
           hp: 2.obs,
-          hpMax: 2,
-          block: 0.obs,
+          hpMax: 2.obs,
           dmg: 1.obs,
           difficulty: 1,
           moveSet: [MoveSet.attack, MoveSet.block],
@@ -33,7 +30,11 @@ class ElevatedButtonEnemy extends Enemy {
             face.value = '>:(';
           }
         },
-        child: Obx(() => Text(face.value, style: GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 50)),)),
+        child: Obx(() => Text(
+              face.value,
+              style:
+                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 50)),
+            )),
       ),
     );
   }

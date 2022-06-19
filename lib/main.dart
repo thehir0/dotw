@@ -2,11 +2,11 @@
 
 import 'package:dotw/cards/defensive_cards/basic_defense.dart';
 import 'package:dotw/cards/offensive_cards/basic_attack.dart';
-import 'package:dotw/cards/offensive_cards/offensive_card.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
+import 'package:dotw/entities/enemies/text_field_enemy.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:show_more_text_popup/show_more_text_popup.dart';
+// import 'package:show_more_text_popup/show_more_text_popup.dart';
 
 import 'cards/card.dart';
 import 'entities/enemies/elevated_button_enemy.dart';
@@ -78,33 +78,34 @@ class _GameScreenState extends State<GameScreen> {
   late Player player;
 
   late Enemy currentEnemy;
-
+  late RxList<GameCard> hand;
   int turn = 0;
 
   @override
   initState() {
     super.initState();
-
     player = Player(
       energy: 5.obs,
       dmg: 1.obs,
       description: 'You',
-      hpMax: 5,
+      hpMax: 5.obs,
       money: 86.obs,
       hp: 5.obs,
       block: 0.obs,
       name: 'Player',
       energyMax: 5.obs,
+      deck: (List<GameCard>.of([
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
+        BasicDefense(),
+        BasicDefense(),
+        BasicDefense(),
+      ])).obs,
     );
-
-    currentEnemy = ElevatedButtonEnemy();
+    hand = player.getHand().obs;
+    currentEnemy = TextFieldEnemy();
   }
-
-  RxList<GameCard> allGameCards = (List<GameCard>.of([
-    BasicAttack(),
-    BasicDefense(),
-    BasicAttack(),
-  ])).obs;
 
   int acceptedData = 0;
 
@@ -114,14 +115,14 @@ class _GameScreenState extends State<GameScreen> {
       For description window
      */
 
-    ShowMoreTextPopup popup = ShowMoreTextPopup(context,
-        text: '123',
-        textStyle: TextStyle(color: Colors.black),
-        height: 200,
-        width: 100,
-        backgroundColor: Color(0xFF16CCCC),
-        padding: EdgeInsets.all(4.0),
-        borderRadius: BorderRadius.circular(10.0));
+    // ShowMoreTextPopup popup = ShowMoreTextPopup(context,
+    //     text: '123',
+    //     textStyle: const TextStyle(color: Colors.black),
+    //     height: 200,
+    //     width: 100,
+    //     backgroundColor: const Color(0xFF16CCCC),
+    //     padding: const EdgeInsets.all(4.0),
+    //     borderRadius: BorderRadius.circular(10.0));
 
     double startPosition = -30.0.obs;
     return Scaffold(
@@ -277,11 +278,11 @@ class _GameScreenState extends State<GameScreen> {
                             player.energy.value--;
 
                             int num = -1;
-                            allGameCards.firstWhere((element) {
+                            hand.firstWhere((element) {
                               num++;
                               return element == card;
                             });
-                            allGameCards.removeAt(num);
+                            hand.removeAt(num);
                           }
                         },
                       ),
@@ -313,6 +314,7 @@ class _GameScreenState extends State<GameScreen> {
                           currentEnemy.move(player, turn);
                           player.block.value = 0;
                           turn++;
+                          hand.value = player.getHand().obs;
                         },
                         child: Text(
                           'End turn',
@@ -328,11 +330,11 @@ class _GameScreenState extends State<GameScreen> {
                   startPosition = 0;
                   return Stack(
                     alignment: Alignment.center,
-                    children: allGameCards.map((e) {
+                    children: hand.map((card) {
                       startPosition += 50;
                       return Positioned(
                         left: startPosition,
-                        child: e.render(),
+                        child: card.render(),
                       );
                     }).toList(),
                   );

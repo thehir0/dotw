@@ -15,11 +15,10 @@ class Enemy extends Entity {
     required super.hp,
     required super.hpMax,
     required super.dmg,
-    required super.block,
     required this.moveSet,
     required this.difficulty,
     required this.blockMax,
-  }){
+  }) : super(block: 0.obs) {
     currentMove = moveSet[0].obs; // todo: broken moveset
   }
 
@@ -28,28 +27,28 @@ class Enemy extends Entity {
     return currentMove.value;
   }
 
-  void move(Player player, int turn){
+  void move(Player player, int turn) {
     block.value = 0;
-    if(getMove(turn + 1) == MoveSet.block){
+    if (getMove(turn + 1) == MoveSet.block) {
       blockMove();
     }
-    switch(getMove(turn)){
+    switch (getMove(turn)) {
       case MoveSet.attack:
         attack(player);
         break;
       case MoveSet.support:
         supportMove();
         break;
+      case MoveSet.block:
+        break;
     }
   }
 
-  void blockMove(){
+  void blockMove() {
     block.value = blockMax;
   }
 
-  void supportMove(){
-
-  }
+  void supportMove() {}
 
   @override
   void onDeath(Entity attacker) {

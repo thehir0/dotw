@@ -5,7 +5,7 @@ class Entity {
   final String name;
   final String description;
   Rx<int> hp;
-  final int hpMax;
+  Rx<int> hpMax;
   Rx<int> dmg;
   Rx<int> block;
   late Widget render;

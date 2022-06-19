@@ -5,6 +5,8 @@ import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextFieldEnemy extends Enemy {
+  var labelText = 'hi'.obs;
+
   TextFieldEnemy()
       : super(
           name: 'Text Field',
@@ -19,13 +21,18 @@ class TextFieldEnemy extends Enemy {
     render = SizedBox(
       height: 80,
       width: 160,
-      child: TextField(
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(),
-          labelText: 'hi',
-          labelStyle: GoogleFonts.vt323(
-            textStyle: const TextStyle(
-              fontSize: 50,
+      child: Obx(
+        () => TextField(
+          onSubmitted: (String value) {
+            labelText.value = value;
+          },
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            labelText: labelText.value,
+            labelStyle: GoogleFonts.vt323(
+              textStyle: const TextStyle(
+                fontSize: 50,
+              ),
             ),
           ),
         ),

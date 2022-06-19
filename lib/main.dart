@@ -9,12 +9,12 @@ import 'package:get/state_manager.dart';
 // import 'package:show_more_text_popup/show_more_text_popup.dart';
 
 import 'cards/card.dart';
-import 'entities/enemies/elevated_button_enemy.dart';
 import 'entities/enemies/enemy.dart';
 import 'entities/player.dart';
 import 'constants/colors.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,9 +32,8 @@ class MyApp extends StatelessWidget {
         MainMenu.route: (context) => const MainMenu(),
         GameScreen.route: (context) => const GameScreen(),
       },
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: const MainMenu(),
     );
   }
@@ -193,7 +192,7 @@ class _GameScreenState extends State<GameScreen> {
                               text: '${currentEnemy.name} ',
                               style: GoogleFonts.vt323(
                                   textStyle: const TextStyle(fontSize: 30),
-                                  color: Colors.black),
+                                  color: Colors.red),
                               children: <TextSpan>[
                                 TextSpan(
                                   text:

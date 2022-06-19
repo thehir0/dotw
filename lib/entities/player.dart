@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dotw/cards/card.dart';
 import 'package:dotw/entities/entity.dart';
 import 'package:get/get.dart';

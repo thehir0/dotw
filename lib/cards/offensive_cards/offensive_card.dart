@@ -18,12 +18,8 @@ class OffensiveCard extends GameCard {
 
   @override
   Widget render() {
-
-    var player;
     return Draggable<GameCard>(
-      childWhenDragging: Container(
-
-      ),
+      childWhenDragging: Container(),
       data: this,
       feedback: Container(
         decoration: BoxDecoration(
@@ -32,7 +28,6 @@ class OffensiveCard extends GameCard {
         ),
         height: GameCard.cardHeight,
         width: GameCard.cardWidth,
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +84,6 @@ class OffensiveCard extends GameCard {
             ),
           ],
         ),
-
       ),
     );
   }

@@ -7,13 +7,11 @@ import 'package:dotw/entities/enemies/move_set.dart';
 import 'package:dotw/entities/enemies/text_field_enemy.dart';
 import 'package:dotw/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 // import 'package:show_more_text_popup/show_more_text_popup.dart';
 
 import 'cards/card.dart';
-import 'entities/enemies/elevated_button_enemy.dart';
 import 'entities/enemies/enemy.dart';
 import 'entities/player.dart';
 import 'constants/colors.dart';
@@ -41,7 +39,6 @@ class MyApp extends StatelessWidget {
       routes: {
         MainMenu.route: (context) => const MainMenu(),
         GameScreen.route: (context) => const GameScreen(),
-
         Leaderboard.route: (context) => const Leaderboard(),
       },
       theme: AppTheme.lightTheme,

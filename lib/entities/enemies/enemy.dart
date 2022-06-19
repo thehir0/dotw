@@ -64,6 +64,7 @@ class Enemy extends Entity {
   void onDeath(Entity attacker) {
     if (attacker is Player && !isDead.value) {
       attacker.money.value += difficulty * 5;
+
       attacker.score.value += difficulty * 5;
     }
     super.onDeath(attacker);

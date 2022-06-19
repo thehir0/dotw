@@ -7,6 +7,7 @@ class Enemy extends Entity {
   List<MoveSet> moveSet;
   int difficulty;
   final int blockMax;
+  late Rx<MoveSet> currentMove;
 
   Enemy({
     required super.name,
@@ -18,10 +19,36 @@ class Enemy extends Entity {
     required this.moveSet,
     required this.difficulty,
     required this.blockMax,
-  });
+  }){
+    currentMove = moveSet[0].obs; // todo: broken moveset
+  }
 
   MoveSet getMove(int turn) {
-    return moveSet[turn % moveSet.length];
+    currentMove.value = moveSet[turn % moveSet.length];
+    return currentMove.value;
+  }
+
+  void move(Player player, int turn){
+    block.value = 0;
+    if(getMove(turn + 1) == MoveSet.block){
+      blockMove();
+    }
+    switch(getMove(turn)){
+      case MoveSet.attack:
+        attack(player);
+        break;
+      case MoveSet.support:
+        supportMove();
+        break;
+    }
+  }
+
+  void blockMove(){
+    block.value = blockMax;
+  }
+
+  void supportMove(){
+
   }
 
   @override

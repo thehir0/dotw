@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class Player extends Entity {
   Rx<int> energy;
   Rx<int> money;
+  Rx<int> energyMax;
 
   Player({
     required super.name,
@@ -14,5 +15,6 @@ class Player extends Entity {
     required super.block,
     required this.energy,
     required this.money,
+    required this.energyMax,
   });
 }

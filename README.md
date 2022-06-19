@@ -11,3 +11,9 @@ The main screen contains two buttons: Play and Leaderboard:
 The Leaderboard button will take you to a page with records of players who have played before you:
 
 <img width="277" alt="Снимок экрана 2022-06-19 в 23 03 59" src="https://user-images.githubusercontent.com/64196918/174498478-b4d359f0-7c27-4010-a640-89a1d11b1253.png">
+
+The Play button will take you to the game itself:
+
+<img width="274" alt="Снимок экрана 2022-06-19 в 23 06 05" src="https://user-images.githubusercontent.com/64196918/174498549-954d950c-cbed-410f-93df-2ec57f6b1e5b.png">
+
+

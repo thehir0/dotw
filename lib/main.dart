@@ -9,7 +9,6 @@ import 'package:dotw/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-// import 'package:show_more_text_popup/show_more_text_popup.dart';
 
 import 'cards/card.dart';
 import 'entities/enemies/enemy.dart';
@@ -118,6 +117,7 @@ class _GameScreenState extends State<GameScreen> {
       block: 0.obs,
       name: 'Player',
       energyMax: 5.obs,
+      handSize: 3.obs,
       deck: (List<GameCard>.of([
         BasicAttack(),
         BasicAttack(),
@@ -129,6 +129,7 @@ class _GameScreenState extends State<GameScreen> {
     );
     hand = player.getHand().obs;
     currentEnemy = TextFieldEnemy();
+    print(Enemy.getEnemies(2));
   }
 
   int acceptedData = 0;

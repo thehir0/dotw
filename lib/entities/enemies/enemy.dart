@@ -1,3 +1,4 @@
+import 'package:dotw/entities/enemies/list_of_enemies.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
 import 'package:dotw/entities/entity.dart';
 import 'package:dotw/entities/player.dart';
@@ -20,6 +21,15 @@ class Enemy extends Entity {
     required this.blockMax,
   }) : super(block: 0.obs) {
     currentMove = moveSet[0].obs; // todo: broken moveset
+  }
+
+  static RxList<Enemy> getEnemies(int amount) {
+    var enemies = List<Enemy>.empty().obs;
+    while (enemies.length < amount) {
+      var randomEnemy = (listOfEnemies..shuffle()).first;
+      enemies.add(randomEnemy.call());
+    }
+    return enemies;
   }
 
   MoveSet getMove(int turn) {
@@ -54,7 +64,7 @@ class Enemy extends Entity {
   void onDeath(Entity attacker) {
     if (attacker is Player && !isDead.value) {
       attacker.money.value += difficulty * 5;
-      attacker.score += difficulty * 5;
+      attacker.score.value += difficulty * 5;
     }
     super.onDeath(attacker);
   }

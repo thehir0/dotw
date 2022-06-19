@@ -11,6 +11,7 @@ class Player extends Entity {
   RxList<GameCard> deck;
   int score = 0;
 
+
   Player({
     required super.name,
     required super.description,

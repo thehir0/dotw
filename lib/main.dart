@@ -20,6 +20,8 @@ import 'constants/colors.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'app_theme.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -39,11 +41,11 @@ class MyApp extends StatelessWidget {
       routes: {
         MainMenu.route: (context) => const MainMenu(),
         GameScreen.route: (context) => const GameScreen(),
+
         Leaderboard.route: (context) => const Leaderboard(),
       },
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: const MainMenu(),
     );
   }
@@ -51,7 +53,6 @@ class MyApp extends StatelessWidget {
 
 class MainMenu extends StatefulWidget {
   static const String route = '';
-
   const MainMenu({Key? key}) : super(key: key);
 
   @override
@@ -219,7 +220,7 @@ class _GameScreenState extends State<GameScreen> {
                               text: '${currentEnemy.name} ',
                               style: GoogleFonts.vt323(
                                   textStyle: const TextStyle(fontSize: 30),
-                                  color: Colors.black),
+                                  color: Colors.red),
                               children: <TextSpan>[
                                 TextSpan(
                                   text:

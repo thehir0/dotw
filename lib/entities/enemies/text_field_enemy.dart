@@ -5,7 +5,6 @@ import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextFieldEnemy extends Enemy {
-
   var labelText = 'hi'.obs;
 
   TextFieldEnemy()

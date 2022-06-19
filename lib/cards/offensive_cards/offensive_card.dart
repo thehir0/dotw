@@ -17,7 +17,6 @@ class OffensiveCard extends GameCard {
 
   @override
   Widget render() {
-    var player;
     return Draggable<GameCard>(
       childWhenDragging: Container(),
       data: this,

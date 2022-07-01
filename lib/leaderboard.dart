@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Leaderboard extends StatefulWidget {
   static const String route = 'leaderboard';
@@ -28,14 +29,24 @@ class _LeaderboardState extends State<Leaderboard> {
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
               'Leader',
-              style: TextStyle(color: Colors.deepPurple),
+              style: GoogleFonts.vt323(
+                textStyle: const TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple),
+              ),
             ),
             Text(
               'board',
-              style: TextStyle(color: Colors.purpleAccent),
+              style: GoogleFonts.vt323(
+                textStyle: const TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.pinkAccent),
+              ),
             ),
           ],
         ),
@@ -64,16 +75,28 @@ class _LeaderboardState extends State<Leaderboard> {
                     border: Border.all(color: Colors.black)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Rank',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
-                    Text('Nickname',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
-                    Text('Points',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
+                  children: [
+                    Text(
+                      'Rank',
+                      style: GoogleFonts.vt323(
+                        textStyle: const TextStyle(
+                            fontSize: 26, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Text(
+                      'Nickname',
+                      style: GoogleFonts.vt323(
+                        textStyle: const TextStyle(
+                            fontSize: 26, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Text(
+                      'Points',
+                      style: GoogleFonts.vt323(
+                        textStyle: const TextStyle(
+                            fontSize: 26, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -97,8 +120,10 @@ class _LeaderboardState extends State<Leaderboard> {
                             padding: const EdgeInsets.only(right: 15),
                             child: Text(
                               '#${i + 1}',
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.vt323(
+                                  textStyle: const TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold)),
                             ),
                           ),
                           const Icon(
@@ -110,15 +135,16 @@ class _LeaderboardState extends State<Leaderboard> {
                       ),
                       Text(
                         players[i],
-                        style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.deepPurple,
-                            fontWeight: FontWeight.bold),
+                        style: GoogleFonts.vt323(
+                            textStyle: const TextStyle(
+                                fontSize: 26, fontWeight: FontWeight.bold)),
                       ),
                       Text(
                         '${data[players[i]]}',
-                        style: const TextStyle(
-                            fontSize: 20, fontStyle: FontStyle.italic),
+                        style: GoogleFonts.vt323(
+                          textStyle: const TextStyle(
+                              fontSize: 26, fontStyle: FontStyle.italic),
+                        ),
                       ),
                     ],
                   ),

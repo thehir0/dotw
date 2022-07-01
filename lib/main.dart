@@ -1,4 +1,4 @@
-import 'dart:async';
+//import 'dart:async';
 
 import 'package:dotw/Leaderboard.dart';
 import 'package:dotw/cards/defensive_cards/basic_defense.dart';
@@ -17,6 +17,7 @@ import 'entities/player.dart';
 import 'constants/colors.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_theme.dart';
 
 import 'app_theme.dart';
 
@@ -118,6 +119,7 @@ class _GameScreenState extends State<GameScreen> {
       block: 0.obs,
       name: 'Player',
       energyMax: 5.obs,
+      handSize: 3.obs,
       deck: (List<GameCard>.of([
         BasicAttack(),
         BasicAttack(),
@@ -129,6 +131,7 @@ class _GameScreenState extends State<GameScreen> {
     );
     hand = player.getHand().obs;
     currentEnemy = TextFieldEnemy();
+    print(Enemy.getEnemies(2));
   }
 
   int acceptedData = 0;

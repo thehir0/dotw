@@ -6,8 +6,10 @@ class Player extends Entity {
   Rx<int> energy;
   Rx<int> money;
   Rx<int> energyMax;
+  Rx<int> handSize;
   RxList<GameCard> deck;
-  int score = 0;
+  List<GameCard> usedCards = [];
+  Rx<int> score = 0.obs;
 
   Player({
     required super.name,
@@ -19,16 +21,21 @@ class Player extends Entity {
     required this.energy,
     required this.money,
     required this.energyMax,
+    required this.handSize,
     required this.deck,
   });
 
   List<GameCard> getHand() {
     var hand = List<GameCard>.empty().obs;
-    while (hand.length < 5) {
-      var randomCard = (deck..shuffle()).first;
-      if (!hand.contains(randomCard)) {
-        hand.add(randomCard);
+    while (hand.length < handSize.value) {
+      if (deck.isEmpty) {
+        deck.addAll(usedCards);
+        usedCards.clear();
       }
+      var randomCard = (deck..shuffle()).first;
+      deck.remove(randomCard);
+      usedCards.add(randomCard);
+      hand.add(randomCard);
     }
     return hand;
   }

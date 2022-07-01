@@ -35,9 +35,9 @@ class Entity {
     final damage = (attacker.dmg.value - block.value);
     hp.value -= damage;
     if (attacker is Player) {
-      attacker.score += damage;
+      attacker.score.value += damage;
     } else {
-      (this as Player).score -= damage;
+      (this as Player).score.value -= damage;
     }
     block = 0.obs;
     if (hp <= 0) {

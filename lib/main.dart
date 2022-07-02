@@ -339,6 +339,9 @@ class _GameScreenState extends State<GameScreen> {
                         onPressed: () {
                           player.energy.value = player.energyMax.value;
                           currentEnemy.move(player, turn);
+                          if(player.hp <= 0){
+                            showAlertDialog(context);
+                          }
                           player.block.value = 0;
                           turn++;
                           hand.value = player.getHand().obs;
@@ -370,5 +373,57 @@ class _GameScreenState extends State<GameScreen> {
             ],
           ),
         ));
+  }
+
+  void showAlertDialog(BuildContext context) {
+    final Widget closeButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(primary: GameColors.barColor),
+      child: Text(
+        'Exit to main menu',
+        style: GoogleFonts.vt323(
+            textStyle: const TextStyle(fontSize: 30),
+            color: Colors.redAccent),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    final AlertDialog alert = AlertDialog(
+      backgroundColor: Colors.black54,
+      elevation: 0,
+      content: SizedBox(
+        height: 120,
+        width: 400,
+        child: Column(
+          children: [
+            Text(
+              'You DIED',
+              style: GoogleFonts.vt323(
+                  textStyle: const TextStyle(fontSize: 50),
+                  color: Colors.redAccent),
+            ),
+            Text(
+              'Score: ${player.score}',
+              style: GoogleFonts.vt323(
+                  textStyle: const TextStyle(fontSize: 20),
+                  color: Colors.redAccent),
+            ),
+            closeButton,
+          ],
+        )
+      ),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+      barrierDismissible: false,
+    );
   }
 }

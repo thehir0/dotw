@@ -51,6 +51,7 @@ class MyApp extends StatelessWidget {
 
 class MainMenu extends StatefulWidget {
   static const String route = '';
+
   const MainMenu({Key? key}) : super(key: key);
 
   @override
@@ -121,6 +122,12 @@ class _GameScreenState extends State<GameScreen> {
       energyMax: 5.obs,
       handSize: 3.obs,
       deck: (List<GameCard>.of([
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
         BasicAttack(),
         BasicAttack(),
         BasicAttack(),
@@ -316,6 +323,22 @@ class _GameScreenState extends State<GameScreen> {
                     ],
                   )),
               Flexible(
+                  flex: 3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          showDeckDialog(context);
+                        },
+                        icon: Icon(
+                          Icons.book_sharp,
+                          size: 40,
+                        ),
+                      ),
+                    ],
+                  )),
+              Flexible(
                   flex: 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -339,8 +362,8 @@ class _GameScreenState extends State<GameScreen> {
                         onPressed: () {
                           player.energy.value = player.energyMax.value;
                           currentEnemy.move(player, turn);
-                          if(player.hp <= 0){
-                            showAlertDialog(context);
+                          if (player.hp <= 0) {
+                            showDeathDialog(context);
                           }
                           player.block.value = 0;
                           turn++;
@@ -364,7 +387,12 @@ class _GameScreenState extends State<GameScreen> {
                       startPosition += 50;
                       return Positioned(
                         left: startPosition,
-                        child: card.render(),
+                        child: Draggable<GameCard>(
+                          childWhenDragging: Container(),
+                          data: card,
+                          feedback: card.render(),
+                          child: card.render(),
+                        ),
                       );
                     }).toList(),
                   );
@@ -375,14 +403,13 @@ class _GameScreenState extends State<GameScreen> {
         ));
   }
 
-  void showAlertDialog(BuildContext context) {
+  void showDeathDialog(BuildContext context) {
     final Widget closeButton = ElevatedButton(
       style: ElevatedButton.styleFrom(primary: GameColors.barColor),
       child: Text(
         'Exit to main menu',
         style: GoogleFonts.vt323(
-            textStyle: const TextStyle(fontSize: 30),
-            color: Colors.redAccent),
+            textStyle: const TextStyle(fontSize: 30), color: Colors.redAccent),
       ),
       onPressed: () {
         Navigator.of(context).pop();
@@ -395,26 +422,25 @@ class _GameScreenState extends State<GameScreen> {
       backgroundColor: Colors.black54,
       elevation: 0,
       content: SizedBox(
-        height: 120,
-        width: 400,
-        child: Column(
-          children: [
-            Text(
-              'You DIED',
-              style: GoogleFonts.vt323(
-                  textStyle: const TextStyle(fontSize: 50),
-                  color: Colors.redAccent),
-            ),
-            Text(
-              'Score: ${player.score}',
-              style: GoogleFonts.vt323(
-                  textStyle: const TextStyle(fontSize: 20),
-                  color: Colors.redAccent),
-            ),
-            closeButton,
-          ],
-        )
-      ),
+          height: 120,
+          width: 400,
+          child: Column(
+            children: [
+              Text(
+                'You DIED',
+                style: GoogleFonts.vt323(
+                    textStyle: const TextStyle(fontSize: 50),
+                    color: Colors.redAccent),
+              ),
+              Text(
+                'Score: ${player.score}',
+                style: GoogleFonts.vt323(
+                    textStyle: const TextStyle(fontSize: 20),
+                    color: Colors.redAccent),
+              ),
+              closeButton,
+            ],
+          )),
     );
 
     // show the dialog
@@ -425,5 +451,36 @@ class _GameScreenState extends State<GameScreen> {
       },
       barrierDismissible: false,
     );
+  }
+
+  void showDeckDialog(BuildContext context) {
+
+    final AlertDialog alert = AlertDialog(
+      backgroundColor: Colors.black54,
+      elevation: 0,
+      content: Container(
+        width: 85,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.all(4.0),
+          children: <Widget>[
+            if (player.deck.isNotEmpty)
+              for (GameCard card in player.deck) buildDeck(card, context),
+          ],
+        ),
+      ),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  Widget buildDeck(GameCard card, BuildContext context) {
+      return card.render();
   }
 }

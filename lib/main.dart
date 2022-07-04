@@ -379,7 +379,7 @@ class _GameScreenState extends State<GameScreen> {
                                       turn = 0;
                                       Navigator.of(context).pop();
                                     },
-                                    child: const Text('Continue...'),
+                                    child: const Text('Continue'),
                                   ),
                                 ],
                               );

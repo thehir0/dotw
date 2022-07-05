@@ -6,10 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants/colors.dart';
 
-import 'package:google_fonts/google_fonts.dart';
-
-import '../../constants/colors.dart';
-
 class DefensiveCard extends GameCard {
   final int block;
 

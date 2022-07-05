@@ -333,40 +333,39 @@ class _GameScreenState extends State<GameScreen> {
                           ]);
                     },
                   )),
-              Flexible(
-                  flex: 3,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          showDeckDialog(context);
-                        },
-                        icon: Icon(
-                          Icons.book_sharp,
-                          size: 40,
-                        ),
+            ),
+            Flexible(
+                flex: 3,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        showDeckDialog(context);
+                      },
+                      icon: const Icon(
+                        Icons.book_sharp,
+                        size: 40,
                       ),
-                    ],
-                  )),
-              Flexible(
-                  flex: 2,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Icon(
-                        Icons.flash_on_sharp,
-                        size: 35,
-                        color: GameColors.goldColor,
-                      ),
-                      Obx(() => Text(
-                            '${player.energy.value}/${player.energyMax.value}',
-                            style: GoogleFonts.vt323(
-                                textStyle: const TextStyle(fontSize: 30),
-                                color: GameColors.goldColor),
-                          )),
-                    ],
+                    ),
+                  ],
+                )),
+            Flexible(
+              flex: 2,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Icon(
+                    Icons.flash_on_sharp,
+                    size: 35,
+                    color: GameColors.goldColor,
                   ),
+                  Obx(() => Text(
+                        '${player.energy.value}/${player.energyMax.value}',
+                        style: GoogleFonts.vt323(
+                            textStyle: const TextStyle(fontSize: 30),
+                            color: GameColors.goldColor),
+                      )),
                   ElevatedButton(
                     onPressed: () {
                       player.energy.value = player.energyMax.value;
@@ -374,7 +373,7 @@ class _GameScreenState extends State<GameScreen> {
                         enemy.move(player, turn);
                       }
                       if (player.isDead.isTrue) {
-                        showAlertDialog(context);
+                        showDeathDialog(context);
                       }
                       player.block.value = 0;
 
@@ -386,7 +385,7 @@ class _GameScreenState extends State<GameScreen> {
                       style: GoogleFonts.vt323(
                           textStyle: const TextStyle(fontSize: 20)),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -399,14 +398,14 @@ class _GameScreenState extends State<GameScreen> {
                   children: hand.map((card) {
                     startPosition += 50;
                     return Positioned(
-                        left: startPosition,
-                        child: Draggable<GameCard>(
-                          childWhenDragging: Container(),
-                          data: card,
-                          feedback: card.render(),
-                          child: card.render(),
-                        ),
-                      );
+                      left: startPosition,
+                      child: Draggable<GameCard>(
+                        childWhenDragging: Container(),
+                        data: card,
+                        feedback: card.render(),
+                        child: card.render(),
+                      ),
+                    );
                   }).toList(),
                 );
               }),
@@ -468,7 +467,6 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void showDeckDialog(BuildContext context) {
-
     final AlertDialog alert = AlertDialog(
       backgroundColor: Colors.black54,
       elevation: 0,
@@ -495,10 +493,9 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-
   Widget buildDeck(GameCard card, BuildContext context) {
-      return card.render();
-}
+    return card.render();
+  }
 
   void showYouWin(BuildContext context) {
     showDialog(

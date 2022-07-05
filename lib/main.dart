@@ -232,56 +232,64 @@ class _GameScreenState extends State<GameScreen> {
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    Obx(() => Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            if (currentEnemy.getMove(turn) ==
-                                                MoveSet.attack) ...[
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const Icon(
-                                                    Icons.umbrella_sharp,
-                                                    size: 20,
-                                                    color: Colors.redAccent,
-                                                  ),
-                                                  Text(
-                                                    '${currentEnemy.dmg}',
-                                                    style: GoogleFonts.vt323(
-                                                        textStyle:
-                                                            const TextStyle(
-                                                                fontSize: 30),
-                                                        color: Colors.blue),
-                                                  ),
-                                                ],
-                                              ),
-                                            ] else if (currentEnemy
-                                                    .getMove(turn) ==
-                                                MoveSet.block) ...[
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const Icon(
-                                                    Icons.shield,
-                                                    size: 20,
-                                                    color: Colors.blue,
-                                                  ),
-                                                  Text(
-                                                    '${currentEnemy.block}',
-                                                    style: GoogleFonts.vt323(
-                                                        textStyle:
-                                                            const TextStyle(
-                                                                fontSize: 30),
-                                                        color: Colors.blue),
-                                                  ),
-                                                ],
-                                              )
-                                            ]
-                                          ],
-                                        )),
+                                    Obx(() => currentEnemy.isDead.isFalse
+                                        ? Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              if (currentEnemy.getMove(turn) ==
+                                                  MoveSet.attack) ...[
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.umbrella_sharp,
+                                                      size: 20,
+                                                      color: Colors.redAccent,
+                                                    ),
+                                                    Text(
+                                                      '${currentEnemy.dmg}',
+                                                      style: GoogleFonts.vt323(
+                                                          textStyle:
+                                                              const TextStyle(
+                                                                  fontSize: 30),
+                                                          color: Colors.blue),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ] else if (currentEnemy
+                                                      .getMove(turn) ==
+                                                  MoveSet.block) ...[
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.shield,
+                                                      size: 20,
+                                                      color: Colors.blue,
+                                                    ),
+                                                    Text(
+                                                      '${currentEnemy.block}',
+                                                      style: GoogleFonts.vt323(
+                                                          textStyle:
+                                                              const TextStyle(
+                                                                  fontSize: 30),
+                                                          color: Colors.blue),
+                                                    ),
+                                                  ],
+                                                )
+                                              ]
+                                            ],
+                                          )
+                                        : Text(
+                                            '*dead*',
+                                            style: GoogleFonts.vt323(
+                                                textStyle: const TextStyle(
+                                                    fontSize: 30),
+                                                color: Colors.redAccent),
+                                          )),
                                     const SizedBox(
                                       height: 5,
                                     ),
@@ -296,17 +304,20 @@ class _GameScreenState extends State<GameScreen> {
                                       onAccept: (GameCard card) {
                                         if (player.energy.value >= card.cost) {
                                           card.play(player, enemies[index]);
-                                          if (enemies[index].isDead.isTrue) {
-                                            enemies.removeAt(index);
-                                          }
                                           player.energy.value--;
 
-                                          int num = -1;
-                                          hand.firstWhere((element) {
-                                            num++;
-                                            return element == card;
-                                          });
-                                          hand.removeAt(num);
+                                          bool victory = true;
+                                          for (final enemy in enemies) {
+                                            if (enemy.isDead.isFalse) {
+                                              victory = false;
+                                              break;
+                                            }
+                                          }
+                                          if (victory) {
+                                            showYouWin(context);
+                                          }
+
+                                          hand.remove(card);
                                         }
                                       },
                                     ),
@@ -349,42 +360,6 @@ class _GameScreenState extends State<GameScreen> {
 
                       turn++;
                       hand.value = player.getHand().obs;
-                      if (enemies.isEmpty) {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                backgroundColor: Colors.black54,
-                                elevation: 0,
-                                content: SizedBox(
-                                  height: 120,
-                                  width: 400,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Score: ${player.score}',
-                                        style: GoogleFonts.vt323(
-                                            textStyle:
-                                                const TextStyle(fontSize: 20),
-                                            color: const Color.fromARGB(
-                                                255, 147, 131, 251)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                actions: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      enemies.addAll(Enemy.getEnemies(2));
-                                      turn = 0;
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text('Continue'),
-                                  ),
-                                ],
-                              );
-                            });
-                      }
                     },
                     child: Text(
                       'End turn',
@@ -465,5 +440,41 @@ class _GameScreenState extends State<GameScreen> {
       },
       barrierDismissible: false,
     );
+  }
+
+  void showYouWin(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.black54,
+            elevation: 0,
+            content: SizedBox(
+              height: 120,
+              width: 400,
+              child: Column(
+                children: [
+                  Text(
+                    'Score: ${player.score}',
+                    style: GoogleFonts.vt323(
+                        textStyle: const TextStyle(fontSize: 20),
+                        color: const Color.fromARGB(255, 147, 131, 251)),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  enemies.clear();
+                  enemies.addAll(Enemy.getEnemies(2));
+                  turn = 0;
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Continue'),
+              ),
+            ],
+          );
+        });
   }
 }

@@ -50,7 +50,7 @@ class Entity {
   }
 
   void onDeath(Entity attacker) {
-    isDead = true.obs;
-    hp = 0.obs;
+    isDead.value = true;
+    hp.value = 0;
   }
 }

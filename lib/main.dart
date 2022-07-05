@@ -459,7 +459,8 @@ class _GameScreenState extends State<GameScreen> {
       backgroundColor: Colors.black54,
       elevation: 0,
       content: Container(
-        width: 85,
+        height: 155,
+        width: 100,
         child: ListView(
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.all(4.0),

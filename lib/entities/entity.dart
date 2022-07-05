@@ -39,7 +39,7 @@ class Entity {
     } else {
       (this as Player).score.value -= damage;
     }
-    block = 0.obs;
+    block.value = 0;
     if (hp <= 0) {
       onDeath(attacker);
     }

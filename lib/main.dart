@@ -6,13 +6,14 @@ import 'package:dotw/cards/offensive_cards/basic_attack.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
 import 'package:dotw/entities/enemies/text_field_enemy.dart';
 import 'package:dotw/firebase_options.dart';
-import 'package:dotw/account_screen.dart';
+import 'package:dotw/Registration/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 // import 'package:show_more_text_popup/show_more_text_popup.dart';
 
+import 'Registration/registration.dart';
 import 'cards/card.dart';
 import 'entities/enemies/enemy.dart';
 import 'entities/player.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
         GameScreen.route: (context) => const GameScreen(),
         Leaderboard.route: (context) => const Leaderboard(),
         RegistrationScreen.route: (context) => const RegistrationScreen(),
-        LogInScreen.route: (context) => LogInScreen(),
+        LogInScreen.route: (context) => const LogInScreen(),
       },
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,

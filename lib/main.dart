@@ -3,10 +3,13 @@ import 'package:dotw/cards/defensive_cards/basic_defense.dart';
 import 'package:dotw/cards/offensive_cards/basic_attack.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
 import 'package:dotw/firebase_options.dart';
+import 'package:dotw/Registration/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
+import 'Registration/registration.dart';
 import 'cards/card.dart';
 import 'entities/enemies/enemy.dart';
 import 'entities/player.dart';
@@ -23,6 +26,8 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+RxBool logged = false.obs;
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -30,15 +35,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'DOTW',
-      initialRoute: MainMenu.route,
+      initialRoute: '',
       routes: {
         MainMenu.route: (context) => const MainMenu(),
         GameScreen.route: (context) => const GameScreen(),
         Leaderboard.route: (context) => const Leaderboard(),
+        RegistrationScreen.route: (context) => const RegistrationScreen(),
+        LogInScreen.route: (context) => const LogInScreen(),
       },
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      home: const MainMenu(),
+      //home: const MainMenu(),
     );
   }
 }
@@ -71,15 +78,40 @@ class _MainMenuState extends State<MainMenu> {
                     GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
               ),
             )),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, Leaderboard.route);
-          },
-          child: Text(
-            'Leaderboard',
-            style: GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 25),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, Leaderboard.route);
+            },
+            child: Text(
+              'Leaderboard',
+              style:
+                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+            ),
           ),
         ),
+        Padding(
+            padding: const EdgeInsets.only(bottom: 25),
+            child: Obx(
+              () => ElevatedButton(
+                onPressed: () {
+                  if (logged.isFalse) {
+                    Navigator.pushNamed(context, LogInScreen.route);
+                  } else {
+                    setState(() {
+                      logged.value = !logged.value;
+                      FirebaseAuth.instance.signOut();
+                    });
+                  }
+                },
+                child: Text(
+                  logged.value ? 'Log out' : 'Login',
+                  style: GoogleFonts.vt323(
+                      textStyle: const TextStyle(fontSize: 70)),
+                ),
+              ),
+            )),
       ],
     );
   }

@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
 
 class MainMenu extends StatefulWidget {
   static const String route = '';
+
   const MainMenu({Key? key}) : super(key: key);
 
   @override
@@ -115,6 +116,12 @@ class _GameScreenState extends State<GameScreen> {
       energyMax: 5.obs,
       handSize: 3.obs,
       deck: (List<GameCard>.of([
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
+        BasicAttack(),
         BasicAttack(),
         BasicAttack(),
         BasicAttack(),
@@ -326,13 +333,26 @@ class _GameScreenState extends State<GameScreen> {
                           ]);
                     },
                   )),
-            ),
-            Flexible(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+              Flexible(
+                  flex: 3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          showDeckDialog(context);
+                        },
+                        icon: Icon(
+                          Icons.book_sharp,
+                          size: 40,
+                        ),
+                      ),
+                    ],
+                  )),
+              Flexible(
+                  flex: 2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Icon(
                         Icons.flash_on_sharp,
@@ -379,9 +399,14 @@ class _GameScreenState extends State<GameScreen> {
                   children: hand.map((card) {
                     startPosition += 50;
                     return Positioned(
-                      left: startPosition,
-                      child: card.render(),
-                    );
+                        left: startPosition,
+                        child: Draggable<GameCard>(
+                          childWhenDragging: Container(),
+                          data: card,
+                          feedback: card.render(),
+                          child: card.render(),
+                        ),
+                      );
                   }).toList(),
                 );
               }),
@@ -392,7 +417,7 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  void showAlertDialog(BuildContext context) {
+  void showDeathDialog(BuildContext context) {
     final Widget closeButton = ElevatedButton(
       style: ElevatedButton.styleFrom(primary: GameColors.barColor),
       child: Text(
@@ -441,6 +466,39 @@ class _GameScreenState extends State<GameScreen> {
       barrierDismissible: false,
     );
   }
+
+  void showDeckDialog(BuildContext context) {
+
+    final AlertDialog alert = AlertDialog(
+      backgroundColor: Colors.black54,
+      elevation: 0,
+      content: Container(
+        height: 155,
+        width: 100,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.all(4.0),
+          children: <Widget>[
+            if (player.deck.isNotEmpty)
+              for (GameCard card in player.deck) buildDeck(card, context),
+          ],
+        ),
+      ),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+
+  Widget buildDeck(GameCard card, BuildContext context) {
+      return card.render();
+}
 
   void showYouWin(BuildContext context) {
     showDialog(

@@ -1,7 +1,8 @@
+import 'dart:math';
+
 import 'package:dotw/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../cards/card.dart';
 import '../cards/defensive_cards/basic_defense.dart';
 import '../cards/offensive_cards/basic_attack.dart';
@@ -11,34 +12,41 @@ import '../entities/player.dart';
 class Shop extends StatefulWidget {
   static const String route = '/shop';
   final Player player;
+  final int room;
 
-  const Shop({Key? key, required this.player}) : super(key: key);
+  const Shop({
+    Key? key,
+    required this.player,
+    required this.room,
+  }) : super(key: key);
 
   @override
   State<Shop> createState() => _ShopState();
 }
 
 class _ShopState extends State<Shop> {
-  var healthCost = 1.obs;
-  var energyCost = 1.obs;
-  var healCost = 1.obs;
+  late RxInt healthCost;
+  late RxInt energyCost;
+  late RxInt healCost;
 
-  List<GameCard> cardsInShop = [
-    BasicAttack(),
-    BasicAttack(),
-    BasicAttack(),
-    BasicDefense(),
-    BasicDefense(),
-    BasicDefense(),
-  ];
-
-  RxList<bool> cardInShopIsBought = [false, false, false, false, false, false].obs;
+  late List<GameCard> cardsInShop;
+  late List<int> cardsInShopPrices;
+  RxList<bool> cardInShopIsBought =
+      [false, false, false, false, false, false].obs;
 
   late Player player;
 
   @override
   void initState() {
+    var rng = Random();
     player = widget.player;
+    cardsInShop = GameCard.getCards(6);
+    cardsInShopPrices = cardsInShop
+        .map((e) => max(e.rarity * 5 + rng.nextInt(21) - 10, 3))
+        .toList();
+    healthCost = widget.room.obs;
+    energyCost = widget.room.obs;
+    healCost = widget.room.obs;
     super.initState();
   }
 
@@ -61,19 +69,25 @@ class _ShopState extends State<Shop> {
                   SizedBox(
                     height: 80,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (player.money.value >= healthCost.value) {
+                          player.money.value -= healthCost.value;
+                          player.hpMax.value += 1;
+                          healthCost.value *= 2;
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         primary: Colors.transparent,
                       ),
                       child: Column(
-                        children: const [
-                          Icon(
+                        children: [
+                          const Icon(
                             Icons.favorite,
                             size: 60,
                             color: Colors.redAccent,
                           ),
-                          Text('123\$'),
+                          Obx(() => Text('$healthCost\$')),
                         ],
                       ),
                     ),
@@ -81,17 +95,23 @@ class _ShopState extends State<Shop> {
                   SizedBox(
                     height: 80,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (player.money.value >= energyCost.value) {
+                          player.money.value -= energyCost.value;
+                          player.energyMax.value += 1;
+                          energyCost.value *= 2;
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                           elevation: 0, primary: Colors.transparent),
                       child: Column(
-                        children: const [
-                          Icon(
+                        children: [
+                          const Icon(
                             Icons.flash_on_sharp,
                             size: 60,
                             color: GameColors.goldColor,
                           ),
-                          Text('123\$'),
+                          Obx(() => Text('$energyCost\$')),
                         ],
                       ),
                     ),
@@ -99,17 +119,23 @@ class _ShopState extends State<Shop> {
                   SizedBox(
                     height: 80,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (player.money.value >= healCost.value) {
+                          player.money.value -= healCost.value;
+                          player.hp.value = player.hpMax.value;
+                          healCost.value *= 2;
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                           elevation: 0, primary: Colors.transparent),
                       child: Column(
-                        children: const [
-                          Icon(
+                        children: [
+                          const Icon(
                             Icons.healing,
                             size: 60,
                             color: Colors.green,
                           ),
-                          Text('123\$'),
+                          Obx(() => Text('$healCost\$')),
                         ],
                       ),
                     ),
@@ -137,17 +163,19 @@ class _ShopState extends State<Shop> {
             ),
           ),
           Flexible(
-            flex: 2,
+              flex: 2,
               child: Padding(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('Leave the shop', style: TextStyle(fontSize: 30),),
+                  child: const Text(
+                    'Leave the shop',
+                    style: TextStyle(fontSize: 30),
+                  ),
                 ),
-              )
-          )
+              ))
         ],
       ),
     );
@@ -163,10 +191,17 @@ class _ShopState extends State<Shop> {
           onPressed: cardInShopIsBought[index]
               ? null
               : () {
-                  cardInShopIsBought[index] = true;
+                  if (player.money.value >= cardsInShopPrices[index]) {
+                    cardInShopIsBought[index] = true;
+                    player.deck.add(cardsInShop[index]);
+                    player.money.value -= cardsInShopPrices[index];
+                  }
                 },
           child: Column(
-            children: [cardsInShop[index].render(), Text('price')],
+            children: [
+              cardsInShop[index].render(),
+              Text('${cardsInShopPrices[index]}\$'),
+            ],
           )),
     );
   }

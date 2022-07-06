@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
       home: const MainMenu(),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      //home: const MainMenu(),
     );
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:dotw/cards/defensive_cards/defensive_cards.dart';
 import 'package:dotw/cards/list_of_card.dart';
 import 'package:dotw/cards/offensive_cards/offensive_card.dart';

@@ -4,7 +4,7 @@ import 'package:dotw/cards/offensive_cards/basic_attack.dart';
 import 'package:get/state_manager.dart';
 import '../cards/card.dart';
 
-Player buildStarterPlayer(){
+Player buildStarterPlayer() {
   return Player(
     energy: 5.obs,
     dmg: 1.obs,
@@ -20,13 +20,6 @@ Player buildStarterPlayer(){
       BasicAttack(),
       BasicAttack(),
       BasicAttack(),
-      BasicAttack(),
-      BasicAttack(),
-      BasicAttack(),
-      BasicAttack(),
-      BasicAttack(),
-      BasicDefense(),
-      BasicDefense(),
       BasicDefense(),
       BasicDefense(),
       BasicDefense(),

@@ -1,5 +1,5 @@
-import 'package:dotw/Leaderboard.dart';
-import 'package:dotw/Registration/login.dart';
+import 'package:dotw/registration/login.dart';
+import 'package:dotw/widgets/leaderboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +35,7 @@ class _MainMenuState extends State<MainMenu> {
               child: Text(
                 'Play',
                 style:
-                GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+                    GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
               ),
             )),
         Padding(
@@ -47,14 +47,14 @@ class _MainMenuState extends State<MainMenu> {
             child: Text(
               'Leaderboard',
               style:
-              GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
+                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
             ),
           ),
         ),
         Padding(
             padding: const EdgeInsets.only(bottom: 25),
             child: Obx(
-                  () => ElevatedButton(
+              () => ElevatedButton(
                 onPressed: () {
                   if (logged.isFalse) {
                     Get.to(const LogInScreen());

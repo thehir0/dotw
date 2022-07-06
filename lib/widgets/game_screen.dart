@@ -27,6 +27,8 @@ class _GameScreenState extends State<GameScreen> {
   late RxList<Enemy> enemies;
   late RxList<GameCard> hand;
   int turn = 0;
+  int room = 1;
+  RxBool enteredShop = false.obs;
 
   @override
   initState() {
@@ -47,140 +49,140 @@ class _GameScreenState extends State<GameScreen> {
             Flexible(
               flex: 15,
               child: Obx(() => GridView.builder(
-                itemCount: enemies.length,
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 4.0,
-                  mainAxisSpacing: 4.0,
-                ),
-                itemBuilder: (context, index) {
-                  final currentEnemy = enemies[index];
-                  return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                            flex: 28,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Obx(() => RichText(
-                                  text: TextSpan(
-                                      text:
-                                      '[$index] ${currentEnemy.name} ',
-                                      style: GoogleFonts.vt323(
-                                          textStyle: const TextStyle(
-                                              fontSize: 30),
-                                          color: Colors.red),
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text:
-                                          '[${currentEnemy.hp}/${currentEnemy.hpMax}]',
-                                          style: GoogleFonts.vt323(
-                                              textStyle:
-                                              const TextStyle(
-                                                  fontSize: 30),
-                                              color: Colors.redAccent),
-                                        ),
-                                      ]),
-                                )),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Obx(() => currentEnemy.isDead.isFalse
-                                    ? Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.center,
+                    itemCount: enemies.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 4.0,
+                      mainAxisSpacing: 4.0,
+                    ),
+                    itemBuilder: (context, index) {
+                      final currentEnemy = enemies[index];
+                      return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                                flex: 28,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    if (currentEnemy.getMove(turn) ==
-                                        MoveSet.attack) ...[
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          const Icon(
-                                            Icons.umbrella_sharp,
-                                            size: 20,
-                                            color: Colors.redAccent,
-                                          ),
-                                          Text(
-                                            '${currentEnemy.dmg}',
+                                    Obx(() => RichText(
+                                          text: TextSpan(
+                                              text:
+                                                  '[$index] ${currentEnemy.name} ',
+                                              style: GoogleFonts.vt323(
+                                                  textStyle: const TextStyle(
+                                                      fontSize: 30),
+                                                  color: Colors.red),
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                  text:
+                                                      '[${currentEnemy.hp}/${currentEnemy.hpMax}]',
+                                                  style: GoogleFonts.vt323(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              fontSize: 30),
+                                                      color: Colors.redAccent),
+                                                ),
+                                              ]),
+                                        )),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Obx(() => currentEnemy.isDead.isFalse
+                                        ? Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              if (currentEnemy.getMove(turn) ==
+                                                  MoveSet.attack) ...[
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.umbrella_sharp,
+                                                      size: 20,
+                                                      color: Colors.redAccent,
+                                                    ),
+                                                    Text(
+                                                      '${currentEnemy.dmg}',
+                                                      style: GoogleFonts.vt323(
+                                                          textStyle:
+                                                              const TextStyle(
+                                                                  fontSize: 30),
+                                                          color: Colors.blue),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ] else if (currentEnemy
+                                                      .getMove(turn) ==
+                                                  MoveSet.block) ...[
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.shield,
+                                                      size: 20,
+                                                      color: Colors.blue,
+                                                    ),
+                                                    Text(
+                                                      '${currentEnemy.block}',
+                                                      style: GoogleFonts.vt323(
+                                                          textStyle:
+                                                              const TextStyle(
+                                                                  fontSize: 30),
+                                                          color: Colors.blue),
+                                                    ),
+                                                  ],
+                                                )
+                                              ]
+                                            ],
+                                          )
+                                        : Text(
+                                            '*dead*',
                                             style: GoogleFonts.vt323(
-                                                textStyle:
-                                                const TextStyle(
+                                                textStyle: const TextStyle(
                                                     fontSize: 30),
-                                                color: Colors.blue),
-                                          ),
-                                        ],
-                                      ),
-                                    ] else if (currentEnemy
-                                        .getMove(turn) ==
-                                        MoveSet.block) ...[
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          const Icon(
-                                            Icons.shield,
-                                            size: 20,
-                                            color: Colors.blue,
-                                          ),
-                                          Text(
-                                            '${currentEnemy.block}',
-                                            style: GoogleFonts.vt323(
-                                                textStyle:
-                                                const TextStyle(
-                                                    fontSize: 30),
-                                                color: Colors.blue),
-                                          ),
-                                        ],
-                                      )
-                                    ]
-                                  ],
-                                )
-                                    : Text(
-                                  '*dead*',
-                                  style: GoogleFonts.vt323(
-                                      textStyle: const TextStyle(
-                                          fontSize: 30),
-                                      color: Colors.redAccent),
-                                )),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                DragTarget<GameCard>(
-                                  builder: (
-                                      BuildContext context,
-                                      List<dynamic> accepted,
-                                      List<dynamic> rejected,
+                                                color: Colors.redAccent),
+                                          )),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    DragTarget<GameCard>(
+                                      builder: (
+                                        BuildContext context,
+                                        List<dynamic> accepted,
+                                        List<dynamic> rejected,
                                       ) {
-                                    return currentEnemy.render;
-                                  },
-                                  onAccept: (GameCard card) {
-                                    if (player.energy.value >= card.cost) {
-                                      card.play(player, enemies[index]);
-                                      player.energy.value--;
+                                        return currentEnemy.render;
+                                      },
+                                      onAccept: (GameCard card) {
+                                        if (player.energy.value >= card.cost) {
+                                          card.play(player, enemies[index]);
+                                          player.energy.value--;
 
-                                      bool victory = true;
-                                      for (final enemy in enemies) {
-                                        if (enemy.isDead.isFalse) {
-                                          victory = false;
-                                          break;
+                                          bool victory = true;
+                                          for (final enemy in enemies) {
+                                            if (enemy.isDead.isFalse) {
+                                              victory = false;
+                                              break;
+                                            }
+                                          }
+                                          if (victory) {
+                                            showYouWin(context);
+                                          }
+
+                                          hand.remove(card);
                                         }
-                                      }
-                                      if (victory) {
-                                        showYouWin(context);
-                                      }
-
-                                      hand.remove(card);
-                                    }
-                                  },
-                                ),
-                              ],
-                            )),
-                      ]);
-                },
-              )),
+                                      },
+                                    ),
+                                  ],
+                                )),
+                          ]);
+                    },
+                  )),
             ),
             Flexible(
                 flex: 3,
@@ -209,14 +211,13 @@ class _GameScreenState extends State<GameScreen> {
                     color: GameColors.goldColor,
                   ),
                   Obx(() => Text(
-                    '${player.energy.value}/${player.energyMax.value}',
-                    style: GoogleFonts.vt323(
-                        textStyle: const TextStyle(fontSize: 30),
-                        color: GameColors.goldColor),
-                  )),
+                        '${player.energy.value}/${player.energyMax.value}',
+                        style: GoogleFonts.vt323(
+                            textStyle: const TextStyle(fontSize: 30),
+                            color: GameColors.goldColor),
+                      )),
                   ElevatedButton(
                     onPressed: () {
-                      player.energy.value = player.energyMax.value;
                       for (final enemy in enemies) {
                         enemy.move(player, turn);
                       }
@@ -224,7 +225,7 @@ class _GameScreenState extends State<GameScreen> {
                         showDeathDialog(context);
                       }
                       player.block.value = 0;
-
+                      player.energy.value = player.energyMax.value;
                       turn++;
                       hand.value = player.getHand().obs;
                     },
@@ -347,43 +348,60 @@ class _GameScreenState extends State<GameScreen> {
 
   void showYouWin(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            backgroundColor: Colors.black54,
-            elevation: 0,
-            content: SizedBox(
-              height: 120,
-              width: 400,
-              child: Column(
-                children: [
-                  Text(
-                    'Score: ${player.score}',
-                    style: GoogleFonts.vt323(
-                        textStyle: const TextStyle(fontSize: 20),
-                        color: const Color.fromARGB(255, 147, 131, 251)),
-                  ),
-                ],
-              ),
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black54,
+          elevation: 0,
+          content: SizedBox(
+            height: 120,
+            width: 400,
+            child: Column(
+              children: [
+                Text(
+                  'Score: ${player.score}',
+                  style: GoogleFonts.vt323(
+                      textStyle: const TextStyle(fontSize: 20),
+                      color: const Color.fromARGB(255, 147, 131, 251)),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        enemies.clear();
+                        enemies.addAll(Enemy.getEnemies(2));
+                        player.block.value = 0;
+                        player.energy.value = player.energyMax.value;
+                        turn = 0;
+                        room++;
+                        player.reassembleDeck();
+                        hand.value = player.getHand();
+                        enteredShop.value = false;
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Continue'),
+                    ),
+                    (room % 5 == 0 && enteredShop.isFalse)
+                        ? ElevatedButton(
+                            onPressed: () {
+                              enteredShop.value = true;
+                              Get.to(Shop(
+                                player: player,
+                                room: room,
+                              ));
+                            },
+                            child: const Text('Shop'),
+                          )
+                        : const SizedBox.shrink(),
+                  ],
+                ),
+              ],
             ),
-            actions: [
-              ElevatedButton(
-                onPressed: () {
-                  enemies.clear();
-                  enemies.addAll(Enemy.getEnemies(2));
-                  turn = 0;
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Continue'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Get.to(Shop(player: player,));
-                },
-                child: const Text('Shop'),
-              ),
-            ],
-          );
-        });
+          ),
+        );
+      },
+      barrierDismissible: false,
+    );
   }
 }

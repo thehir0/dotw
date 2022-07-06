@@ -25,6 +25,11 @@ class Player extends Entity {
     required this.deck,
   });
 
+  void reassembleDeck() {
+    deck.addAll(usedCards);
+    usedCards.clear();
+  }
+
   List<GameCard> getHand() {
     var hand = List<GameCard>.empty().obs;
     while (hand.length < handSize.value) {

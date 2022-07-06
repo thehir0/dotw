@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:dotw/widgets/app_bar.dart';
+import 'package:dotw/widgets/shop/app_bar_shop.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../cards/card.dart';
@@ -53,7 +54,7 @@ class _ShopState extends State<Shop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(widget.player),
+      appBar: buildShopAppBar(widget.player),
       body: Column(
         children: [
           Expanded(

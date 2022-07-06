@@ -1,9 +1,12 @@
+import 'dart:html';
+
 import 'package:dotw/cards/defensive_cards/defensive_cards.dart';
+import 'package:dotw/cards/list_of_card.dart';
 import 'package:dotw/cards/offensive_cards/offensive_card.dart';
 import 'package:dotw/entities/enemies/enemy.dart';
 import 'package:dotw/entities/player.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/colors.dart';
@@ -15,21 +18,31 @@ abstract class GameCard {
   final String title;
   final String description;
   final int cost;
+  final int rarity;
 
   GameCard({
     required this.title,
     required this.description,
     required this.cost,
+    required this.rarity,
   });
 
-  Widget render(){
+  static RxList<GameCard> getCards(int amount) {
+    var cards = List<GameCard>.empty().obs;
+    while (cards.length < amount) {
+      var randomCard = (listOfCards..shuffle()).first;
+      cards.add(randomCard.call());
+    }
+    return cards;
+  }
+
+  Widget render() {
     Color color;
     String number;
-    if(this is OffensiveCard){
+    if (this is OffensiveCard) {
       color = Colors.red;
       number = (this as OffensiveCard).dmg.toString();
-    }
-    else{
+    } else {
       color = Colors.blue;
       number = (this as DefensiveCard).block.toString();
     }

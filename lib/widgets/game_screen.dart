@@ -23,9 +23,9 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   late Player player;
-
   late RxList<Enemy> enemies;
   late RxList<GameCard> hand;
+
   int turn = 0;
   int room = 1;
   RxBool enteredShop = false.obs;
@@ -150,6 +150,7 @@ class _GameScreenState extends State<GameScreen> {
                                     const SizedBox(
                                       height: 5,
                                     ),
+                                    Obx(() => currentEnemy.isDead.isFalse ?
                                     DragTarget<GameCard>(
                                       builder: (
                                         BuildContext context,
@@ -177,7 +178,7 @@ class _GameScreenState extends State<GameScreen> {
                                           hand.remove(card);
                                         }
                                       },
-                                    ),
+                                    ) : currentEnemy.render)
                                   ],
                                 )),
                           ]);
@@ -382,18 +383,15 @@ class _GameScreenState extends State<GameScreen> {
                       },
                       child: const Text('Continue'),
                     ),
-                    (room % 5 == 0 && enteredShop.isFalse)
-                        ? ElevatedButton(
-                            onPressed: () {
-                              enteredShop.value = true;
-                              Get.to(Shop(
-                                player: player,
-                                room: room,
-                              ));
-                            },
-                            child: const Text('Shop'),
-                          )
-                        : const SizedBox.shrink(),
+                    room % 5 == 0 ?
+                    Obx(() => ElevatedButton(
+                      onPressed:
+                      !enteredShop.isFalse ? null : () {
+                        enteredShop.value = true;
+                        Get.to(Shop(player: player, room: room));
+                      },
+                      child: const Text('Shop'),
+                    ),) : const SizedBox.shrink(),
                   ],
                 ),
               ],

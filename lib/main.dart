@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
       title: 'DOTW',
       initialRoute: '',
       home: const MainMenu(),
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      //theme: AppTheme.lightTheme,
+      //darkTheme: AppTheme.darkTheme,
     );
   }
 }

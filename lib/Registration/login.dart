@@ -1,3 +1,4 @@
+import '../widgets/main_menu.dart';
 import 'registration.dart';
 import '../constants/colors.dart';
 import '../main.dart';
@@ -46,118 +47,150 @@ class LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        title: const Text('LOGIN'),
-        centerTitle: true,
-      ),
+      backgroundColor: GameColors.first,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Flexible(
+            const Flexible(
               flex: 1,
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 50),
-                child: Text(
-                  'Defence of the Widgets',
-                  style: GoogleFonts.vt323(
-                    textStyle: const TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
+              child: Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    'Welcome back to',
+                    style: TextStyle(
+                        fontFamily: 'GillSansMTPRO',
+                        fontSize: 14,
+                        color: Colors.white),
+                  )),
             ),
-            Flexible(
-              flex: 2,
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 40),
-                width: 200,
-                height: 200,
-                child: Image.asset(
-                  'assets/icon/dotwIcon.png',
-                  color: GameColors.barColor,
-                ),
+            const Flexible(
+              flex: 1,
+              child: Text(
+                'DOTW',
+                style: TextStyle(
+                    fontFamily: 'Beaufort', fontSize: 64, color: Colors.white),
               ),
             ),
             Flexible(
               flex: 1,
               child: Container(
-                width: 200,
-                margin: const EdgeInsets.only(bottom: 25),
+                width: 256,
+                margin: const EdgeInsets.symmetric(vertical: 16),
                 child: Obx(
                   () => Text(
                     message.value,
-                    style: const TextStyle(color: Colors.red),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontFamily: 'GillSansMTPRO',
+                        fontSize: 14,
+                        color: Colors.red),
                   ),
                 ),
               ),
             ),
             Flexible(
               flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.account_circle_rounded,
-                    color: Colors.grey,
-                  ),
-                  Container(
-                    width: 200,
-                    margin: const EdgeInsets.only(left: 10),
-                    child: TextField(
-                      controller: nicknameController,
-                      decoration: const InputDecoration(hintText: 'Nickname'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.lock_open_rounded,
-                    color: Colors.grey,
-                  ),
-                  Container(
-                    width: 200,
-                    margin: const EdgeInsets.only(left: 10),
-                    child: TextField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(hintText: 'Password'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Flexible(
-              flex: 2,
               child: Container(
-                width: 200,
-                height: 40,
-                margin: const EdgeInsets.only(top: 60, bottom: 20),
-                child: ElevatedButton(
-                  child: const Text("Login"),
-                  onPressed: () {
-                    signIn();
-                  },
+                height: 48,
+                width: 256,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(width: 3, color: Colors.white),
+                  borderRadius: BorderRadius.circular(8),
                 ),
+                child: TextField(
+                    controller: nicknameController,
+                    decoration: const InputDecoration.collapsed(
+                        hintText: 'Username',
+                        hintStyle: TextStyle(
+                            color: GameColors.black50,
+                            fontFamily: 'GillSansMTPRO',
+                            fontSize: 14))),
               ),
             ),
             Flexible(
               flex: 1,
-              child: TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, RegistrationScreen.route);
-                  },
-                  child: const Text('CREATE NEW ACCOUNT')),
+              child: Container(
+                height: 48,
+                width: 256,
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.only(top: 8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(width: 3, color: Colors.white),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: const InputDecoration.collapsed(
+                        hintText: 'Password',
+                        hintStyle: TextStyle(
+                            color: GameColors.black50,
+                            fontFamily: 'GillSansMTPRO',
+                            fontSize: 14))),
+              ),
             ),
+            Flexible(
+                flex: 1,
+                child: Container(
+                  width: 256,
+                  height: 48,
+                  margin: const EdgeInsets.only(top: 24),
+                  decoration: const BoxDecoration(
+                    gradient: Gradients.grad2,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () => signIn(),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.transparent,
+                        shadowColor: Colors.transparent),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                          fontFamily: 'Beaufort',
+                          fontSize: 22,
+                          color: Colors.white),
+                    ),
+                  ),
+                )),
+            Flexible(
+                flex: 1,
+                child: Container(
+                  width: 256,
+                  height: 48,
+                  margin: const EdgeInsets.only(top: 24),
+                  color: GameColors.second,
+                  child: ElevatedButton(
+                    onPressed: () => Get.to(() => const RegistrationScreen()),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.transparent,
+                        shadowColor: Colors.transparent),
+                    child: const Text(
+                      'No account? Register now',
+                      style: TextStyle(
+                          fontFamily: 'GillSansMTPRO',
+                          fontSize: 14,
+                          color: Colors.white),
+                    ),
+                  ),
+                )),
+            Flexible(
+                flex: 1,
+                child: TextButton(
+                  child: const Text(
+                    'Back to game',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'GillSansMTPRO',
+                    ),
+                  ),
+                  onPressed: () {
+                    Get.to(const MainMenu());
+                  },
+                )),
           ],
         ),
       ),

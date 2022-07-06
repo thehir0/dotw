@@ -93,10 +93,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+     - family: Beaufort
+       fonts:
+         - asset: assets/fonts/Beaufort W01 Bold.ttf
+     - family: GillSansMTPRO
+       fonts:
+         - asset: assets/fonts/GillSansMTPro-Medium.otf
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

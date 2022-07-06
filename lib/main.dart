@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'DOTW',
-      initialRoute: '',
       home: const MainMenu(),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,

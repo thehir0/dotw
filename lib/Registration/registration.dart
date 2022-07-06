@@ -1,14 +1,12 @@
+import 'package:dotw/constants/fonts.dart';
+import 'package:dotw/registration/login.dart';
 import 'package:get/get.dart';
-
 import '../constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../main.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  static const String route = '/registration';
   const RegistrationScreen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() => RegistrationScreenState();
@@ -44,111 +42,123 @@ class RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
-        title: const Text('Registration'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Flexible(
-              flex: 1,
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 50),
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: Gradients.grad2_2,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Flexible(
+                flex: 1,
                 child: Text(
-                  'Defence of the Widgets',
-                  style: GoogleFonts.vt323(
-                    textStyle: const TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
+                  'Registration',
+                  style: TextStyle(
+                      fontFamily: beaufort, fontSize: 45, color: Colors.white),
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Container(
+                  width: 256,
+                  margin: const EdgeInsets.symmetric(vertical: 16),
+                  child: Obx(
+                    () => Text(
+                      message.value,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontFamily: gillSans,
+                          fontSize: 14,
+                          color: Colors.red),
                     ),
                   ),
                 ),
               ),
-            ),
-            Flexible(
-              flex: 2,
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 40),
-                width: 200,
-                height: 200,
-                child: Image.asset(
-                  'assets/icon/dotwIcon.png',
-                  color: GameColors.barColor,
+              Flexible(
+                flex: 1,
+                child: Container(
+                  height: 48,
+                  width: 256,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 3, color: Colors.white),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: TextField(
+                      controller: nicknameController,
+                      decoration: const InputDecoration.collapsed(
+                          hintText: 'Username',
+                          hintStyle: TextStyle(
+                              color: GameColors.black50,
+                              fontFamily: gillSans,
+                              fontSize: 14))),
                 ),
               ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Container(
-                width: 200,
-                margin: const EdgeInsets.only(bottom: 25),
-                child: Obx(
-                  () => Text(
-                    message.value,
-                    style: const TextStyle(color: Colors.red),
+              Flexible(
+                flex: 1,
+                child: Container(
+                  height: 48,
+                  width: 256,
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.only(top: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 3, color: Colors.white),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                ),
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.account_circle_rounded,
-                    color: Colors.grey,
-                  ),
-                  Container(
-                    width: 200,
-                    margin: const EdgeInsets.only(left: 10),
-                    child: TextField(
-                        controller: nicknameController,
-                        decoration:
-                            const InputDecoration(hintText: 'Nickname')),
-                  ),
-                ],
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.lock_open_rounded,
-                    color: Colors.grey,
-                  ),
-                  Container(
-                    width: 200,
-                    margin: const EdgeInsets.only(left: 10),
-                    child: TextField(
-                      controller: passwordController,
+                  child: TextField(
                       obscureText: true,
-                      decoration: const InputDecoration(hintText: 'Password'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Flexible(
-              flex: 2,
-              child: Container(
-                width: 200,
-                height: 40,
-                margin: const EdgeInsets.only(top: 60, bottom: 20),
-                child: ElevatedButton(
-                  child: const Text("Create Account"),
-                  onPressed: () => signUp(),
+                      controller: passwordController,
+                      decoration: const InputDecoration.collapsed(
+                          hintText: 'Password',
+                          hintStyle: TextStyle(
+                              color: GameColors.black50,
+                              fontFamily: gillSans,
+                              fontSize: 14))),
                 ),
               ),
-            ),
-          ],
+              Flexible(
+                  flex: 1,
+                  child: Container(
+                    width: 256,
+                    height: 48,
+                    margin: const EdgeInsets.only(top: 24),
+                    color: GameColors.second,
+                    child: ElevatedButton(
+                      onPressed: () => signUp(),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          shadowColor: Colors.transparent),
+                      child: const Text(
+                        'Register',
+                        style: TextStyle(
+                            fontFamily: beaufort,
+                            fontSize: 22,
+                            color: Colors.white),
+                      ),
+                    ),
+                  )),
+              Flexible(
+                  flex: 1,
+                  child: TextButton(
+                    child: const Text(
+                      'Back to Login page',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: gillSans,
+                      ),
+                    ),
+                    onPressed: () {
+                      Get.to(const LogInScreen());
+                    },
+                  )),
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }

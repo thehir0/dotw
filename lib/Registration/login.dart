@@ -1,3 +1,4 @@
+import 'package:dotw/constants/fonts.dart';
 import '../widgets/main_menu.dart';
 import 'registration.dart';
 import '../constants/colors.dart';
@@ -5,11 +6,8 @@ import '../main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LogInScreen extends StatefulWidget {
-  static const String route = '/login';
-
   const LogInScreen({Key? key}) : super(key: key);
 
   @override
@@ -45,8 +43,7 @@ class LogInScreenState extends State<LogInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       backgroundColor: GameColors.first,
       body: Center(
         child: Column(
@@ -59,7 +56,7 @@ class LogInScreenState extends State<LogInScreen> {
                   child: Text(
                     'Welcome back to',
                     style: TextStyle(
-                        fontFamily: 'GillSansMTPRO',
+                        fontFamily: gillSans,
                         fontSize: 14,
                         color: Colors.white),
                   )),
@@ -69,7 +66,7 @@ class LogInScreenState extends State<LogInScreen> {
               child: Text(
                 'DOTW',
                 style: TextStyle(
-                    fontFamily: 'Beaufort', fontSize: 64, color: Colors.white),
+                    fontFamily: beaufort, fontSize: 64, color: Colors.white),
               ),
             ),
             Flexible(
@@ -82,9 +79,7 @@ class LogInScreenState extends State<LogInScreen> {
                     message.value,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        fontFamily: 'GillSansMTPRO',
-                        fontSize: 14,
-                        color: Colors.red),
+                        fontFamily: gillSans, fontSize: 14, color: Colors.red),
                   ),
                 ),
               ),
@@ -106,7 +101,7 @@ class LogInScreenState extends State<LogInScreen> {
                         hintText: 'Username',
                         hintStyle: TextStyle(
                             color: GameColors.black50,
-                            fontFamily: 'GillSansMTPRO',
+                            fontFamily: gillSans,
                             fontSize: 14))),
               ),
             ),
@@ -129,7 +124,7 @@ class LogInScreenState extends State<LogInScreen> {
                         hintText: 'Password',
                         hintStyle: TextStyle(
                             color: GameColors.black50,
-                            fontFamily: 'GillSansMTPRO',
+                            fontFamily: gillSans,
                             fontSize: 14))),
               ),
             ),
@@ -150,7 +145,7 @@ class LogInScreenState extends State<LogInScreen> {
                     child: const Text(
                       'Login',
                       style: TextStyle(
-                          fontFamily: 'Beaufort',
+                          fontFamily: beaufort,
                           fontSize: 22,
                           color: Colors.white),
                     ),
@@ -171,7 +166,7 @@ class LogInScreenState extends State<LogInScreen> {
                     child: const Text(
                       'No account? Register now',
                       style: TextStyle(
-                          fontFamily: 'GillSansMTPRO',
+                          fontFamily: gillSans,
                           fontSize: 14,
                           color: Colors.white),
                     ),
@@ -184,7 +179,7 @@ class LogInScreenState extends State<LogInScreen> {
                     'Back to game',
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'GillSansMTPRO',
+                      fontFamily: gillSans,
                     ),
                   ),
                   onPressed: () {
@@ -194,6 +189,6 @@ class LogInScreenState extends State<LogInScreen> {
           ],
         ),
       ),
-    ));
+    );
   }
 }

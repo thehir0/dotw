@@ -1,12 +1,9 @@
+import 'package:dotw/constants/fonts.dart';
 import 'package:dotw/registration/login.dart';
-import 'package:dotw/widgets/main_menu.dart';
 import 'package:get/get.dart';
-
 import '../constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../main.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -45,8 +42,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           gradient: Gradients.grad2_2,
@@ -60,9 +56,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                 child: Text(
                   'Registration',
                   style: TextStyle(
-                      fontFamily: 'Beaufort',
-                      fontSize: 45,
-                      color: Colors.white),
+                      fontFamily: beaufort, fontSize: 45, color: Colors.white),
                 ),
               ),
               Flexible(
@@ -75,7 +69,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                       message.value,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          fontFamily: 'GillSansMTPRO',
+                          fontFamily: gillSans,
                           fontSize: 14,
                           color: Colors.red),
                     ),
@@ -99,7 +93,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                           hintText: 'Username',
                           hintStyle: TextStyle(
                               color: GameColors.black50,
-                              fontFamily: 'GillSansMTPRO',
+                              fontFamily: gillSans,
                               fontSize: 14))),
                 ),
               ),
@@ -122,7 +116,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                           hintText: 'Password',
                           hintStyle: TextStyle(
                               color: GameColors.black50,
-                              fontFamily: 'GillSansMTPRO',
+                              fontFamily: gillSans,
                               fontSize: 14))),
                 ),
               ),
@@ -141,7 +135,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                       child: const Text(
                         'Register',
                         style: TextStyle(
-                            fontFamily: 'Beaufort',
+                            fontFamily: beaufort,
                             fontSize: 22,
                             color: Colors.white),
                       ),
@@ -154,7 +148,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                       'Back to Login page',
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: 'GillSansMTPRO',
+                        fontFamily: gillSans,
                       ),
                     ),
                     onPressed: () {
@@ -165,6 +159,6 @@ class RegistrationScreenState extends State<RegistrationScreen> {
           ),
         ),
       ),
-    ));
+    );
   }
 }

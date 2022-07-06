@@ -1,12 +1,9 @@
 import 'dart:math';
 
-import 'package:dotw/widgets/app_bar.dart';
 import 'package:dotw/widgets/shop/app_bar_shop.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../cards/card.dart';
-import '../cards/defensive_cards/basic_defense.dart';
-import '../cards/offensive_cards/basic_attack.dart';
 import '../constants/colors.dart';
 import '../entities/player.dart';
 

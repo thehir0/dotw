@@ -8,7 +8,7 @@ class CircularProgressIndicatorEnemy extends Enemy {
 
   CircularProgressIndicatorEnemy()
       : super(
-          name: 'Circular Progress Indicator',
+          name: 'CPI',
           description: 'bla bla',
           hp: 10.obs,
           hpMax: 10.obs,

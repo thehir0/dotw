@@ -17,12 +17,14 @@ abstract class GameCard {
   final String description;
   final int cost;
   final int rarity;
+  final String image;
 
   GameCard({
     required this.title,
     required this.description,
     required this.cost,
     required this.rarity,
+    required this.image,
   });
 
   static RxList<GameCard> getCards(int amount) {

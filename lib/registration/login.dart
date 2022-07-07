@@ -49,13 +49,13 @@ class LogInScreenState extends State<LogInScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Flexible(
+            Flexible(
               flex: 1,
               child: Padding(
-                  padding: EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'Welcome back to',
-                    style: TextStyle(
+                    'Welcome back to'.tr,
+                    style: const TextStyle(
                         fontFamily: gillSans,
                         fontSize: 14,
                         color: Colors.white),
@@ -97,9 +97,9 @@ class LogInScreenState extends State<LogInScreen> {
                 ),
                 child: TextField(
                     controller: nicknameController,
-                    decoration: const InputDecoration.collapsed(
-                        hintText: 'Username',
-                        hintStyle: TextStyle(
+                    decoration:  InputDecoration.collapsed(
+                        hintText: 'Username'.tr,
+                        hintStyle: const TextStyle(
                             color: GameColors.black50,
                             fontFamily: gillSans,
                             fontSize: 14))),
@@ -120,9 +120,9 @@ class LogInScreenState extends State<LogInScreen> {
                 child: TextField(
                     obscureText: true,
                     controller: passwordController,
-                    decoration: const InputDecoration.collapsed(
-                        hintText: 'Password',
-                        hintStyle: TextStyle(
+                    decoration: InputDecoration.collapsed(
+                        hintText: 'Password'.tr,
+                        hintStyle: const TextStyle(
                             color: GameColors.black50,
                             fontFamily: gillSans,
                             fontSize: 14))),
@@ -142,9 +142,9 @@ class LogInScreenState extends State<LogInScreen> {
                     style: ElevatedButton.styleFrom(
                         primary: Colors.transparent,
                         shadowColor: Colors.transparent),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
+                    child: Text(
+                      'Login'.tr,
+                      style: const TextStyle(
                           fontFamily: beaufort,
                           fontSize: 22,
                           color: Colors.white),
@@ -163,9 +163,9 @@ class LogInScreenState extends State<LogInScreen> {
                     style: ElevatedButton.styleFrom(
                         primary: Colors.transparent,
                         shadowColor: Colors.transparent),
-                    child: const Text(
-                      'No account? Register now',
-                      style: TextStyle(
+                    child: Text(
+                      'No account? Register now'.tr,
+                      style: const TextStyle(
                           fontFamily: gillSans,
                           fontSize: 14,
                           color: Colors.white),
@@ -175,15 +175,15 @@ class LogInScreenState extends State<LogInScreen> {
             Flexible(
                 flex: 1,
                 child: TextButton(
-                  child: const Text(
-                    'Back to game',
-                    style: TextStyle(
+                  child: Text(
+                    'Back to game'.tr,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontFamily: gillSans,
                     ),
                   ),
                   onPressed: () {
-                    Get.to(const MainMenu());
+                    Get.back();
                   },
                 )),
           ],

@@ -10,6 +10,7 @@ class DefensiveCard extends GameCard {
     required super.description,
     required super.cost,
     required super.rarity,
+    required super.image,
     required this.block,
   });
 

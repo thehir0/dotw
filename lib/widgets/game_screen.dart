@@ -141,7 +141,7 @@ class _GameScreenState extends State<GameScreen> {
                                             ],
                                           )
                                         : Text(
-                                            '*dead*',
+                                            '*dead*'.tr,
                                             style: GoogleFonts.vt323(
                                                 textStyle: const TextStyle(
                                                     fontSize: 30),
@@ -231,7 +231,7 @@ class _GameScreenState extends State<GameScreen> {
                       hand.value = player.getHand().obs;
                     },
                     child: Text(
-                      'End turn',
+                      'End turn'.tr,
                       style: GoogleFonts.vt323(
                           textStyle: const TextStyle(fontSize: 20)),
                     ),
@@ -270,7 +270,7 @@ class _GameScreenState extends State<GameScreen> {
     final Widget closeButton = ElevatedButton(
       style: ElevatedButton.styleFrom(primary: GameColors.barColor),
       child: Text(
-        'Exit to main menu',
+        'Exit to main menu'.tr,
         style: GoogleFonts.vt323(
             textStyle: const TextStyle(fontSize: 30), color: Colors.redAccent),
       ),
@@ -290,13 +290,13 @@ class _GameScreenState extends State<GameScreen> {
           child: Column(
             children: [
               Text(
-                'You DIED',
+                'You DIED'.tr,
                 style: GoogleFonts.vt323(
                     textStyle: const TextStyle(fontSize: 50),
                     color: Colors.redAccent),
               ),
               Text(
-                'Score: ${player.score}',
+                '${'Score:'.tr}${player.score}',
                 style: GoogleFonts.vt323(
                     textStyle: const TextStyle(fontSize: 20),
                     color: Colors.redAccent),
@@ -360,7 +360,7 @@ class _GameScreenState extends State<GameScreen> {
             child: Column(
               children: [
                 Text(
-                  'Score: ${player.score}',
+                  '${'Score:'.tr}${player.score}',
                   style: GoogleFonts.vt323(
                       textStyle: const TextStyle(fontSize: 20),
                       color: const Color.fromARGB(255, 147, 131, 251)),
@@ -381,7 +381,7 @@ class _GameScreenState extends State<GameScreen> {
                         enteredShop.value = false;
                         Navigator.of(context).pop();
                       },
-                      child: const Text('Continue'),
+                      child: Text('Continue'.tr),
                     ),
                     room % 5 == 0 ?
                     Obx(() => ElevatedButton(

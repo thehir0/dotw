@@ -1,7 +1,12 @@
+import 'dart:math';
+
 import 'package:dotw/constants/create_player.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
+import 'package:dotw/main.dart';
 import 'package:dotw/widgets/app_bar.dart';
 import 'package:dotw/widgets/shop.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -166,7 +171,6 @@ class _GameScreenState extends State<GameScreen> {
                                                     player, enemies[index]);
                                                 player.energy.value -=
                                                     card.cost;
-
                                                 bool victory = true;
                                                 for (final enemy in enemies) {
                                                   if (enemy.isDead.isFalse) {
@@ -270,7 +274,27 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
+  void updateScore() async {
+    if (hasInternetConnection && FirebaseAuth.instance.currentUser != null) {
+      String? username = FirebaseAuth.instance.currentUser?.email.toString();
+      int? len = username?.length;
+      username = username?.substring(0, len! - 10);
+
+      var href = FirebaseDatabase.instance.ref('scores');
+      final snapshot = await href.child(username!).get();
+
+      int score = player.score.value;
+
+      if (snapshot.exists) {
+        score = max(score, snapshot.value as int);
+      }
+
+      href.update({username: score});
+    }
+  }
+
   void showDeathDialog(BuildContext context) {
+    updateScore();
     final Widget closeButton = ElevatedButton(
       style: ElevatedButton.styleFrom(primary: GameColors.barColor),
       child: Text(

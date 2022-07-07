@@ -8,6 +8,9 @@ class GameColors {
   static const Color third = Color.fromRGBO(143, 231, 134, 1);
   static const Color black50 = Color.fromRGBO(36, 40, 45, 0.5);
   static const Color black10 = Color.fromRGBO(36, 40, 45, 0.1);
+  static const Color pastel = Color.fromRGBO(255, 252, 217, 1);
+  static const Color red1 = Color.fromRGBO(219, 73, 53, 1);
+  static const Color blue1 = Color.fromRGBO(65, 102, 245, 1);
 }
 
 class Gradients {

@@ -73,7 +73,8 @@ class DefaultFirebaseOptions {
     projectId: 'dotw-409a5',
     databaseURL: 'https://dotw-409a5-default-rtdb.firebaseio.com',
     storageBucket: 'dotw-409a5.appspot.com',
-    iosClientId: '48253334540-ss54bptjgmrba4bcl0c72hhrc5uai8c3.apps.googleusercontent.com',
+    iosClientId:
+        '48253334540-ss54bptjgmrba4bcl0c72hhrc5uai8c3.apps.googleusercontent.com',
     iosBundleId: 'com.example.dotw',
   );
 }

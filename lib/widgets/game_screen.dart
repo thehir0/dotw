@@ -1,7 +1,12 @@
+import 'dart:math';
+
 import 'package:dotw/constants/create_player.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
+import 'package:dotw/main.dart';
 import 'package:dotw/widgets/app_bar.dart';
 import 'package:dotw/widgets/shop.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -150,35 +155,38 @@ class _GameScreenState extends State<GameScreen> {
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    Obx(() => currentEnemy.isDead.isFalse ?
-                                    DragTarget<GameCard>(
-                                      builder: (
-                                        BuildContext context,
-                                        List<dynamic> accepted,
-                                        List<dynamic> rejected,
-                                      ) {
-                                        return currentEnemy.render;
-                                      },
-                                      onAccept: (GameCard card) {
-                                        if (player.energy.value >= card.cost) {
-                                          card.play(player, enemies[index]);
-                                          player.energy.value--;
+                                    Obx(() => currentEnemy.isDead.isFalse
+                                        ? DragTarget<GameCard>(
+                                            builder: (
+                                              BuildContext context,
+                                              List<dynamic> accepted,
+                                              List<dynamic> rejected,
+                                            ) {
+                                              return currentEnemy.render;
+                                            },
+                                            onAccept: (GameCard card) {
+                                              if (player.energy.value >=
+                                                  card.cost) {
+                                                card.play(
+                                                    player, enemies[index]);
+                                                player.energy.value--;
 
-                                          bool victory = true;
-                                          for (final enemy in enemies) {
-                                            if (enemy.isDead.isFalse) {
-                                              victory = false;
-                                              break;
-                                            }
-                                          }
-                                          if (victory) {
-                                            showYouWin(context);
-                                          }
+                                                bool victory = true;
+                                                for (final enemy in enemies) {
+                                                  if (enemy.isDead.isFalse) {
+                                                    victory = false;
+                                                    break;
+                                                  }
+                                                }
+                                                if (victory) {
+                                                  showYouWin(context);
+                                                }
 
-                                          hand.remove(card);
-                                        }
-                                      },
-                                    ) : currentEnemy.render)
+                                                hand.remove(card);
+                                              }
+                                            },
+                                          )
+                                        : currentEnemy.render)
                                   ],
                                 )),
                           ]);
@@ -266,7 +274,29 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
+  void updateScore() async {
+    if (hasInternetConnection && FirebaseAuth.instance.currentUser != null) {
+      String? username = FirebaseAuth.instance.currentUser?.email.toString();
+      int? len = username?.length;
+      username = username?.substring(0, len! - 10);
+
+      var href = FirebaseDatabase.instance.ref('scores');
+      final snapshot = await href.child(username!).get();
+
+      int score = player.score.value;
+
+      if (snapshot.exists) {
+        score = max(score, snapshot.value as int);
+      }
+
+      href.update({username: score});
+    } else {
+      print('score error');
+    }
+  }
+
   void showDeathDialog(BuildContext context) {
+    updateScore();
     final Widget closeButton = ElevatedButton(
       style: ElevatedButton.styleFrom(primary: GameColors.barColor),
       child: Text(
@@ -383,15 +413,19 @@ class _GameScreenState extends State<GameScreen> {
                       },
                       child: Text('Continue'.tr),
                     ),
-                    room % 5 == 0 ?
-                    Obx(() => ElevatedButton(
-                      onPressed:
-                      !enteredShop.isFalse ? null : () {
-                        enteredShop.value = true;
-                        Get.to(Shop(player: player, room: room));
-                      },
-                      child: const Text('Shop'),
-                    ),) : const SizedBox.shrink(),
+                    room % 5 == 0
+                        ? Obx(
+                            () => ElevatedButton(
+                              onPressed: !enteredShop.isFalse
+                                  ? null
+                                  : () {
+                                      enteredShop.value = true;
+                                      Get.to(Shop(player: player, room: room));
+                                    },
+                              child: const Text('Shop'),
+                            ),
+                          )
+                        : const SizedBox.shrink(),
                   ],
                 ),
               ],

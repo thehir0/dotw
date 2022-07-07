@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../constants/colors.dart';
 import '../entities/player.dart';
 
-AppBar buildAppBar(Player player){
+AppBar buildAppBar(Player player) {
   return AppBar(
     backgroundColor: GameColors.barColor,
     automaticallyImplyLeading: false,
@@ -23,11 +23,11 @@ AppBar buildAppBar(Player player){
           width: 5,
         ),
         Obx(() => Text(
-          '${player.hp.value}/${player.hpMax}',
-          style: GoogleFonts.vt323(
-              textStyle: const TextStyle(fontSize: 30),
-              color: Colors.redAccent),
-        )),
+              '${player.hp.value}/${player.hpMax}',
+              style: GoogleFonts.vt323(
+                  textStyle: const TextStyle(fontSize: 30),
+                  color: Colors.redAccent),
+            )),
         const SizedBox(
           width: 30,
         ),
@@ -37,11 +37,11 @@ AppBar buildAppBar(Player player){
           color: Colors.green,
         ),
         Obx(() => Text(
-          '${player.money.value}',
-          style: GoogleFonts.vt323(
-              textStyle: const TextStyle(fontSize: 30),
-              color: Colors.green),
-        )),
+              '${player.money.value}',
+              style: GoogleFonts.vt323(
+                  textStyle: const TextStyle(fontSize: 30),
+                  color: Colors.green),
+            )),
         const SizedBox(
           width: 30,
         ),
@@ -51,12 +51,12 @@ AppBar buildAppBar(Player player){
           color: Colors.blue,
         ),
         Obx(() => Text(
-          '${player.block}',
-          style: GoogleFonts.vt323(
-            textStyle: const TextStyle(fontSize: 30),
-            color: Colors.blue,
-          ),
-        )),
+              '${player.block}',
+              style: GoogleFonts.vt323(
+                textStyle: const TextStyle(fontSize: 30),
+                color: Colors.blue,
+              ),
+            )),
       ],
     ),
   );

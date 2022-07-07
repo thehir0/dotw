@@ -15,8 +15,6 @@ import '../main.dart';
 import 'game_screen.dart';
 
 class MainMenu extends StatefulWidget {
-  static const String route = '';
-
   const MainMenu({Key? key}) : super(key: key);
 
   @override

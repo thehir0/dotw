@@ -6,8 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../constants/colors.dart';
 import '../../entities/player.dart';
 
-
-AppBar buildShopAppBar(Player player){
+AppBar buildShopAppBar(Player player) {
   return AppBar(
     backgroundColor: GameColors.barColor,
     automaticallyImplyLeading: false,
@@ -24,11 +23,11 @@ AppBar buildShopAppBar(Player player){
           width: 5,
         ),
         Obx(() => Text(
-          '${player.hp.value}/${player.hpMax}',
-          style: GoogleFonts.vt323(
-              textStyle: const TextStyle(fontSize: 30),
-              color: Colors.redAccent),
-        )),
+              '${player.hp.value}/${player.hpMax}',
+              style: GoogleFonts.vt323(
+                  textStyle: const TextStyle(fontSize: 30),
+                  color: Colors.redAccent),
+            )),
         const SizedBox(
           width: 30,
         ),
@@ -38,11 +37,11 @@ AppBar buildShopAppBar(Player player){
           color: Colors.green,
         ),
         Obx(() => Text(
-          '${player.money.value}',
-          style: GoogleFonts.vt323(
-              textStyle: const TextStyle(fontSize: 30),
-              color: Colors.green),
-        )),
+              '${player.money.value}',
+              style: GoogleFonts.vt323(
+                  textStyle: const TextStyle(fontSize: 30),
+                  color: Colors.green),
+            )),
         const SizedBox(
           width: 30,
         ),
@@ -52,11 +51,11 @@ AppBar buildShopAppBar(Player player){
           color: GameColors.goldColor,
         ),
         Obx(() => Text(
-          '${player.energyMax.value}',
-          style: GoogleFonts.vt323(
-              textStyle: const TextStyle(fontSize: 30),
-              color: GameColors.goldColor),
-        )),
+              '${player.energyMax.value}',
+              style: GoogleFonts.vt323(
+                  textStyle: const TextStyle(fontSize: 30),
+                  color: GameColors.goldColor),
+            )),
       ],
     ),
   );

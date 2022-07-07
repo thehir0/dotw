@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dotw/registration/login.dart';
 import 'package:dotw/widgets/leaderboard.dart';
 import 'package:dotw/widgets/main_menu/app_bar_main_menu.dart';
@@ -22,6 +25,42 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
+  bool hasInternetConnection = true;
+  late StreamSubscription<ConnectivityResult> networkSubscription;
+
+  @override
+  void initState() {
+    networkSubscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (result == ConnectivityResult.none) {
+        hasInternetConnection = false;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content:
+                Text("No Internet Connection! Your progress won't be saved"),
+            backgroundColor: Colors.red,
+          ),
+        );
+      } else {
+        hasInternetConnection = true;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Reconnected to the Internet'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    networkSubscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dotw/entities/enemies/list_of_enemies.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
 import 'package:dotw/entities/entity.dart';
@@ -8,6 +10,7 @@ class Enemy extends Entity {
   List<MoveSet> moveSet;
   int difficulty;
   final int blockMax;
+  late final int shift;
   late Rx<MoveSet> currentMove;
 
   Enemy({
@@ -20,7 +23,12 @@ class Enemy extends Entity {
     required this.difficulty,
     required this.blockMax,
   }) : super(block: 0.obs) {
-    currentMove = moveSet[0].obs; // todo: broken moveset
+    var rng = Random();
+    shift = rng.nextInt(moveSet.length);
+    currentMove = moveSet[shift].obs;
+    if (currentMove.value == MoveSet.block) {
+      blockMove();
+    }
   }
 
   static RxList<Enemy> getEnemies(int amount) {
@@ -33,7 +41,7 @@ class Enemy extends Entity {
   }
 
   MoveSet getMove(int turn) {
-    currentMove.value = moveSet[turn % moveSet.length];
+    currentMove.value = moveSet[(turn + shift) % moveSet.length];
     return currentMove.value;
   }
 

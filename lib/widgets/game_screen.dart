@@ -169,8 +169,8 @@ class _GameScreenState extends State<GameScreen> {
                                                   card.cost) {
                                                 card.play(
                                                     player, enemies[index]);
-                                                player.energy.value--;
-
+                                                player.energy.value -=
+                                                    card.cost;
                                                 bool victory = true;
                                                 for (final enemy in enemies) {
                                                   if (enemy.isDead.isFalse) {

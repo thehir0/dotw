@@ -44,7 +44,7 @@ class ElevatedButtonEnemy extends Enemy {
     super.onAttack(attacker);
     if (!isDead.value) {
       face.value = '<:O';
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 300));
       face.value = '>:(';
     }
   }
@@ -52,7 +52,7 @@ class ElevatedButtonEnemy extends Enemy {
   @override
   Future<void> onDeath(Entity attacker) async {
     super.onDeath(attacker);
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 300));
     face.value = '>X(';
   }
 }

@@ -36,8 +36,8 @@ class _MainMenuState extends State<MainMenu> {
         hasInternetConnection = false;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content:
-                Text('No Internet Connection! Your progress won\'t be saved'.tr),
+            content: Text(
+                'No Internet Connection! Your progress won\'t be saved'.tr),
             backgroundColor: Colors.red,
           ),
         );
@@ -63,61 +63,61 @@ class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBarMainMenu(context),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-                padding: const EdgeInsets.only(bottom: 25),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.to(const GameScreen());
-                    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
-                  },
-                  child: Text(
-                    'Play'.tr,
-                    style:
-                    GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
-                  ),
-                )),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 25),
-              child: ElevatedButton(
-                onPressed: () {
-                  Get.to(const Leaderboard());
-                },
-                child: Text(
-                  'Leaderboard'.tr,
-                  style:
-                  GoogleFonts.vt323(textStyle: const TextStyle(fontSize: 70)),
-                ),
-              ),
-            ),
-            Padding(
-                padding: const EdgeInsets.only(bottom: 25),
-                child: Obx(
-                      () => ElevatedButton(
+        appBar: buildAppBarMainMenu(context),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(bottom: 25),
+                  child: ElevatedButton(
                     onPressed: () {
-                      if (logged.isFalse) {
-                        Get.to(const LogInScreen());
-                      } else {
-                        setState(() {
-                          logged.value = !logged.value;
-                          FirebaseAuth.instance.signOut();
-                        });
-                      }
+                      Get.to(const GameScreen());
+                      SystemChrome.setEnabledSystemUIMode(
+                          SystemUiMode.leanBack);
                     },
                     child: Text(
-                      logged.value ? 'Log out'.tr : 'Login'.tr,
+                      'Play'.tr,
                       style: GoogleFonts.vt323(
                           textStyle: const TextStyle(fontSize: 70)),
                     ),
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 25),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.to(const Leaderboard());
+                  },
+                  child: Text(
+                    'Leaderboard'.tr,
+                    style: GoogleFonts.vt323(
+                        textStyle: const TextStyle(fontSize: 70)),
                   ),
-                )),
-          ],
-        ),
-      )
-    );
+                ),
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(bottom: 25),
+                  child: Obx(
+                    () => ElevatedButton(
+                      onPressed: () {
+                        if (logged.isFalse) {
+                          Get.to(const LogInScreen());
+                        } else {
+                          setState(() {
+                            logged.value = !logged.value;
+                            FirebaseAuth.instance.signOut();
+                          });
+                        }
+                      },
+                      child: Text(
+                        logged.value ? 'Log out'.tr : 'Login'.tr,
+                        style: GoogleFonts.vt323(
+                            textStyle: const TextStyle(fontSize: 70)),
+                      ),
+                    ),
+                  )),
+            ],
+          ),
+        ));
   }
 }

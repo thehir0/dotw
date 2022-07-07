@@ -10,7 +10,7 @@ When you enter the game, you get to the main page:
 
 (1) This button allow you to login to your account or register one. All accounts are stored in firebase.
 
-(2) Leaderboard shows the best players in the game based on their maximum ingame store.
+(2) Leaderboard shows the best players in the game based on their maximum in game score.
 
 (3) Settings allow you to change the language from English to Russian and vice versa.
 

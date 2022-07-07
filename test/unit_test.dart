@@ -1,6 +1,6 @@
 import 'package:dotw/cards/card.dart';
-import 'package:dotw/cards/defensive_cards/basic_defense.dart';
-import 'package:dotw/cards/offensive_cards/basic_attack.dart';
+import 'package:dotw/cards/defensive_cards/margin.dart';
+import 'package:dotw/cards/offensive_cards/simple_click.dart';
 import 'package:dotw/entities/enemies/elevated_button_enemy.dart';
 import 'package:dotw/entities/enemies/enemy.dart';
 import 'package:dotw/entities/enemies/text_field_enemy.dart';
@@ -22,7 +22,7 @@ void main() {
           money: 0.obs,
           energyMax: 5.obs,
           handSize: 5.obs,
-          deck: [BasicAttack()].obs);
+          deck: [SimpleClick()].obs);
       Enemy enemy = ElevatedButtonEnemy();
       enemy.attack(player);
       expect(player.hp.value, 4);
@@ -39,7 +39,7 @@ void main() {
           money: 0.obs,
           energyMax: 5.obs,
           handSize: 5.obs,
-          deck: [BasicAttack()].obs);
+          deck: [SimpleClick()].obs);
       player.block.value = 1;
       Enemy enemy = TextFieldEnemy();
       enemy.attack(player);
@@ -57,7 +57,7 @@ void main() {
           money: 0.obs,
           energyMax: 5.obs,
           handSize: 5.obs,
-          deck: [BasicAttack()].obs);
+          deck: [SimpleClick()].obs);
       Enemy enemy = ElevatedButtonEnemy();
       enemy.attack(player);
       expect(player.hp.value, 5);
@@ -77,7 +77,7 @@ void main() {
           money: 0.obs,
           energyMax: 5.obs,
           handSize: 5.obs,
-          deck: [BasicAttack()].obs);
+          deck: [SimpleClick()].obs);
       Enemy enemy = ElevatedButtonEnemy();
       player.attack(enemy);
       expect(enemy.hp.value, 1);
@@ -95,7 +95,7 @@ void main() {
           money: 0.obs,
           energyMax: 5.obs,
           handSize: 5.obs,
-          deck: [BasicAttack()].obs);
+          deck: [SimpleClick()].obs);
       Enemy enemy = ElevatedButtonEnemy();
       enemy.move(player, 0);
       player.attack(enemy);
@@ -114,7 +114,7 @@ void main() {
           money: 0.obs,
           energyMax: 5.obs,
           handSize: 5.obs,
-          deck: [BasicAttack()].obs);
+          deck: [SimpleClick()].obs);
       Enemy enemy = ElevatedButtonEnemy();
       enemy.move(player, 0);
       enemy.move(player, 1);
@@ -137,8 +137,8 @@ void main() {
           money: 0.obs,
           energyMax: 5.obs,
           handSize: 5.obs,
-          deck: [BasicAttack()].obs);
-      GameCard card = BasicAttack();
+          deck: [SimpleClick()].obs);
+      GameCard card = SimpleClick();
       card.play(player, enemy);
       expect(player.dmg.value, 1);
     });
@@ -155,8 +155,8 @@ void main() {
           money: 0.obs,
           energyMax: 5.obs,
           handSize: 5.obs,
-          deck: [BasicAttack()].obs);
-      GameCard card = BasicDefense();
+          deck: [SimpleClick()].obs);
+      GameCard card = Margin();
       card.play(player, enemy);
       expect(player.block.value, 1);
     });
@@ -173,8 +173,8 @@ void main() {
           money: 0.obs,
           energyMax: 5.obs,
           handSize: 5.obs,
-          deck: [BasicAttack()].obs);
-      GameCard card = BasicDefense();
+          deck: [SimpleClick()].obs);
+      GameCard card = Margin();
       card.play(player, enemy);
       card.play(player, enemy);
       card.play(player, enemy);

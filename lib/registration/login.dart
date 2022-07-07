@@ -34,7 +34,7 @@ class LogInScreenState extends State<LogInScreen> {
       );
       if (FirebaseAuth.instance.currentUser != null) {
         logged.value = true;
-        Navigator.pop(context);
+        Get.back();
       }
     } on FirebaseAuthException catch (E) {
       message.value = E.message.toString();

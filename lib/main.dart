@@ -8,7 +8,6 @@ import 'package:get/state_manager.dart';
 import 'constants/app_theme.dart';
 import 'localization/localization.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -17,6 +16,7 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+bool hasInternetConnection = true;
 RxBool logged = false.obs;
 
 class MyApp extends StatefulWidget {

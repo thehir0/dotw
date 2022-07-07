@@ -36,17 +36,17 @@ class _MainMenuState extends State<MainMenu> {
       if (result == ConnectivityResult.none) {
         hasInternetConnection = false;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content:
-                Text("No Internet Connection! Your progress won't be saved"),
+                Text('No Internet Connection! Your progress won\'t be saved'.tr),
             backgroundColor: Colors.red,
           ),
         );
       } else {
         hasInternetConnection = true;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Reconnected to the Internet'),
+          SnackBar(
+            content: Text('Reconnected to the Internet'.tr),
             backgroundColor: Colors.green,
           ),
         );

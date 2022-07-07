@@ -1,5 +1,7 @@
+import 'package:dotw/main.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Leaderboard extends StatefulWidget {
@@ -54,7 +56,8 @@ class _LeaderboardState extends State<Leaderboard> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: FutureBuilder(
+      body: hasInternetConnection ?
+      FutureBuilder(
         future: getScores(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -168,7 +171,7 @@ class _LeaderboardState extends State<Leaderboard> {
             return const CircularProgressIndicator();
           }
         },
-      ),
+      ): Text('Unable to load Leaderboard, because no internet connection found'.tr),
     );
   }
 }

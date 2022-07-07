@@ -23,6 +23,9 @@ class Languages extends Translations {
       'Score:': 'Очки:',
       'You DIED': 'Ты УМЕР',
       'Exit to main menu': 'Главное меню',
+      'Unable to load Leaderboard, because no internet connection found': 'Не удалось загрузить Таблицу Лидеров, потмоу что нет интернета',
+      'No Internet Connection! Your progress won\'t be saved' : 'Нет Интернета! Ваш прогресс будет утерян',
+      'Reconnected to the Internet': 'Переподключение к Интернету',
     },
     'ja_JP': {
       'greeting': 'こんにちは',
@@ -47,6 +50,9 @@ class Languages extends Translations {
       'Score:': 'Score:',
       'You DIED': 'You DIED',
       'Exit to main menu': 'Exit to main menu',
+      'Unable to load Leaderboard, because no internet connection found': 'Unable to load Leaderboard, because no internet connection found',
+      'No Internet Connection! Your progress won\'t be saved': 'No Internet Connection! Your progress won\'t be saved',
+      'Reconnected to the Internet': 'Reconnected to the Internet',
     },
   };
 }

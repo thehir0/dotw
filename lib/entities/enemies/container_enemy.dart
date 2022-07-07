@@ -32,10 +32,11 @@ class ContainerEnemy extends Enemy {
     height.value = 80;
     width.value = 160;
     render = Obx(
-      () => Container(
+      () => AnimatedContainer(
         height: height.value,
         width: width.value,
         color: color.value,
+        duration: const Duration(milliseconds: 300),
       ),
     );
   }
@@ -46,14 +47,6 @@ class ContainerEnemy extends Enemy {
     height.value = rng.nextInt(40) + 40;
     width.value = rng.nextInt(80) + 80;
     super.onAttack(attacker);
-  }
-
-  @override
-  void onDeath(Entity attacker) {
-    color.value = Colors.white;
-    height.value = 80;
-    width.value = 80;
-    super.onDeath(attacker);
   }
 
   Color getRandomColor() {

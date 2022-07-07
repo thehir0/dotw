@@ -79,6 +79,7 @@ void main() {
           handSize: 5.obs,
           deck: [SimpleClick()].obs);
       Enemy enemy = ElevatedButtonEnemy();
+      enemy.block.value = 0;
       player.attack(enemy);
       expect(enemy.hp.value, 1);
     });
@@ -97,7 +98,7 @@ void main() {
           handSize: 5.obs,
           deck: [SimpleClick()].obs);
       Enemy enemy = ElevatedButtonEnemy();
-      enemy.move(player, 0);
+      enemy.block.value = enemy.blockMax;
       player.attack(enemy);
       expect(enemy.hp.value, 2);
     });
@@ -119,6 +120,7 @@ void main() {
       enemy.move(player, 0);
       enemy.move(player, 1);
       enemy.move(player, 2);
+      enemy.move(player, 3);
       expect(player.isDead.value, true);
     });
   });

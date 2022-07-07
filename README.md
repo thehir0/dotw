@@ -58,9 +58,9 @@ In the settings you can choose Russian or English. Every page in the application
 
 ### Basic mechanics.
 
-The Play button will take you to the game itself. The game page consists of 8 main elements:
+The Play button will take you to the game itself. The game page consists of 9 main elements:
 
-<img width="274" alt="Снимок экрана 2022-06-19 в 23 06 05" src="https://user-images.githubusercontent.com/64196918/174498664-e17be6f5-e4a4-45be-bbb3-91ad0ca25b28.png">
+<img width="310" alt="Снимок экрана 2022-07-08 в 00 00" src="https://user-images.githubusercontent.com/70011787/177871750-32e901ae-aa0d-4242-8876-8d143faf7a9c.png">
 
 (1) Health - current/max. Each turn, the enemy has the opportunity to strike and if your shields do not absorb the damage, then your health will decrease. If health become zero, then you lose.
 
@@ -79,6 +79,8 @@ The Play button will take you to the game itself. The game page consists of 8 ma
 (7)Your current cards. There are two types of them - attacking and defensive. Attacking deals 1 damage to the enemy, Defensive adds 1 armor to you. These indicators are written on the card itself. You can drag them to the enemy and he will be played.
 
 (8)Next move button. It will replenish your energy, complete the enemy's turn, and nullify your shields. She will also give you cards again up to 5 maximum.
+
+(9) The button shows your current deck with all cards you can randomly get next turn
 
 ### Shop
 

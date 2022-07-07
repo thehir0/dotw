@@ -385,8 +385,8 @@ class _GameScreenState extends State<GameScreen> {
             textStyle: const TextStyle(fontSize: 30), color: Colors.redAccent),
       ),
       onPressed: () {
-        Navigator.of(context).pop();
-        Navigator.of(context).pop();
+        Get.back();
+        Get.back();
       },
     );
 
@@ -489,7 +489,7 @@ class _GameScreenState extends State<GameScreen> {
                         player.reassembleDeck();
                         hand.value = player.getHand();
                         enteredShop.value = false;
-                        Navigator.of(context).pop();
+                        Get.back();
                       },
                       child: Text('Continue'.tr),
                     ),

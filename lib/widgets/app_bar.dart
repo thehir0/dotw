@@ -2,8 +2,6 @@ import 'package:dotw/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
-import 'package:google_fonts/google_fonts.dart';
-
 import '../constants/colors.dart';
 import '../entities/player.dart';
 
@@ -24,11 +22,10 @@ AppBar buildAppBar(Player player) {
               margin: const EdgeInsets.only(right: 15),
               child: Image.asset('assets/icon/heart.png'),
             ),
-            Obx(() => Container(
-                    child: Text(
+            Obx(() => Text(
                   '${player.hp.value}/${player.hpMax}',
                   style: const TextStyle(fontSize: 22, fontFamily: beaufort),
-                ))),
+                )),
           ],
         ),
         Row(

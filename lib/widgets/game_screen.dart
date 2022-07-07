@@ -1,14 +1,9 @@
-import 'dart:math';
-
 import 'package:confetti/confetti.dart';
 import 'package:dotw/constants/create_player.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
 import 'package:dotw/main.dart';
-import 'package:dotw/user.dart';
 import 'package:dotw/widgets/app_bar.dart';
 import 'package:dotw/widgets/shop.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

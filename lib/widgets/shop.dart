@@ -39,12 +39,11 @@ class _ShopState extends State<Shop> {
     var rng = Random();
     player = widget.player;
     cardsInShop = GameCard.getCards(6);
-    cardsInShopPrices = cardsInShop
-        .map((e) => max(e.rarity * 5 + rng.nextInt(21) - 10, 3))
-        .toList();
-    healthCost = widget.room.obs;
-    energyCost = widget.room.obs;
-    healCost = widget.room.obs;
+    cardsInShopPrices =
+        cardsInShop.map((e) => e.rarity * 10 + rng.nextInt(21) - 5).toList();
+    healthCost = (widget.room * 5).obs;
+    energyCost = (widget.room * 5).obs;
+    healCost = (widget.room * 5).obs;
     super.initState();
   }
 
@@ -166,7 +165,7 @@ class _ShopState extends State<Shop> {
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   child: const Text(
                     'Leave the shop',

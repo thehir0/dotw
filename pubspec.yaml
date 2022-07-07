@@ -43,6 +43,7 @@ dependencies:
   connectivity_plus: ^2.3.5
   firebase_crashlytics: ^2.8.4
   flutter_svg: ^1.1.1+1
+  confetti: ^0.7.0
 
 flutter_native_splash:
   color: "#34619B"

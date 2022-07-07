@@ -1,3 +1,4 @@
+import 'package:dotw/cards/offensive_cards/game_breaking_bug.dart';
 import 'package:dotw/cards/offensive_cards/simple_click.dart';
 
 import '../entities/player.dart';
@@ -6,7 +7,7 @@ import '../cards/card.dart';
 
 Player buildStarterPlayer() {
   return Player(
-    energy: 5.obs,
+    energy: 3.obs,
     dmg: 1.obs,
     description: 'You',
     hpMax: 5.obs,
@@ -14,10 +15,14 @@ Player buildStarterPlayer() {
     hp: 5.obs,
     block: 0.obs,
     name: 'Player',
-    energyMax: 5.obs,
-    handSize: 3.obs,
+    energyMax: 3.obs,
+    handSize: 5.obs,
     deck: (List<GameCard>.of([
       SimpleClick(),
+      GameBreakingBug(),
+      GameBreakingBug(),
+      GameBreakingBug(),
+      GameBreakingBug(),
     ])).obs,
   );
 }

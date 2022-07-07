@@ -1,17 +1,11 @@
 import 'dart:async';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dotw/registration/login.dart';
-import 'package:dotw/widgets/leaderboard.dart';
+import 'package:dotw/constants/colors.dart';
+import 'package:dotw/constants/fonts.dart';
 import 'package:dotw/widgets/main_menu/app_bar_main_menu.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../main.dart';
 import 'game_screen.dart';
 
 class MainMenu extends StatefulWidget {
@@ -43,7 +37,7 @@ class _MainMenuState extends State<MainMenu> {
         hasInternetConnection = true;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Connected to the Internet'.tr),
+            content: Text('Reconnected to the Internet'.tr),
             backgroundColor: Colors.green,
           ),
         );
@@ -61,59 +55,82 @@ class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey[400],
         appBar: buildAppBarMainMenu(context),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                  padding: const EdgeInsets.only(bottom: 25),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(const GameScreen());
-                      SystemChrome.setEnabledSystemUIMode(
-                          SystemUiMode.leanBack);
-                    },
-                    child: Text(
-                      'Play'.tr,
-                      style: GoogleFonts.vt323(
-                          textStyle: const TextStyle(fontSize: 70)),
-                    ),
-                  )),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 25),
+              Container(
+                width: 256,
+                height: 80,
+                margin: const EdgeInsets.only(bottom: 20),
+                decoration: BoxDecoration(
+                  color: GameColors.second,
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.to(const Leaderboard());
+                    Get.to(const GameScreen());
+                    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
                   },
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                      shadowColor: Colors.transparent),
                   child: Text(
-                    'Leaderboard'.tr,
-                    style: GoogleFonts.vt323(
-                        textStyle: const TextStyle(fontSize: 70)),
+                    'Play!'.tr,
+                    style: const TextStyle(
+                        fontFamily: beaufort,
+                        fontSize: 45,
+                        color: Colors.white),
                   ),
                 ),
               ),
-              Padding(
-                  padding: const EdgeInsets.only(bottom: 25),
-                  child: Obx(
-                    () => ElevatedButton(
-                      onPressed: () {
-                        if (logged.isFalse) {
-                          Get.to(const LogInScreen());
-                        } else {
-                          setState(() {
-                            logged.value = !logged.value;
-                            FirebaseAuth.instance.signOut();
-                          });
-                        }
-                      },
-                      child: Text(
-                        logged.value ? 'Log out'.tr : 'Login'.tr,
-                        style: GoogleFonts.vt323(
-                            textStyle: const TextStyle(fontSize: 70)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 84,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: GameColors.second,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          shadowColor: Colors.transparent),
+                      child: Image.asset(
+                        'assets/icon/cards.png',
+                        color: Colors.white,
                       ),
                     ),
-                  )),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: null,
+                  ),
+                  Container(
+                    width: 84,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: GameColors.second,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          shadowColor: Colors.transparent),
+                      child: Image.asset(
+                        'assets/icon/encycloped.png',
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ));

@@ -40,6 +40,7 @@ dependencies:
   firebase_database: ^9.0.16
   firebase_auth: ^3.4.1
   flutter_native_splash: ^2.2.4
+  connectivity_plus: ^2.3.5
 
 flutter_native_splash:
   color: "#34619B"

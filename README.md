@@ -43,7 +43,8 @@ As soon as you log into your account, your profile will appear instead of the Lo
 
 ### Leaderboard page:
 
-....
+<img width="309" alt="Снимок экрана 2022-07-07 в 23 54 23" src="https://user-images.githubusercontent.com/70011787/177869609-852704b8-18b0-4909-81dd-0fe00592b018.png">
+
 
 The leaderboard shows the best players of all time. Each time you finish a rгт, you get a certain number of points, depending on how many useful actions you have performed.
 
@@ -108,6 +109,6 @@ Every time you die, you will see the death screen. Your points will be written o
 - Code is neat and clear
 
 
-## Hot to build:
+## How to build:
 
-[Install APK](https://drive.google.com/file/d/1RS2A_JBjftDaJ-bfTPMNxfkvAJJBBbYU/view?usp=sharing)
+[Install APK and IOS Runner](https://drive.google.com/drive/folders/1ChvFtK1_So_Xt0HxDwVHXYgYmfL6QEMu?usp=sharing)

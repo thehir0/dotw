@@ -4,6 +4,7 @@ import 'package:confetti/confetti.dart';
 import 'package:dotw/constants/create_player.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
 import 'package:dotw/main.dart';
+import 'package:dotw/user.dart';
 import 'package:dotw/widgets/app_bar.dart';
 import 'package:dotw/widgets/shop.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,6 +16,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../cards/card.dart';
 import '../constants/colors.dart';
+import '../constants/fonts.dart';
 import '../entities/enemies/enemy.dart';
 import '../entities/player.dart';
 
@@ -202,61 +204,85 @@ class _GameScreenState extends State<GameScreen> {
                   )),
             ),
             Flexible(
-                flex: 3,
+              flex: 2,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        showDeckDialog(context);
-                      },
-                      icon: const Icon(
-                        Icons.book_sharp,
-                        size: 40,
+                    Row(
+                      children: [
+                        Container(
+                          width: 84,
+                          height: 44,
+                          decoration: BoxDecoration(
+                              color: GameColors.second,
+                              borderRadius: BorderRadius.circular(8),
+                              gradient: Gradients.grad2),
+                          child: ElevatedButton(
+                            onPressed: () => showDeckDialog(context),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                shadowColor: Colors.transparent),
+                            child: Image.asset(
+                              'assets/icon/cards.png',
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 32,
+                          height: 32,
+                          margin: const EdgeInsets.only(right: 15, left: 15),
+                          child: Image.asset('assets/icon/energy.png'),
+                        ),
+                        Obx(() => Text(
+                              '${player.energy.value}/${player.energyMax.value}',
+                              style: const TextStyle(
+                                  fontSize: 22,
+                                  fontFamily: beaufort,
+                                  color: Colors.black87),
+                            )),
+                      ],
+                    ),
+                    Container(
+                      width: 90,
+                      height: 44,
+                      decoration: BoxDecoration(
+                          color: GameColors.second,
+                          borderRadius: BorderRadius.circular(8),
+                          gradient: Gradients.grad2),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          for (final enemy in enemies) {
+                            enemy.move(player, turn);
+                          }
+                          if (player.isDead.isTrue) {
+                            showDeathDialog(context);
+                          }
+                          player.block.value = 0;
+                          player.energy.value = player.energyMax.value;
+                          turn++;
+                          hand.value = player.getHand().obs;
+                        },
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent,
+                            shadowColor: Colors.transparent),
+                        child: Text(
+                          'Next turn'.tr,
+                          style: const TextStyle(
+                              fontSize: 14,
+                              fontFamily: beaufort,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                   ],
-                )),
-            Flexible(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(
-                    Icons.flash_on_sharp,
-                    size: 35,
-                    color: GameColors.goldColor,
-                  ),
-                  Obx(() => Text(
-                        '${player.energy.value}/${player.energyMax.value}',
-                        style: GoogleFonts.vt323(
-                            textStyle: const TextStyle(fontSize: 30),
-                            color: GameColors.goldColor),
-                      )),
-                  ElevatedButton(
-                    onPressed: () {
-                      for (final enemy in enemies) {
-                        enemy.move(player, turn);
-                      }
-                      if (player.isDead.isTrue) {
-                        showDeathDialog(context);
-                      }
-                      player.block.value = 0;
-                      player.energy.value = player.energyMax.value;
-                      turn++;
-                      hand.value = player.getHand().obs;
-                    },
-                    child: Text(
-                      'End turn'.tr,
-                      style: GoogleFonts.vt323(
-                          textStyle: const TextStyle(fontSize: 20)),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
             Flexible(
-              flex: 7,
+              flex: 4,
               child: Obx(() {
                 startPosition = 0;
                 return Stack(
@@ -282,27 +308,14 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  void updateScore() async {
-    if (hasInternetConnection && FirebaseAuth.instance.currentUser != null) {
-      String? username = FirebaseAuth.instance.currentUser?.email.toString();
-      int? len = username?.length;
-      username = username?.substring(0, len! - 10);
-
-      var href = FirebaseDatabase.instance.ref('scores');
-      final snapshot = await href.child(username!).get();
-
-      int score = player.score.value;
-
-      if (snapshot.exists) {
-        score = max(score, snapshot.value as int);
-      }
-
-      href.update({username: score});
+  void updateRecord() {
+    if (hasInternetConnection && logged.value) {
+      user?.updateRecord(player.score.value);
     }
   }
 
   void showDeathDialog(BuildContext context) {
-    updateScore();
+    updateRecord();
     final Widget closeButton = ElevatedButton(
       style: ElevatedButton.styleFrom(primary: GameColors.barColor),
       child: Text(

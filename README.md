@@ -2,7 +2,7 @@
 
 Defense of the Widgets - card roguelike cross platform game for Android/Ios/Web. The main task - using two types of cards: attacking and defensive, win battles against Widgets opponents.
 
-## Description: Main page.
+## List of screens: Main page.
 
 When you enter the game, you get to the main page:
 

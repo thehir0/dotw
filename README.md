@@ -1,6 +1,6 @@
 # DOTW - Defense of the Widgets
 
-Defense of the Widgets - card roguelike cross platform mobile game for Android/Ios. The main task - using two types of cards: attacking and defensive, win battles against Widgets opponents.
+Defense of the Widgets - card roguelike cross platform game for Android/Ios/Web. The main task - using two types of cards: attacking and defensive, win battles against Widgets opponents.
 
 ## Description
 

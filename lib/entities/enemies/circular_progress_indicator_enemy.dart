@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:dotw/entities/enemies/enemy.dart';
 import 'package:dotw/entities/enemies/move_set.dart';
-import 'package:dotw/entities/entity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 

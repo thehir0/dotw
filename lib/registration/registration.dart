@@ -4,6 +4,7 @@ import '../constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
+import '../user.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -23,8 +24,14 @@ class RegistrationScreenState extends State<RegistrationScreen> {
         email: "${nicknameController.text.trim()}@gmail.com",
         password: passwordController.text.trim(),
       );
+
       if (FirebaseAuth.instance.currentUser != null) {
         logged.value = true;
+
+        user = SignedUser(FirebaseAuth.instance.currentUser!.email!
+            .toString()
+            .replaceAll('@gmail.com', ''));
+
         Get.back();
       }
     } on FirebaseAuthException catch (E) {

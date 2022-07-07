@@ -1,5 +1,6 @@
 import 'package:dotw/firebase_options.dart';
-import 'package:dotw/widgets/main_menu.dart';
+import 'package:dotw/user.dart';
+import 'package:dotw/widgets/main_menu/main_menu.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ Future<void> main() async {
 
 bool hasInternetConnection = true;
 RxBool logged = false.obs;
+SignedUser? user;
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -36,10 +38,11 @@ class _MyAppState extends State<MyApp> {
       () => GetMaterialApp(
         translations: Languages(),
         locale: locale.value,
+        debugShowCheckedModeBanner: false,
         title: 'DOTW',
         home: const MainMenu(),
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
+        //theme: AppTheme.lightTheme,
+        //darkTheme: AppTheme.darkTheme,
       ),
     );
   }

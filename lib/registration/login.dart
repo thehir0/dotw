@@ -1,4 +1,5 @@
 import 'package:dotw/constants/fonts.dart';
+import 'package:dotw/user.dart';
 import 'registration.dart';
 import '../constants/colors.dart';
 import '../main.dart';
@@ -31,8 +32,14 @@ class LogInScreenState extends State<LogInScreen> {
         email: "${nicknameController.text.trim()}@gmail.com",
         password: passwordController.text.trim(),
       );
+
       if (FirebaseAuth.instance.currentUser != null) {
         logged.value = true;
+
+        user = SignedUser(FirebaseAuth.instance.currentUser!.email!
+            .toString()
+            .replaceAll('@gmail.com', ''));
+
         Get.back();
       }
     } on FirebaseAuthException catch (E) {
@@ -96,7 +103,7 @@ class LogInScreenState extends State<LogInScreen> {
                 ),
                 child: TextField(
                     controller: nicknameController,
-                    decoration:  InputDecoration.collapsed(
+                    decoration: InputDecoration.collapsed(
                         hintText: 'Username'.tr,
                         hintStyle: const TextStyle(
                             color: GameColors.black50,

@@ -8,7 +8,7 @@ import '../entities/player.dart';
 
 AppBar buildAppBar(Player player) {
   return AppBar(
-    backgroundColor: GameColors.barColor,
+    backgroundColor: GameColors.second,
     automaticallyImplyLeading: false,
     elevation: 0,
     centerTitle: false,

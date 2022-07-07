@@ -14,30 +14,29 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Get.updateLocale(const Locale('ru').obs.value);
-              } ,
-              child: const Text('Russian'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Get.updateLocale(const Locale('en').obs.value);
-              } ,
-              child: const Text('English'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Get.updateLocale(const Locale('ja').obs.value);
-              } ,
-              child: const Text('Japanese'),
-            ),
-          ],
-        )
-      ),
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Get.updateLocale(const Locale('ru').obs.value);
+            },
+            child: const Text('Russian'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Get.updateLocale(const Locale('en').obs.value);
+            },
+            child: const Text('English'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Get.updateLocale(const Locale('ja').obs.value);
+            },
+            child: const Text('Japanese'),
+          ),
+        ],
+      )),
     );
   }
 }

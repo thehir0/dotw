@@ -1,6 +1,7 @@
 import 'package:dotw/firebase_options.dart';
 import 'package:dotw/widgets/main_menu.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'constants/app_theme.dart';
@@ -9,8 +10,10 @@ import 'localization/localization.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: 'dotw',
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   runApp(const MyApp());
 }
 
@@ -29,14 +32,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => GetMaterialApp(
-      translations: Languages(),
-      locale: locale.value,
-      title: 'DOTW',
-      home: const MainMenu(),
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-    ),);
+    return Obx(
+      () => GetMaterialApp(
+        translations: Languages(),
+        locale: locale.value,
+        title: 'DOTW',
+        home: const MainMenu(),
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+      ),
+    );
   }
 }
-

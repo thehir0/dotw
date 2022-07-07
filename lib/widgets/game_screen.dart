@@ -290,8 +290,6 @@ class _GameScreenState extends State<GameScreen> {
       }
 
       href.update({username: score});
-    } else {
-      print('score error');
     }
   }
 

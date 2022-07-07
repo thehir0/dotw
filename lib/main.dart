@@ -9,6 +9,7 @@ import 'localization/localization.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: 'dotw',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
@@ -29,14 +30,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => GetMaterialApp(
-      translations: Languages(),
-      locale: locale.value,
-      title: 'DOTW',
-      home: const MainMenu(),
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-    ),);
+    return Obx(
+      () => GetMaterialApp(
+        translations: Languages(),
+        locale: locale.value,
+        title: 'DOTW',
+        home: const MainMenu(),
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+      ),
+    );
   }
 }
-

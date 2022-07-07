@@ -55,6 +55,8 @@ In the settings you can choose Russian or English. Every page in the application
 
 ## Game Screen.
 
+### Basic mechanics.
+
 The Play button will take you to the game itself. The game page consists of 8 main elements:
 
 <img width="274" alt="Снимок экрана 2022-06-19 в 23 06 05" src="https://user-images.githubusercontent.com/64196918/174498664-e17be6f5-e4a4-45be-bbb3-91ad0ca25b28.png">
@@ -76,6 +78,39 @@ The Play button will take you to the game itself. The game page consists of 8 ma
 (7)Your current cards. There are two types of them - attacking and defensive. Attacking deals 1 damage to the enemy, Defensive adds 1 armor to you. These indicators are written on the card itself. You can drag them to the enemy and he will be played.
 
 (8)Next move button. It will replenish your energy, complete the enemy's turn, and nullify your shields. She will also give you cards again up to 5 maximum.
+
+### Shop
+
+...
+
+Every fifth level completed will allow you to go to the store, where you will have the opportunity to heal or increase the maximum amount of energy and health. You will also be offered 6 random cards that you can buy into your deck. Each purchase of permanent improvements, as well as each subsequent store will increase the price of all purchases.
+
+### Death Screen
+
+<img width="272" alt="Снимок экрана 2022-07-07 в 22 45 41" src="https://user-images.githubusercontent.com/70011787/177859208-43148162-9316-4ab7-88a3-c1cbdeeae038.png">
+
+
+Every time you die, you will see the death screen. Your points will be written on it and the ability to exit to the main menu.
+
+## List of Features:
+
+- No crashes or broken behaivor 
+- Splash Screen for both IOS and Android
+- Handles missing network errors
+
+<img width="319" alt="Снимок экрана 2022-07-07 в 22 57 51" src="https://user-images.githubusercontent.com/70011787/177861167-3fd4dad5-e6c2-415c-835a-eacfaec8794d.png">
+
+- An entire project follows GetX architecture and state managment
+- Reasonable unit-tests for all game logic 
+- GitHub action is setup with formatting, lint and Android APK build
+- Game successfully build for IOS
+- Game successfully build for Web
+- Unhandled exceptions is handled with Crashlytics
+- Localization is implemented for English and Russian languages
+- Custom App Icon
+- Code is neat and clear
+
+
 
 ## Installation and APK file
 

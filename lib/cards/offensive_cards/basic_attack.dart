@@ -7,6 +7,7 @@ class BasicAttack extends OffensiveCard {
           description: 'You swing your sword. Or not?',
           cost: 1,
           rarity: 1,
+          image: "",
           dmg: 1,
         );
 }

@@ -51,11 +51,11 @@ class RegistrationScreenState extends State<RegistrationScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Flexible(
+              Flexible(
                 flex: 1,
                 child: Text(
-                  'Registration',
-                  style: TextStyle(
+                  'Registration'.tr,
+                  style: const TextStyle(
                       fontFamily: beaufort, fontSize: 45, color: Colors.white),
                 ),
               ),
@@ -89,9 +89,9 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   child: TextField(
                       controller: nicknameController,
-                      decoration: const InputDecoration.collapsed(
-                          hintText: 'Username',
-                          hintStyle: TextStyle(
+                      decoration: InputDecoration.collapsed(
+                          hintText: 'Username'.tr,
+                          hintStyle: const TextStyle(
                               color: GameColors.black50,
                               fontFamily: gillSans,
                               fontSize: 14))),
@@ -112,9 +112,9 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                   child: TextField(
                       obscureText: true,
                       controller: passwordController,
-                      decoration: const InputDecoration.collapsed(
-                          hintText: 'Password',
-                          hintStyle: TextStyle(
+                      decoration: InputDecoration.collapsed(
+                          hintText: 'Password'.tr,
+                          hintStyle: const TextStyle(
                               color: GameColors.black50,
                               fontFamily: gillSans,
                               fontSize: 14))),
@@ -132,9 +132,9 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                       style: ElevatedButton.styleFrom(
                           primary: Colors.transparent,
                           shadowColor: Colors.transparent),
-                      child: const Text(
-                        'Register',
-                        style: TextStyle(
+                      child: Text(
+                        'Register'.tr,
+                        style: const TextStyle(
                             fontFamily: beaufort,
                             fontSize: 22,
                             color: Colors.white),
@@ -144,15 +144,15 @@ class RegistrationScreenState extends State<RegistrationScreen> {
               Flexible(
                   flex: 1,
                   child: TextButton(
-                    child: const Text(
-                      'Back to Login page',
-                      style: TextStyle(
+                    child: Text(
+                      'Back to Login page'.tr,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontFamily: gillSans,
                       ),
                     ),
                     onPressed: () {
-                      Get.to(const LogInScreen());
+                      Get.back();
                     },
                   )),
             ],

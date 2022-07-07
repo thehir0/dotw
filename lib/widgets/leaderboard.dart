@@ -146,6 +146,12 @@ class _LeaderboardState extends State<Leaderboard> {
                               fontSize: 26, fontStyle: FontStyle.italic),
                         ),
                       ),
+                      ElevatedButton(
+                          onPressed: (){
+
+                          },
+                          child: Text('test')
+                      )
                     ],
                   ),
                 ),

@@ -7,6 +7,7 @@ class BasicDefense extends DefensiveCard {
           description: 'Give 1 armor. Or not?',
           cost: 1,
           rarity: 1,
+          image: "",
           block: 1,
         );
 }

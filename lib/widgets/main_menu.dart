@@ -45,7 +45,7 @@ class _MainMenuState extends State<MainMenu> {
         hasInternetConnection = true;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Reconnected to the Internet'.tr),
+            content: Text('Connected to the Internet'.tr),
             backgroundColor: Colors.green,
           ),
         );

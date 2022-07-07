@@ -150,35 +150,39 @@ class _GameScreenState extends State<GameScreen> {
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    Obx(() => currentEnemy.isDead.isFalse ?
-                                    DragTarget<GameCard>(
-                                      builder: (
-                                        BuildContext context,
-                                        List<dynamic> accepted,
-                                        List<dynamic> rejected,
-                                      ) {
-                                        return currentEnemy.render;
-                                      },
-                                      onAccept: (GameCard card) {
-                                        if (player.energy.value >= card.cost) {
-                                          card.play(player, enemies[index]);
-                                          player.energy.value--;
+                                    Obx(() => currentEnemy.isDead.isFalse
+                                        ? DragTarget<GameCard>(
+                                            builder: (
+                                              BuildContext context,
+                                              List<dynamic> accepted,
+                                              List<dynamic> rejected,
+                                            ) {
+                                              return currentEnemy.render;
+                                            },
+                                            onAccept: (GameCard card) {
+                                              if (player.energy.value >=
+                                                  card.cost) {
+                                                card.play(
+                                                    player, enemies[index]);
+                                                player.energy.value -=
+                                                    card.cost;
 
-                                          bool victory = true;
-                                          for (final enemy in enemies) {
-                                            if (enemy.isDead.isFalse) {
-                                              victory = false;
-                                              break;
-                                            }
-                                          }
-                                          if (victory) {
-                                            showYouWin(context);
-                                          }
+                                                bool victory = true;
+                                                for (final enemy in enemies) {
+                                                  if (enemy.isDead.isFalse) {
+                                                    victory = false;
+                                                    break;
+                                                  }
+                                                }
+                                                if (victory) {
+                                                  showYouWin(context);
+                                                }
 
-                                          hand.remove(card);
-                                        }
-                                      },
-                                    ) : currentEnemy.render)
+                                                hand.remove(card);
+                                              }
+                                            },
+                                          )
+                                        : currentEnemy.render)
                                   ],
                                 )),
                           ]);
@@ -383,15 +387,19 @@ class _GameScreenState extends State<GameScreen> {
                       },
                       child: Text('Continue'.tr),
                     ),
-                    room % 5 == 0 ?
-                    Obx(() => ElevatedButton(
-                      onPressed:
-                      !enteredShop.isFalse ? null : () {
-                        enteredShop.value = true;
-                        Get.to(Shop(player: player, room: room));
-                      },
-                      child: const Text('Shop'),
-                    ),) : const SizedBox.shrink(),
+                    room % 5 == 0
+                        ? Obx(
+                            () => ElevatedButton(
+                              onPressed: !enteredShop.isFalse
+                                  ? null
+                                  : () {
+                                      enteredShop.value = true;
+                                      Get.to(Shop(player: player, room: room));
+                                    },
+                              child: const Text('Shop'),
+                            ),
+                          )
+                        : const SizedBox.shrink(),
                   ],
                 ),
               ],

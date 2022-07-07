@@ -10,7 +10,7 @@ import 'localization/localization.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    //name: 'dotw',
+    name: 'dotw',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
@@ -40,8 +40,6 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'DOTW',
         home: const MainMenu(),
-        //theme: AppTheme.lightTheme,
-        //darkTheme: AppTheme.darkTheme,
       ),
     );
   }

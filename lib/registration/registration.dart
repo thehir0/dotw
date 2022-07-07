@@ -1,5 +1,4 @@
 import 'package:dotw/constants/fonts.dart';
-import 'package:dotw/registration/login.dart';
 import 'package:get/get.dart';
 import '../constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';

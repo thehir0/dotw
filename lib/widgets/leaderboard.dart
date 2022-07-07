@@ -153,7 +153,7 @@ class _LeaderboardState extends State<Leaderboard> {
                           onPressed: (){
 
                           },
-                          child: Text('test')
+                          child: const Text('test')
                       )
                     ],
                   ),

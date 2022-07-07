@@ -1,5 +1,4 @@
 import 'package:dotw/constants/fonts.dart';
-import '../widgets/main_menu.dart';
 import 'registration.dart';
 import '../constants/colors.dart';
 import '../main.dart';

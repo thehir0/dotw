@@ -2,9 +2,7 @@ import 'package:dotw/constants/fonts.dart';
 import 'package:dotw/registration/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../constants/colors.dart';
 import '../../main.dart';
 import '../leaderboard.dart';
@@ -26,7 +24,7 @@ AppBar buildAppBarMainMenu(BuildContext context) {
           )),
       IconButton(
           onPressed: () {
-            Get.to(const Settings());
+            settings(context);
           },
           icon: Image.asset(
             'assets/icon/settings.png',
@@ -122,12 +120,39 @@ class LeftAppBarState extends State<LeftAppBar> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
+                                      Obx(
+                                        () => Text(
+                                          'Record: ${user!.record.value}',
+                                          style: const TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 8,
+                                              fontFamily: gillSans),
+                                        ),
+                                      ),
                                       Text(
-                                        'Record: ${user!.record.value}',
-                                        style: TextStyle(
+                                        'Money Spent: ${user!.moneySpent.value}',
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 8,
+                                            fontFamily: gillSans),
+                                      ),
+                                      Text(
+                                        'Turns finished: ${user!.turnsFinished.value}',
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 8,
+                                            fontFamily: gillSans),
+                                      ),
+                                      Text(
+                                        'Enemies killed: ${user!.enemiesKilled.value}',
+                                        style: const TextStyle(
                                             color: Colors.black54,
                                             fontSize: 8,
                                             fontFamily: gillSans),
@@ -135,8 +160,39 @@ class LeftAppBarState extends State<LeftAppBar> {
                                     ],
                                   ),
                                   Column(
-                                    children: [],
-                                  )
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Cards bought: ${user!.cardsBought.value}',
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 8,
+                                            fontFamily: gillSans),
+                                      ),
+                                      Text(
+                                        'Died: ${user!.died.value}',
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 8,
+                                            fontFamily: gillSans),
+                                      ),
+                                      Text(
+                                        'Cards played: ${user!.cardsPlayed.value}',
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 8,
+                                            fontFamily: gillSans),
+                                      ),
+                                      Text(
+                                        'Damage taken: ${user!.damageTaken.value}',
+                                        style: const TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 8,
+                                            fontFamily: gillSans),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),
@@ -152,6 +208,7 @@ class LeftAppBarState extends State<LeftAppBar> {
                                 onPressed: () {
                                   logged.value = !logged.value;
                                   FirebaseAuth.instance.signOut();
+                                  Get.back();
                                 },
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.transparent,

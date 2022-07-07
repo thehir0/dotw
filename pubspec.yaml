@@ -87,6 +87,10 @@ flutter:
   - assets/icon/encycloped.png
   - assets/icon/settings.png
   - assets/icon/cards.png
+  - assets/icon/shield.png
+  - assets/icon/heart.png
+  - assets/icon/coin.png
+  - assets/icon/energy.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

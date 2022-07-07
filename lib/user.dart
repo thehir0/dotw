@@ -6,6 +6,13 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 class SignedUser {
   late RxString username;
   RxInt record = 0.obs;
+  RxInt moneySpent = 0.obs;
+  RxInt turnsFinished = 0.obs;
+  RxInt enemiesKilled = 0.obs;
+  RxInt cardsBought = 0.obs;
+  RxInt died = 0.obs;
+  RxInt cardsPlayed = 0.obs;
+  RxInt damageTaken = 0.obs;
 
   SignedUser(String name) {
     username = name.obs;

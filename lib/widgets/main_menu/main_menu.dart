@@ -105,11 +105,7 @@ class _MainMenuState extends State<MainMenu> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(const GameScreen());
-                        SystemChrome.setEnabledSystemUIMode(
-                            SystemUiMode.leanBack);
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           primary: Colors.transparent,
                           shadowColor: Colors.transparent),
@@ -131,11 +127,7 @@ class _MainMenuState extends State<MainMenu> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(const GameScreen());
-                        SystemChrome.setEnabledSystemUIMode(
-                            SystemUiMode.leanBack);
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           primary: Colors.transparent,
                           shadowColor: Colors.transparent),

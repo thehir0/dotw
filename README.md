@@ -94,20 +94,20 @@ Every time you die, you will see the death screen. Your points will be written o
 
 ## List of Features:
 
-- No crashes or broken behaivor 
 - Splash Screen for both IOS and Android
 - An entire project follows GetX architecture and state managment
 - Reasonable unit-tests for all game logic 
-- GitHub action is setup with formatting, lint and Android APK build
+- Handles missing network errors
+- GitHub action is setup with formatting, lint and Android APK build/IOS build
 - Game successfully build for IOS
 - Game successfully build for Web
 - Unhandled exceptions is handled with Crashlytics
 - Localization is implemented for English and Russian languages
+- Some fancy animations
 - Custom App Icon
 - Code is neat and clear
-- Handles missing network errors
 
 
-## Installation and APK file
+## Hot to build:
 
 [Install APK](https://drive.google.com/file/d/1RS2A_JBjftDaJ-bfTPMNxfkvAJJBBbYU/view?usp=sharing)

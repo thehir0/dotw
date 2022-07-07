@@ -100,7 +100,7 @@ abstract class GameCard {
               color: GameColors.pastel,
               child: Text(
                 title,
-                style: const TextStyle(fontSize: 10, fontFamily: gillSans),
+                style: const TextStyle(fontSize: 7, fontFamily: gillSans),
               ),
             ),
             Container(

@@ -29,8 +29,7 @@ class _LeaderboardState extends State<Leaderboard> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: hasInternetConnection
           ? FutureBuilder(
@@ -108,7 +107,7 @@ class _LeaderboardState extends State<Leaderboard> {
                   return Column(
                     children: [
                       Flexible(
-                        flex: 2,
+                        flex: 3,
                         child: Container(
                           height: MediaQuery.of(context).size.height,
                           color: GameColors.first,
@@ -118,48 +117,55 @@ class _LeaderboardState extends State<Leaderboard> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               /**TITLE**/
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Flexible(
-                                    flex: 1,
-                                    child: SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: IconButton(
-                                        icon: const Icon(
-                                          Icons.arrow_back_ios_new,
-                                          color: Colors.white,
-                                          size: 32,
+                              Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Flexible(
+                                      flex: 1,
+                                      child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: IconButton(
+                                          icon: const Icon(
+                                            Icons.arrow_back_ios_new,
+                                            color: Colors.white,
+                                            size: 32,
+                                          ),
+                                          onPressed: () =>
+                                              Get.to(const MainMenu()),
                                         ),
-                                        onPressed: () =>
-                                            Get.to(const MainMenu()),
                                       ),
                                     ),
-                                  ),
-                                  Flexible(
-                                    flex: 8,
-                                    child: SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: const Center(
-                                          child: Text(
-                                        'Leaderboard',
-                                        style: TextStyle(
-                                            fontSize: 45,
-                                            fontFamily: beaufort,
-                                            color: Colors.white),
-                                      )),
+                                    Flexible(
+                                      flex: 8,
+                                      child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: const Center(
+                                            child: Text(
+                                          'Leaderboard',
+                                          style: TextStyle(
+                                              fontSize: 45,
+                                              fontFamily: beaufort,
+                                              color: Colors.white),
+                                        )),
+                                      ),
                                     ),
-                                  ),
-                                  Flexible(
-                                    flex: 1,
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      color: Colors.yellowAccent,
-                                      child: null,
+                                    Flexible(
+                                      flex: 1,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        color: Colors.yellowAccent,
+                                        child: null,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
+
                               /**TITLE_END**/
                               Row(
                                 mainAxisAlignment:
@@ -193,7 +199,7 @@ class _LeaderboardState extends State<Leaderboard> {
                         ),
                       ),
                       Flexible(
-                        flex: 3,
+                        flex: 4,
                         child: Container(
                           height: MediaQuery.of(context).size.height,
                           width: MediaQuery.of(context).size.width,
@@ -216,6 +222,6 @@ class _LeaderboardState extends State<Leaderboard> {
                   .tr,
               style: const TextStyle(color: Colors.black),
             ),
-    ));
+    );
   }
 }

@@ -30,7 +30,8 @@ class _LeaderboardState extends State<Leaderboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: Colors.white,
       body: hasInternetConnection
           ? FutureBuilder(
@@ -216,6 +217,6 @@ class _LeaderboardState extends State<Leaderboard> {
                   .tr,
               style: const TextStyle(color: Colors.black),
             ),
-    );
+    ));
   }
 }

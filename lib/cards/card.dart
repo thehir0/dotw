@@ -6,6 +6,7 @@ import 'package:dotw/entities/enemies/enemy.dart';
 import 'package:dotw/entities/player.dart';
 import 'package:dotw/widgets/game_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -45,11 +46,11 @@ abstract class GameCard {
     if (this is OffensiveCard) {
       color = GameColors.red1;
       number = (this as OffensiveCard).dmg.toString();
-      typeCard = 'Attack card';
+      typeCard = 'Attack card'.tr;
     } else {
       color = Colors.blue;
       number = (this as DefensiveCard).block.toString();
-      typeCard = 'Defence card';
+      typeCard = 'Defence card'.tr;
     }
     return Container(
       decoration: BoxDecoration(

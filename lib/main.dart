@@ -10,16 +10,17 @@ import 'localization/localization.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    name: 'dotw',
+    //name: 'dotw',
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  //FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   runApp(const MyApp());
 }
 
 bool hasInternetConnection = true;
 RxBool logged = false.obs;
 SignedUser? user;
+var locale = const Locale('en').obs;
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -29,7 +30,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var locale = const Locale('en').obs;
 
   @override
   Widget build(BuildContext context) {

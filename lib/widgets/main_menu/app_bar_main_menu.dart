@@ -262,9 +262,9 @@ class LeftAppBarState extends State<LeftAppBar> {
   Widget unLoggedAppBar() {
     return TextButton(
         onPressed: () => Get.to(const LogInScreen()),
-        child: const Text(
-          'Login',
-          style: TextStyle(
+        child: Text(
+          'Login'.tr,
+          style: const TextStyle(
               fontFamily: beaufort, color: Colors.white, fontSize: 32),
         ));
   }

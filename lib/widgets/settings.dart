@@ -2,9 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/fonts.dart';
+import '../main.dart';
 
 void settings(BuildContext context) {
-  RxString dropdown = 'English'.obs;
+
+
+  late RxString dropdown;
+
+  if(locale.value == const Locale('en')) {
+    dropdown = 'English'.obs;
+  }
+  else{
+    dropdown = 'Russia'.obs;
+  }
+
 
   showDialog(
       context: context,
@@ -33,7 +44,7 @@ void settings(BuildContext context) {
                             fontFamily: gillSans,
                             color: Colors.white),
                       ),
-                      Obx(() => Container(
+                      Container(
                           width: 80,
                           height: 20,
                           margin: const EdgeInsets.only(left: 15),
@@ -42,7 +53,7 @@ void settings(BuildContext context) {
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                DropdownButton(
+                                Obx(() => DropdownButton(
                                   dropdownColor: Colors.white,
                                   value: dropdown.value,
                                   underline: const SizedBox(),
@@ -52,24 +63,27 @@ void settings(BuildContext context) {
                                     dropdown.value = newValue!;
 
                                     if (dropdown.value == 'English') {
-                                      Get.updateLocale(
-                                          const Locale('en').obs.value);
+
+                                      locale = const Locale('en').obs;
+                                      Get.updateLocale(locale.value);
+
                                     } else {
-                                      Get.updateLocale(
-                                          const Locale('ru').obs.value);
+                                      locale = const Locale('ru').obs;
+
+                                      Get.updateLocale(locale.value);
                                     }
                                   },
                                   items: <String>['English', 'Russia']
                                       .map<DropdownMenuItem<String>>(
                                           (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Center(child: Text(value)),
-                                    );
-                                  }).toList(),
-                                ),
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Center(child: Text(value)),
+                                        );
+                                      }).toList(),
+                                ),),
                                 const Icon(Icons.arrow_drop_down),
-                              ]))),
+                              ])),
                     ],
                   ),
                 ],

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dotw/constants/fonts.dart';
 import 'package:dotw/widgets/shop/app_bar_shop.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -65,7 +66,7 @@ class _ShopState extends State<Shop> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 80,
+                    height: 100,
                     child: ElevatedButton(
                       onPressed: () {
                         if (player.money.value >= healthCost.value) {
@@ -80,18 +81,26 @@ class _ShopState extends State<Shop> {
                       ),
                       child: Column(
                         children: [
-                          const Icon(
-                            Icons.favorite,
-                            size: 60,
-                            color: Colors.redAccent,
-                          ),
-                          Obx(() => Text('$healthCost\$')),
+                          Image.asset('assets/icon/heart_shop.png',),
+                          const SizedBox(height: 7,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset('assets/icon/coin_shop.png',),
+                              const SizedBox(width: 3,),
+                              Obx(() => Text(
+                                '$healthCost',
+                                style: const TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.black),
+                              ),),
+                            ],
+                          )
                         ],
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 80,
+                    height: 100,
                     child: ElevatedButton(
                       onPressed: () {
                         if (player.money.value >= energyCost.value) {
@@ -104,18 +113,25 @@ class _ShopState extends State<Shop> {
                           elevation: 0, primary: Colors.transparent),
                       child: Column(
                         children: [
-                          const Icon(
-                            Icons.flash_on_sharp,
-                            size: 60,
-                            color: GameColors.goldColor,
-                          ),
-                          Obx(() => Text('$energyCost\$')),
+                          Image.asset('assets/icon/thunder_shop.png',),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset('assets/icon/coin_shop.png',),
+                              const SizedBox(width: 3,),
+                              Obx(() => Text(
+                                '$energyCost',
+                                style: const TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.black),
+                              ),),
+                            ],
+                          )
                         ],
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 80,
+                    height: 100,
                     child: ElevatedButton(
                       onPressed: () {
                         if (player.money.value >= healCost.value) {
@@ -130,10 +146,21 @@ class _ShopState extends State<Shop> {
                         children: [
                           const Icon(
                             Icons.healing,
-                            size: 60,
+                            size: 70,
                             color: Colors.green,
                           ),
-                          Obx(() => Text('$healCost\$')),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset('assets/icon/coin_shop.png',),
+                              const SizedBox(width: 3,),
+                              Obx(() => Text(
+                                '$healCost',
+                                style: const TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.black),
+                              ),),
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -141,7 +168,7 @@ class _ShopState extends State<Shop> {
                 ],
               )),
           Expanded(
-            flex: 9,
+            flex: 8,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -163,16 +190,23 @@ class _ShopState extends State<Shop> {
           Flexible(
               flex: 2,
               child: Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: const Text(
-                    'Leave the shop',
-                    style: TextStyle(fontSize: 30),
+                padding: const EdgeInsets.only(bottom: 10),
+                child: SizedBox(
+                  width: 200,
+                  height: 40,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: GameColors.first
+                    ),
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: const Text(
+                      'Leave the shop',
+                      style: TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.white),
+                    ),
                   ),
-                ),
+                )
               ))
         ],
       ),
@@ -200,7 +234,16 @@ class _ShopState extends State<Shop> {
           child: Column(
             children: [
               cardsInShop[index].render(),
-              Text('${cardsInShopPrices[index]}\$'),
+              const SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.asset('assets/icon/coin_shop.png',),
+                  const SizedBox(width: 3,),
+                  Text('${cardsInShopPrices[index]}', style: const TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.black),),
+                ],
+              )
             ],
           )),
     );

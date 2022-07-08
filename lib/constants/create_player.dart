@@ -1,7 +1,6 @@
 import 'package:dotw/cards/defensive_cards/margin.dart';
 import 'package:dotw/cards/defensive_cards/widget_test_card.dart';
 import 'package:dotw/cards/offensive_cards/flutter_web.dart';
-import 'package:dotw/cards/offensive_cards/game_breaking_bug.dart';
 import 'package:dotw/cards/offensive_cards/simple_click.dart';
 
 import '../entities/player.dart';

@@ -1,4 +1,3 @@
-
 import 'package:dotw/cards/list_of_card.dart';
 import 'package:dotw/cards/offensive_cards/offensive_card.dart';
 import 'package:dotw/constants/fonts.dart';
@@ -114,7 +113,5 @@ abstract class GameCard {
     );
   }
 
-  void play(Player player, Enemy enemy) {
-    player.usedCards.add(this);
-  }
+  void play(Player player, Enemy enemy);
 }

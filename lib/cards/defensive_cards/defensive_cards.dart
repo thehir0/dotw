@@ -17,6 +17,5 @@ class DefensiveCard extends GameCard {
   @override
   void play(Player player, Enemy enemy) {
     player.block.value += block;
-    super.play(player, enemy);
   }
 }

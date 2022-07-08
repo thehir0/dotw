@@ -255,6 +255,9 @@ class _GameScreenState extends State<GameScreen> {
                           if (player.isDead.isTrue) {
                             showDeathDialog(context);
                           }
+                          for (final card in hand) {
+                            player.usedCards.add(card);
+                          }
                           player.block.value = 0;
                           player.energy.value = player.energyMax.value;
                           turn++;

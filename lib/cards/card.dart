@@ -113,5 +113,7 @@ abstract class GameCard {
     );
   }
 
-  void play(Player player, Enemy enemy);
+  void play(Player player, Enemy enemy) {
+    player.usedCards.add(this);
+  }
 }

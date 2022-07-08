@@ -247,7 +247,7 @@ class LeftAppBarState extends State<LeftAppBar> {
                   ),
                 ),
                 Obx(() => Text(
-                      'High score: ${user?.record}',
+                      '${'High score:'.tr}${user?.record}',
                       style: const TextStyle(
                           color: Colors.white,
                           fontFamily: gillSans,

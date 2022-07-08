@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../cards/card.dart';
 import '../constants/colors.dart';
 import '../entities/player.dart';
+import '../main.dart';
 
 class Shop extends StatefulWidget {
   static const String route = '/shop';
@@ -192,6 +193,8 @@ class _ShopState extends State<Shop> {
                     cardInShopIsBought[index] = true;
                     player.deck.add(cardsInShop[index]);
                     player.money.value -= cardsInShopPrices[index];
+                    user?.moneySpent.value += cardsInShopPrices[index];
+                    user?.cardsBought.value++;
                   }
                 },
           child: Column(

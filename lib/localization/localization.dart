@@ -30,6 +30,7 @@ class Languages extends Translations {
           'Reconnected to the Internet': 'Переподключение к Интернету',
           'Attack card': 'Атакующая',
           'Defence card': 'Защитная',
+          'High score:': 'Рекорд:',
         },
         'ja_JP': {
           'greeting': 'こんにちは',
@@ -61,6 +62,7 @@ class Languages extends Translations {
           'Reconnected to the Internet': 'Reconnected to the Internet',
           'Attack card': 'Attack card',
           'Defence card': 'Defence card',
+          'High score:':  'High score:',
         },
       };
 }

@@ -1,4 +1,8 @@
+import 'package:dotw/cards/defensive_cards/margin.dart';
+import 'package:dotw/cards/defensive_cards/widget_test_card.dart';
+import 'package:dotw/cards/offensive_cards/flutter_web.dart';
 import 'package:dotw/cards/offensive_cards/game_breaking_bug.dart';
+import 'package:dotw/cards/offensive_cards/simple_click.dart';
 
 import '../entities/player.dart';
 import 'package:get/state_manager.dart';
@@ -17,26 +21,16 @@ Player buildStarterPlayer() {
     energyMax: 3.obs,
     handSize: 5.obs,
     deck: (List<GameCard>.of([
-      GameBreakingBug(),
-      GameBreakingBug(),
-      GameBreakingBug(),
-      GameBreakingBug(),
-      GameBreakingBug(),
-      GameBreakingBug(),
-      GameBreakingBug(),
-      GameBreakingBug(),
-      GameBreakingBug(),
-      GameBreakingBug(),
-      // Margin(),
-      // ContainerBlock(),
-      // GesturedetectorOnPanUpdate(),
-      // WidgetTestCard(),
-      // DarkThemeCard(),
-      // SimpleClick(),
-      // PaddingAttack(),
-      // BoxDecoration(),
-      // GameBreakingBug(),
-      // FlutterWeb(),
+      Margin(),
+      Margin(),
+      Margin(),
+      WidgetTestCard(),
+      WidgetTestCard(),
+      SimpleClick(),
+      SimpleClick(),
+      SimpleClick(),
+      FlutterWeb(),
+      FlutterWeb(),
     ])).obs,
   );
 }

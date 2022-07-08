@@ -250,23 +250,21 @@ class _GameScreenState extends State<GameScreen> {
                           gradient: Gradients.grad2),
                       child: ElevatedButton(
                         onPressed: () {
-                          Get.to(
-                              Shop(player: player, room: room));
-                          // for (final enemy in enemies) {
-                          //   enemy.move(player, turn);
-                          // }
-                          // if (player.isDead.isTrue) {
-                          //   user?.died.value++;
-                          //   showDeathDialog(context);
-                          // }
-                          // for (final card in hand) {
-                          //   player.usedCards.add(card);
-                          // }
-                          // player.block.value = 0;
-                          // player.energy.value = player.energyMax.value;
-                          // turn++;
-                          // hand.value = player.getHand().obs;
-                          // user?.turnsFinished.value++;
+                          for (final enemy in enemies) {
+                            enemy.move(player, turn);
+                          }
+                          if (player.isDead.isTrue) {
+                            user?.died.value++;
+                            showDeathDialog(context);
+                          }
+                          for (final card in hand) {
+                            player.usedCards.add(card);
+                          }
+                          player.block.value = 0;
+                          player.energy.value = player.energyMax.value;
+                          turn++;
+                          hand.value = player.getHand().obs;
+                          user?.turnsFinished.value++;
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Colors.transparent,

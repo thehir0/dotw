@@ -18,6 +18,5 @@ class OffensiveCard extends GameCard {
   void play(Player player, Enemy enemy) {
     player.dmg.value = dmg;
     player.attack(enemy);
-    super.play(player, enemy);
   }
 }

@@ -39,7 +39,6 @@ class Player extends Entity {
       }
       var randomCard = (deck..shuffle()).first;
       deck.remove(randomCard);
-      usedCards.add(randomCard);
       hand.add(randomCard);
     }
     return hand;

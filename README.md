@@ -43,7 +43,8 @@ As soon as you log into your account, your profile will appear instead of the Lo
 
 ### Leaderboard page:
 
-....
+<img width="309" alt="Снимок экрана 2022-07-07 в 23 54 23" src="https://user-images.githubusercontent.com/70011787/177869609-852704b8-18b0-4909-81dd-0fe00592b018.png">
+
 
 The leaderboard shows the best players of all time. Each time you finish a rгт, you get a certain number of points, depending on how many useful actions you have performed.
 
@@ -57,9 +58,9 @@ In the settings you can choose Russian or English. Every page in the application
 
 ### Basic mechanics.
 
-The Play button will take you to the game itself. The game page consists of 8 main elements:
+The Play button will take you to the game itself. The game page consists of 9 main elements:
 
-<img width="274" alt="Снимок экрана 2022-06-19 в 23 06 05" src="https://user-images.githubusercontent.com/64196918/174498664-e17be6f5-e4a4-45be-bbb3-91ad0ca25b28.png">
+<img width="310" alt="Снимок экрана 2022-07-08 в 00 00" src="https://user-images.githubusercontent.com/70011787/177871750-32e901ae-aa0d-4242-8876-8d143faf7a9c.png">
 
 (1) Health - current/max. Each turn, the enemy has the opportunity to strike and if your shields do not absorb the damage, then your health will decrease. If health become zero, then you lose.
 
@@ -78,6 +79,8 @@ The Play button will take you to the game itself. The game page consists of 8 ma
 (7)Your current cards. There are two types of them - attacking and defensive. Attacking deals 1 damage to the enemy, Defensive adds 1 armor to you. These indicators are written on the card itself. You can drag them to the enemy and he will be played.
 
 (8)Next move button. It will replenish your energy, complete the enemy's turn, and nullify your shields. She will also give you cards again up to 5 maximum.
+
+(9) The button shows your current deck with all cards you can randomly get next turn
 
 ### Shop
 
@@ -108,6 +111,6 @@ Every time you die, you will see the death screen. Your points will be written o
 - Code is neat and clear
 
 
-## Hot to build:
+## How to build:
 
-[Install APK](https://drive.google.com/file/d/1RS2A_JBjftDaJ-bfTPMNxfkvAJJBBbYU/view?usp=sharing)
+[Install APK and IOS Runner](https://drive.google.com/drive/folders/1ChvFtK1_So_Xt0HxDwVHXYgYmfL6QEMu?usp=sharing)

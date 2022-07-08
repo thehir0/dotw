@@ -1,14 +1,11 @@
-import 'package:dotw/cards/defensive_cards/defensive_cards.dart';
+
 import 'package:dotw/cards/list_of_card.dart';
 import 'package:dotw/cards/offensive_cards/offensive_card.dart';
 import 'package:dotw/constants/fonts.dart';
 import 'package:dotw/entities/enemies/enemy.dart';
 import 'package:dotw/entities/player.dart';
-import 'package:dotw/widgets/game_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/colors.dart';
 
@@ -41,15 +38,12 @@ abstract class GameCard {
 
   Widget render() {
     Color color;
-    String number;
     String typeCard = '';
     if (this is OffensiveCard) {
       color = GameColors.red1;
-      number = (this as OffensiveCard).dmg.toString();
       typeCard = 'Attack card'.tr;
     } else {
       color = Colors.blue;
-      number = (this as DefensiveCard).block.toString();
       typeCard = 'Defence card'.tr;
     }
     return Container(

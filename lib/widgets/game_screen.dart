@@ -191,6 +191,7 @@ class _GameScreenState extends State<GameScreen> {
 
                                             hand.remove(card);
                                           }
+                                          user?.cardsPlayed.value++;
                                         }
                                       : (GameCard card) {}),
                                 )),
@@ -253,6 +254,7 @@ class _GameScreenState extends State<GameScreen> {
                             enemy.move(player, turn);
                           }
                           if (player.isDead.isTrue) {
+                            user?.died.value++;
                             showDeathDialog(context);
                           }
                           for (final card in hand) {
@@ -262,6 +264,7 @@ class _GameScreenState extends State<GameScreen> {
                           player.energy.value = player.energyMax.value;
                           turn++;
                           hand.value = player.getHand().obs;
+                          user?.turnsFinished.value++;
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Colors.transparent,

@@ -10,10 +10,10 @@ import 'localization/localization.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    //name: 'dotw',
+    name: 'dotw',
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  //FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   runApp(const MyApp());
 }
 

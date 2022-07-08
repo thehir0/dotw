@@ -1,6 +1,7 @@
 import 'package:dotw/entities/player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
+import '../main.dart';
 
 class Entity {
   final String name;
@@ -38,6 +39,7 @@ class Entity {
       attacker.score.value += damage;
     } else {
       (this as Player).score.value -= damage;
+      user?.damageTaken.value += damage;
     }
     block.value = 0;
     if (hp <= 0) {

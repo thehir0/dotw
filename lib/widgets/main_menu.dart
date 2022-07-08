@@ -111,6 +111,7 @@ class _MainMenuState extends State<MainMenu> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: ElevatedButton(
+                      key: const ValueKey('DeckButton'),
                       onPressed: () {
                         showDeckDialog(context);
                       },
@@ -135,6 +136,7 @@ class _MainMenuState extends State<MainMenu> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: ElevatedButton(
+                      key: const ValueKey('EnemiesButton'),
                       onPressed: () {
                         showEnemiesDialog(context);
                       },
@@ -156,6 +158,7 @@ class _MainMenuState extends State<MainMenu> {
 
   void showDeckDialog(BuildContext context) {
     final AlertDialog alert = AlertDialog(
+      key: const ValueKey('DeckDialog'),
       backgroundColor: Colors.black54,
       elevation: 0,
       content: SizedBox(
@@ -199,6 +202,7 @@ class _MainMenuState extends State<MainMenu> {
 
   void showEnemiesDialog(BuildContext context) {
     final AlertDialog alert = AlertDialog(
+      key: const ValueKey('EnemiesDialog'),
       backgroundColor: Colors.white,
       elevation: 0,
       content: SizedBox(
@@ -208,29 +212,39 @@ class _MainMenuState extends State<MainMenu> {
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.all(4.0),
           children: <Widget>[
-            Column(children: [
-              const Text('Icon Enemy'),
-              IconEnemy().render,
-            ],),
-            Column(children: [
-              const Text('CPI Enemy'),
-              CircularProgressIndicatorEnemy().render,
-            ],),
+            Column(
+              children: [
+                const Text('Icon Enemy'),
+                IconEnemy().render,
+              ],
+            ),
+            Column(
+              children: [
+                const Text('CPI Enemy'),
+                CircularProgressIndicatorEnemy().render,
+              ],
+            ),
             const SizedBox(width: 15),
-            Column(children: [
-              const Text('Container Enemy'),
-              ContainerEnemy().render,
-            ],),
+            Column(
+              children: [
+                const Text('Container Enemy'),
+                ContainerEnemy().render,
+              ],
+            ),
             const SizedBox(width: 15),
-            Column(children: [
-              const Text('Elevated Button Enemy'),
-              ElevatedButtonEnemy().render,
-            ],),
+            Column(
+              children: [
+                const Text('Elevated Button Enemy'),
+                ElevatedButtonEnemy().render,
+              ],
+            ),
             const SizedBox(width: 15),
-            Column(children: [
-              const Text('Text Field Enemy'),
-              TextFieldEnemy().render,
-            ],),
+            Column(
+              children: [
+                const Text('Text Field Enemy'),
+                TextFieldEnemy().render,
+              ],
+            ),
           ],
         ),
       ),

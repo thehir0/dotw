@@ -5,17 +5,13 @@ import '../constants/fonts.dart';
 import '../main.dart';
 
 void settings(BuildContext context) {
-
-
   late RxString dropdown;
 
-  if(locale.value == const Locale('en')) {
+  if (locale.value == const Locale('en')) {
     dropdown = 'English'.obs;
-  }
-  else{
+  } else {
     dropdown = 'Russia'.obs;
   }
-
 
   showDialog(
       context: context,
@@ -53,35 +49,35 @@ void settings(BuildContext context) {
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Obx(() => DropdownButton(
-                                  dropdownColor: Colors.white,
-                                  value: dropdown.value,
-                                  underline: const SizedBox(),
-                                  iconSize: 0.0,
-                                  style: const TextStyle(color: Colors.black),
-                                  onChanged: (String? newValue) {
-                                    dropdown.value = newValue!;
+                                Obx(
+                                  () => DropdownButton(
+                                    dropdownColor: Colors.white,
+                                    value: dropdown.value,
+                                    underline: const SizedBox(),
+                                    iconSize: 0.0,
+                                    style: const TextStyle(color: Colors.black),
+                                    onChanged: (String? newValue) {
+                                      dropdown.value = newValue!;
 
-                                    if (dropdown.value == 'English') {
+                                      if (dropdown.value == 'English') {
+                                        locale = const Locale('en').obs;
+                                        Get.updateLocale(locale.value);
+                                      } else {
+                                        locale = const Locale('ru').obs;
 
-                                      locale = const Locale('en').obs;
-                                      Get.updateLocale(locale.value);
-
-                                    } else {
-                                      locale = const Locale('ru').obs;
-
-                                      Get.updateLocale(locale.value);
-                                    }
-                                  },
-                                  items: <String>['English', 'Russia']
-                                      .map<DropdownMenuItem<String>>(
-                                          (String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Center(child: Text(value)),
-                                        );
-                                      }).toList(),
-                                ),),
+                                        Get.updateLocale(locale.value);
+                                      }
+                                    },
+                                    items: <String>['English', 'Russia']
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Center(child: Text(value)),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
                                 const Icon(Icons.arrow_drop_down),
                               ])),
                     ],

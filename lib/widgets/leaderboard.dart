@@ -6,7 +6,6 @@ import 'package:dotw/widgets/main_menu.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Leaderboard extends StatefulWidget {
   static const String route = 'leaderboard';
@@ -30,7 +29,8 @@ class _LeaderboardState extends State<Leaderboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: Colors.white,
       body: hasInternetConnection
           ? FutureBuilder(
@@ -216,6 +216,6 @@ class _LeaderboardState extends State<Leaderboard> {
                   .tr,
               style: const TextStyle(color: Colors.black),
             ),
-    );
+    ));
   }
 }

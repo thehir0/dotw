@@ -1,4 +1,8 @@
+import 'package:dotw/constants/colors.dart';
+import 'package:dotw/constants/fonts.dart';
 import 'package:dotw/main.dart';
+import 'package:dotw/widgets/leaderboard_template.dart';
+import 'package:dotw/widgets/main_menu.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,34 +32,6 @@ class _LeaderboardState extends State<Leaderboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Leader',
-              style: GoogleFonts.vt323(
-                textStyle: const TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple),
-              ),
-            ),
-            Text(
-              'board',
-              style: GoogleFonts.vt323(
-                textStyle: const TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.pinkAccent),
-              ),
-            ),
-          ],
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
       body: hasInternetConnection
           ? FutureBuilder(
               future: getScores(),
@@ -68,99 +44,167 @@ class _LeaderboardState extends State<Leaderboard> {
                   int size = players.length;
 
                   List<Widget> allPlayers = [];
-                  allPlayers.add(
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 10),
+
+                  for (int i = 3; i < size; i++) {
+                    allPlayers.add(Container(
+                      height: 72,
                       padding: const EdgeInsets.all(10),
-                      height: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          border: Border.all(color: Colors.black)),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Rank',
-                            style: GoogleFonts.vt323(
-                              textStyle: const TextStyle(
-                                  fontSize: 26, fontWeight: FontWeight.bold),
+                          Flexible(
+                            flex: 1,
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    '${i + 1}',
+                                    style: const TextStyle(
+                                        fontFamily: beaufort,
+                                        fontSize: 22,
+                                        color: Colors.black87),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10),
+                                    child: const CircleAvatar(
+                                      radius: 16,
+                                      backgroundColor: Colors.grey,
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      players[i],
+                                      style: const TextStyle(
+                                          fontFamily: gillSans,
+                                          fontSize: 14,
+                                          color: Colors.black87),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          Text(
-                            'Nickname',
-                            style: GoogleFonts.vt323(
-                              textStyle: const TextStyle(
-                                  fontSize: 26, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Text(
-                            'Points',
-                            style: GoogleFonts.vt323(
-                              textStyle: const TextStyle(
-                                  fontSize: 26, fontWeight: FontWeight.bold),
+                          Flexible(
+                            flex: 1,
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              child: Center(
+                                child: Text(
+                                  '${data[players[i]]}',
+                                  style: const TextStyle(
+                                      fontFamily: gillSans,
+                                      fontSize: 14,
+                                      color: Colors.black87),
+                                ),
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  );
-
-                  for (int i = 0; i < size; i++) {
-                    allPlayers.add(
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 10),
-                        padding: const EdgeInsets.all(10),
-                        height: 60,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(color: Colors.black)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: Text(
-                                    '#${i + 1}',
-                                    style: GoogleFonts.vt323(
-                                        textStyle: const TextStyle(
-                                            fontSize: 26,
-                                            fontWeight: FontWeight.bold)),
-                                  ),
-                                ),
-                                const Icon(
-                                  Icons.account_circle_rounded,
-                                  color: Colors.black,
-                                  size: 35,
-                                ),
-                              ],
-                            ),
-                            Text(
-                              players[i],
-                              style: GoogleFonts.vt323(
-                                  textStyle: const TextStyle(
-                                      fontSize: 26,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                            Text(
-                              '${data[players[i]]}',
-                              style: GoogleFonts.vt323(
-                                textStyle: const TextStyle(
-                                    fontSize: 26, fontStyle: FontStyle.italic),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+                    ));
                   }
 
-                  return Container(
-                    margin: const EdgeInsets.all(30),
-                    child: ListView(
-                      children: allPlayers,
-                    ),
+                  return Column(
+                    children: [
+                      Flexible(
+                        flex: 2,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height,
+                          color: GameColors.first,
+                          padding: const EdgeInsets.only(
+                              left: 12, top: 12, right: 12, bottom: 25),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              /**TITLE**/
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Flexible(
+                                    flex: 1,
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          Icons.arrow_back_ios_new,
+                                          color: Colors.white,
+                                          size: 32,
+                                        ),
+                                        onPressed: () =>
+                                            Get.to(const MainMenu()),
+                                      ),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    flex: 8,
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: const Center(
+                                          child: Text(
+                                        'Leaderboard',
+                                        style: TextStyle(
+                                            fontSize: 45,
+                                            fontFamily: beaufort,
+                                            color: Colors.white),
+                                      )),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    flex: 1,
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      color: Colors.yellowAccent,
+                                      child: null,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              /**TITLE_END**/
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  LeaderboardTemplate(
+                                      username: players[1],
+                                      record: data[players[1]],
+                                      bottomMargin: 0,
+                                      radius: 40,
+                                      place: '2',
+                                      medalColor: GameColors.silver),
+                                  LeaderboardTemplate(
+                                      username: players[0],
+                                      record: data[players[0]],
+                                      bottomMargin: 30,
+                                      radius: 55,
+                                      place: '1',
+                                      medalColor: GameColors.goldColor),
+                                  LeaderboardTemplate(
+                                      username: players[2],
+                                      record: data[players[2]],
+                                      bottomMargin: 0,
+                                      radius: 40,
+                                      place: '3',
+                                      medalColor: GameColors.bronze),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                        flex: 3,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height,
+                          width: MediaQuery.of(context).size.width,
+                          color: Colors.white,
+                          child: ListView(
+                            padding: const EdgeInsets.all(0),
+                            children: allPlayers,
+                          ),
+                        ),
+                      )
+                    ],
                   );
                 } else {
                   return const CircularProgressIndicator();
@@ -169,37 +213,9 @@ class _LeaderboardState extends State<Leaderboard> {
             )
           : Text(
               'Unable to load Leaderboard, because no internet connection found'
-                  .tr),
+                  .tr,
+              style: const TextStyle(color: Colors.black),
+            ),
     );
   }
 }
-/*Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 600,
-                      margin: EdgeInsets.all(20),
-                      child: ListView(
-                        children: (data.keys.toList()
-                              ..sort((a, b) => -data[a]!.compareTo(data[b]!)))
-                            .map(
-                              (player) => Container(
-                                color: Colors.grey,
-                                margin: const EdgeInsets.only(bottom: 10),
-                                child: Text(
-                                  '$player: ${data[player]}',
-                                  style: const TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            );*/

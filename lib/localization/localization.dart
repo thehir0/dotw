@@ -37,7 +37,7 @@ class Languages extends Translations {
         },
         'en_US': {
           'greeting': 'Hello',
-          'Play!': 'Play',
+          'Play!': 'Play!',
           'Login': 'Login',
           'Leaderboard': 'Leaderboard',
           'Log out': 'Log out',
@@ -62,7 +62,7 @@ class Languages extends Translations {
           'Reconnected to the Internet': 'Reconnected to the Internet',
           'Attack card': 'Attack card',
           'Defence card': 'Defence card',
-          'High score:':  'High score:',
+          'High score:': 'High score:',
         },
       };
 }

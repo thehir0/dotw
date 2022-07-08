@@ -35,11 +35,11 @@ class Entity {
     final damage = (attacker.dmg.value - block.value);
     hp.value -= damage;
     if (attacker is Player) {
-      attacker.score += damage;
+      attacker.score.value += damage;
     } else {
-      (this as Player).score -= damage;
+      (this as Player).score.value -= damage;
     }
-    block = 0.obs;
+    block.value = 0;
     if (hp <= 0) {
       onDeath(attacker);
     }
@@ -50,7 +50,7 @@ class Entity {
   }
 
   void onDeath(Entity attacker) {
-    isDead = true.obs;
-    hp = 0.obs;
+    isDead.value = true;
+    hp.value = 0;
   }
 }

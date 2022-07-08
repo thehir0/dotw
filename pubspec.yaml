@@ -38,12 +38,26 @@ dependencies:
   show_more_text_popup: ^0.3.0
   firebase_core: ^1.18.0
   firebase_database: ^9.0.16
+  firebase_auth: ^3.4.1
+  flutter_native_splash: ^2.2.4
+  connectivity_plus: ^2.3.5
+  firebase_crashlytics: ^2.8.4
+  flutter_svg: ^1.1.1+1
+  confetti: ^0.7.0
+
+flutter_native_splash:
+  color: "#34619B"
+  image: assets/splash_screen.png
+
+  android_12:
+    color: "#34619B"
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
+  # The "flutter_lints" package below contains a set of recommended lints to![](../../Desktop/Снимок экрана 2022-07-06 в 17.19.13.png)
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
@@ -68,8 +82,16 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+  - assets/icon/dotwIcon.png
+  - assets/icon/podium.png
+  - assets/icon/encycloped.png
+  - assets/icon/settings.png
+  - assets/icon/cards.png
+  - assets/icon/shield.png
+  - assets/icon/heart.png
+  - assets/icon/coin.png
+  - assets/icon/energy.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -83,10 +105,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+     - family: Beaufort
+       fonts:
+         - asset: assets/fonts/Beaufort W01 Bold.ttf
+     - family: GillSansMTPRO
+       fonts:
+         - asset: assets/fonts/GillSansMTPro-Medium.otf
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -16,9 +16,9 @@ When you enter the game, you get to the main page:
 
 (4) Play button will send you to Game Screen and allow to play the game itself.
 
-(5) Show the starter deck of cards.
+(5) Show all possible card list.
 
-(6) Show information about widgets you met during the game.
+(6) Show information about all enemies widgets.
 
 
  ### Login page:

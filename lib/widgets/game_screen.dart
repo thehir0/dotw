@@ -177,6 +177,8 @@ class _GameScreenState extends State<GameScreen> {
                                           if (player.energy.value >=
                                               card.cost) {
                                             card.play(player, enemies[index]);
+                                            hand.remove(card);
+                                            player.usedCards.add(card);
                                             player.energy.value -= card.cost;
                                             bool victory = true;
                                             for (final enemy in enemies) {
@@ -188,8 +190,6 @@ class _GameScreenState extends State<GameScreen> {
                                             if (victory) {
                                               showYouWin(context);
                                             }
-
-                                            hand.remove(card);
                                           }
                                           user?.cardsPlayed.value++;
                                         }
@@ -257,13 +257,12 @@ class _GameScreenState extends State<GameScreen> {
                             user?.died.value++;
                             showDeathDialog(context);
                           }
-                          for (final card in hand) {
-                            player.usedCards.add(card);
-                          }
+                          player.usedCards.addAll(hand);
+                          hand.clear();
+                          hand.addAll(player.getHand());
                           player.block.value = 0;
                           player.energy.value = player.energyMax.value;
                           turn++;
-                          hand.value = player.getHand().obs;
                           user?.turnsFinished.value++;
                         },
                         style: ElevatedButton.styleFrom(
@@ -431,8 +430,10 @@ class _GameScreenState extends State<GameScreen> {
                             player.energy.value = player.energyMax.value;
                             turn = 0;
                             room++;
+                            player.usedCards.addAll(hand);
+                            hand.clear();
                             player.reassembleDeck();
-                            hand.value = player.getHand();
+                            hand.addAll(player.getHand());
                             enteredShop.value = false;
                             controller.stop();
                             Get.back();

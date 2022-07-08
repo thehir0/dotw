@@ -31,6 +31,7 @@ class Languages extends Translations {
           'Attack card': 'Атакующая',
           'Defence card': 'Защитная',
           'High score:': 'Рекорд:',
+          'Choose Language:': 'Выберите язык:'
         },
         'ja_JP': {
           'greeting': 'こんにちは',
@@ -63,6 +64,7 @@ class Languages extends Translations {
           'Attack card': 'Attack card',
           'Defence card': 'Defence card',
           'High score:': 'High score:',
+          'Choose Language:': 'Choose Language:',
         },
       };
 }

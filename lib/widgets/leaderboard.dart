@@ -2,14 +2,11 @@ import 'package:dotw/constants/colors.dart';
 import 'package:dotw/constants/fonts.dart';
 import 'package:dotw/main.dart';
 import 'package:dotw/widgets/leaderboard_template.dart';
-import 'package:dotw/widgets/main_menu.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Leaderboard extends StatefulWidget {
-  static const String route = 'leaderboard';
-
   const Leaderboard({Key? key}) : super(key: key);
 
   @override
@@ -107,7 +104,7 @@ class _LeaderboardState extends State<Leaderboard> {
                   return Column(
                     children: [
                       Flexible(
-                        flex: 3,
+                        flex: 4,
                         child: Container(
                           height: MediaQuery.of(context).size.height,
                           color: GameColors.first,
@@ -118,7 +115,7 @@ class _LeaderboardState extends State<Leaderboard> {
                             children: [
                               /**TITLE**/
                               Container(
-                                margin: const EdgeInsets.only(top: 20),
+                                margin: const EdgeInsets.only(top: 40),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
@@ -133,8 +130,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                             color: Colors.white,
                                             size: 32,
                                           ),
-                                          onPressed: () =>
-                                              Get.to(const MainMenu()),
+                                          onPressed: () => Get.back(),
                                         ),
                                       ),
                                     ),
@@ -143,10 +139,10 @@ class _LeaderboardState extends State<Leaderboard> {
                                       child: SizedBox(
                                         width:
                                             MediaQuery.of(context).size.width,
-                                        child: const Center(
+                                        child: Center(
                                             child: Text(
-                                          'Leaderboard',
-                                          style: TextStyle(
+                                          'Leaderboard'.tr,
+                                          style: const TextStyle(
                                               fontSize: 45,
                                               fontFamily: beaufort,
                                               color: Colors.white),
@@ -199,7 +195,7 @@ class _LeaderboardState extends State<Leaderboard> {
                         ),
                       ),
                       Flexible(
-                        flex: 4,
+                        flex: 5,
                         child: Container(
                           height: MediaQuery.of(context).size.height,
                           width: MediaQuery.of(context).size.width,

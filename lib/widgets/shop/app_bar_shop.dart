@@ -22,9 +22,9 @@ AppBar buildShopAppBar(Player player) {
               child: Image.asset('assets/icon/heart.png'),
             ),
             Obx(() => Text(
-              '${player.hp.value}/${player.hpMax}',
-              style: const TextStyle(fontSize: 22, fontFamily: beaufort),
-            )),
+                  '${player.hp.value}/${player.hpMax}',
+                  style: const TextStyle(fontSize: 22, fontFamily: beaufort),
+                )),
           ],
         ),
         Row(
@@ -36,7 +36,7 @@ AppBar buildShopAppBar(Player player) {
               child: Image.asset('assets/icon/energy.png'),
             ),
             Obx(
-                  () => Text(
+              () => Text(
                 '${player.energy}/${player.energyMax}',
                 style: const TextStyle(fontSize: 22, fontFamily: beaufort),
               ),
@@ -52,9 +52,9 @@ AppBar buildShopAppBar(Player player) {
               child: Image.asset('assets/icon/coin.png'),
             ),
             Obx(() => Text(
-              '${player.money.value}',
-              style: const TextStyle(fontSize: 22, fontFamily: beaufort),
-            )),
+                  '${player.money.value}',
+                  style: const TextStyle(fontSize: 22, fontFamily: beaufort),
+                )),
           ],
         ),
       ],

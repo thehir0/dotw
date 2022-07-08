@@ -320,8 +320,8 @@ class _GameScreenState extends State<GameScreen> {
       style: ElevatedButton.styleFrom(primary: GameColors.barColor),
       child: Text(
         'Exit to main menu'.tr,
-        style: GoogleFonts.vt323(
-            textStyle: const TextStyle(fontSize: 30), color: Colors.redAccent),
+        style: const TextStyle(
+            fontSize: 14, fontFamily: beaufort, color: Colors.redAccent),
       ),
       onPressed: () {
         Get.back();
@@ -340,14 +340,16 @@ class _GameScreenState extends State<GameScreen> {
             children: [
               Text(
                 'You DIED'.tr,
-                style: GoogleFonts.vt323(
-                    textStyle: const TextStyle(fontSize: 50),
+                style: const TextStyle(
+                    fontSize: 50,
+                    fontFamily: beaufort,
                     color: Colors.redAccent),
               ),
               Text(
                 '${'Score:'.tr}${player.score}',
-                style: GoogleFonts.vt323(
-                    textStyle: const TextStyle(fontSize: 20),
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontFamily: beaufort,
                     color: Colors.redAccent),
               ),
               closeButton,

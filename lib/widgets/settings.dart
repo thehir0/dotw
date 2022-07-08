@@ -17,10 +17,10 @@ void settings(BuildContext context) {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            title: const Center(
+            title: Center(
                 child: Text(
-              'Settings',
-              style: TextStyle(
+              'Settings'.tr,
+              style: const TextStyle(
                   fontSize: 22, fontFamily: beaufort, color: Colors.white),
             )),
             shape: const RoundedRectangleBorder(
@@ -33,9 +33,9 @@ void settings(BuildContext context) {
                 children: [
                   Row(
                     children: [
-                      const Text(
-                        'Choose Language:',
-                        style: TextStyle(
+                      Text(
+                        'Choose Language:'.tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: gillSans,
                             color: Colors.white),

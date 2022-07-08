@@ -81,18 +81,31 @@ class _ShopState extends State<Shop> {
                       ),
                       child: Column(
                         children: [
-                          Image.asset('assets/icon/heart_shop.png',),
-                          const SizedBox(height: 7,),
+                          Image.asset(
+                            'assets/icon/heart_shop.png',
+                          ),
+                          const SizedBox(
+                            height: 7,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.asset('assets/icon/coin_shop.png',),
-                              const SizedBox(width: 3,),
-                              Obx(() => Text(
-                                '$healthCost',
-                                style: const TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.black),
-                              ),),
+                              Image.asset(
+                                'assets/icon/coin_shop.png',
+                              ),
+                              const SizedBox(
+                                width: 3,
+                              ),
+                              Obx(
+                                () => Text(
+                                  '$healthCost',
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: gillSans,
+                                      color: Colors.black),
+                                ),
+                              ),
                             ],
                           )
                         ],
@@ -113,17 +126,28 @@ class _ShopState extends State<Shop> {
                           elevation: 0, primary: Colors.transparent),
                       child: Column(
                         children: [
-                          Image.asset('assets/icon/thunder_shop.png',),
+                          Image.asset(
+                            'assets/icon/thunder_shop.png',
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.asset('assets/icon/coin_shop.png',),
-                              const SizedBox(width: 3,),
-                              Obx(() => Text(
-                                '$energyCost',
-                                style: const TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.black),
-                              ),),
+                              Image.asset(
+                                'assets/icon/coin_shop.png',
+                              ),
+                              const SizedBox(
+                                width: 3,
+                              ),
+                              Obx(
+                                () => Text(
+                                  '$energyCost',
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: gillSans,
+                                      color: Colors.black),
+                                ),
+                              ),
                             ],
                           )
                         ],
@@ -153,12 +177,21 @@ class _ShopState extends State<Shop> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.asset('assets/icon/coin_shop.png',),
-                              const SizedBox(width: 3,),
-                              Obx(() => Text(
-                                '$healCost',
-                                style: const TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.black),
-                              ),),
+                              Image.asset(
+                                'assets/icon/coin_shop.png',
+                              ),
+                              const SizedBox(
+                                width: 3,
+                              ),
+                              Obx(
+                                () => Text(
+                                  '$healCost',
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: gillSans,
+                                      color: Colors.black),
+                                ),
+                              ),
                             ],
                           )
                         ],
@@ -190,24 +223,25 @@ class _ShopState extends State<Shop> {
           Flexible(
               flex: 2,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: SizedBox(
-                  width: 200,
-                  height: 40,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: GameColors.first
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: SizedBox(
+                    width: 200,
+                    height: 40,
+                    child: ElevatedButton(
+                      style:
+                          ElevatedButton.styleFrom(primary: GameColors.first),
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: const Text(
+                        'Leave the shop',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: gillSans,
+                            color: Colors.white),
+                      ),
                     ),
-                    onPressed: () {
-                      Get.back();
-                    },
-                    child: const Text(
-                      'Leave the shop',
-                      style: TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.white),
-                    ),
-                  ),
-                )
-              ))
+                  )))
         ],
       ),
     );
@@ -234,14 +268,26 @@ class _ShopState extends State<Shop> {
           child: Column(
             children: [
               cardsInShop[index].render(),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset('assets/icon/coin_shop.png',),
-                  const SizedBox(width: 3,),
-                  Text('${cardsInShopPrices[index]}', style: const TextStyle(fontSize: 14, fontFamily: gillSans, color: Colors.black),),
+                  Image.asset(
+                    'assets/icon/coin_shop.png',
+                  ),
+                  const SizedBox(
+                    width: 3,
+                  ),
+                  Text(
+                    '${cardsInShopPrices[index]}',
+                    style: const TextStyle(
+                        fontSize: 14,
+                        fontFamily: gillSans,
+                        color: Colors.black),
+                  ),
                 ],
               )
             ],

@@ -76,7 +76,10 @@ abstract class GameCard {
                   color: GameColors.pastel,
                   child: Text(
                     typeCard,
-                    style: const TextStyle(fontSize: 10, fontFamily: gillSans, color: Colors.black),
+                    style: const TextStyle(
+                        fontSize: 10,
+                        fontFamily: gillSans,
+                        color: Colors.black),
                   ),
                 ),
               ],
@@ -94,7 +97,8 @@ abstract class GameCard {
               color: GameColors.pastel,
               child: Text(
                 title,
-                style: const TextStyle(fontSize: 7, fontFamily: gillSans, color: Colors.black),
+                style: const TextStyle(
+                    fontSize: 7, fontFamily: gillSans, color: Colors.black),
               ),
             ),
             Container(
@@ -104,7 +108,8 @@ abstract class GameCard {
               padding: const EdgeInsets.all(3),
               child: Text(
                 description,
-                style: const TextStyle(fontSize: 6, fontFamily: gillSans, color: Colors.black),
+                style: const TextStyle(
+                    fontSize: 6, fontFamily: gillSans, color: Colors.black),
               ),
             ),
           ],

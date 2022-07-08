@@ -23,6 +23,7 @@ AppBar buildAppBarMainMenu(BuildContext context) {
             color: Colors.white,
           )),
       IconButton(
+          key: const ValueKey('SettingsButton'),
           onPressed: () {
             settings(context);
           },

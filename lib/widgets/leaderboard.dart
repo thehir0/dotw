@@ -118,7 +118,7 @@ class _LeaderboardState extends State<Leaderboard> {
                             children: [
                               /**TITLE**/
                               Container(
-                                margin: const EdgeInsets.only(top: 10),
+                                margin: const EdgeInsets.only(top: 20),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [

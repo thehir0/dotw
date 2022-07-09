@@ -37,14 +37,13 @@ If this is your first time in the game, then using the register button you can c
 
 ### Profile
 
-<img width="210" alt="Снимок экрана 2022-07-09 в 03 46 27" src="https://user-images.githubusercontent.com/70011787/178085311-3ba878ec-342b-4dd2-898b-1c3477b935d5.png">
+<img width="214" alt="Снимок экрана 2022-07-09 в 03 47 34" src="https://user-images.githubusercontent.com/70011787/178085377-e77e52b5-f0b6-4960-9768-556c51c9eb64.png">
 
 As soon as you log into your account, your profile will appear instead of the Login button. By clicking on it you will see the username and statistics of the game for all time. You can also set a profile avatar for yourself or log out of your profile.
 
 ### Leaderboard page:
 
-<img width="309" alt="Снимок экрана 2022-07-07 в 23 54 23" src="https://user-images.githubusercontent.com/70011787/177869609-852704b8-18b0-4909-81dd-0fe00592b018.png">
-
+<img width="300" alt="Снимок экрана 2022-07-09 в 03 46 59" src="https://user-images.githubusercontent.com/70011787/178085341-27467756-4767-433b-8b44-cc5e3136a622.png">
 
 The leaderboard shows the best players of all time. Each time you finish a run, you get a certain number of points, depending on how many useful actions you have performed.
 

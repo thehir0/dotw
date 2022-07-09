@@ -96,7 +96,7 @@ Every time you die, you will see the death screen. Your points will be written o
 
 ## Deisgn:
 
-[Game Design](https://www.figma.com/file/ydNP6FriNaOLZ0nW4YL92x/Game?node-id=16%3A38)
+[Figma game design](https://www.figma.com/file/ydNP6FriNaOLZ0nW4YL92x/Game?node-id=16%3A38)
 
 ## List of Features:
 

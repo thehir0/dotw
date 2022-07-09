@@ -109,86 +109,109 @@ class _LeaderboardState extends State<Leaderboard> {
                           height: MediaQuery.of(context).size.height,
                           color: GameColors.first,
                           padding: const EdgeInsets.only(
-                              left: 12, top: 12, right: 12, bottom: 25),
+                              left: 12, top: 40, right: 12, bottom: 12),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               /**TITLE**/
-                              Container(
-                                margin: const EdgeInsets.only(top: 40),
+                              Flexible(
+                                flex: 2,
+                                child: SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height,
+                                          child: IconButton(
+                                            icon: const Icon(
+                                              Icons.arrow_back_ios_new,
+                                              color: Colors.white,
+                                              size: 32,
+                                            ),
+                                            onPressed: () => Get.back(),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 8,
+                                        child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height,
+                                          child: Center(
+                                              child: Text(
+                                            'Leaderboard'.tr,
+                                            style: const TextStyle(
+                                                fontSize: 45,
+                                                fontFamily: beaufort,
+                                                color: Colors.white),
+                                          )),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height,
+                                          child: null,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              /**TITLE_END**/
+                              Flexible(
+                                flex: 8,
                                 child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     Flexible(
                                       flex: 1,
-                                      child: SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        child: IconButton(
-                                          icon: const Icon(
-                                            Icons.arrow_back_ios_new,
-                                            color: Colors.white,
-                                            size: 32,
-                                          ),
-                                          onPressed: () => Get.back(),
-                                        ),
-                                      ),
-                                    ),
-                                    Flexible(
-                                      flex: 8,
-                                      child: SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        child: Center(
-                                            child: Text(
-                                          'Leaderboard'.tr,
-                                          style: const TextStyle(
-                                              fontSize: 45,
-                                              fontFamily: beaufort,
-                                              color: Colors.white),
-                                        )),
-                                      ),
+                                      child: LeaderboardTemplate(
+                                          username: players[1],
+                                          record: data[players[1]],
+                                          bottomMargin: 0,
+                                          radius: 40,
+                                          place: '2',
+                                          medalColor: GameColors.silver),
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        color: Colors.yellowAccent,
-                                        child: null,
-                                      ),
+                                      child: LeaderboardTemplate(
+                                          username: players[0],
+                                          record: data[players[0]],
+                                          bottomMargin: 30,
+                                          radius: 55,
+                                          place: '1',
+                                          medalColor: GameColors.goldColor),
                                     ),
+                                    Flexible(
+                                      flex: 1,
+                                      child: LeaderboardTemplate(
+                                          username: players[2],
+                                          record: data[players[2]],
+                                          bottomMargin: 0,
+                                          radius: 40,
+                                          place: '3',
+                                          medalColor: GameColors.bronze),
+                                    )
                                   ],
                                 ),
-                              ),
-
-                              /**TITLE_END**/
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  LeaderboardTemplate(
-                                      username: players[1],
-                                      record: data[players[1]],
-                                      bottomMargin: 0,
-                                      radius: 40,
-                                      place: '2',
-                                      medalColor: GameColors.silver),
-                                  LeaderboardTemplate(
-                                      username: players[0],
-                                      record: data[players[0]],
-                                      bottomMargin: 30,
-                                      radius: 55,
-                                      place: '1',
-                                      medalColor: GameColors.goldColor),
-                                  LeaderboardTemplate(
-                                      username: players[2],
-                                      record: data[players[2]],
-                                      bottomMargin: 0,
-                                      radius: 40,
-                                      place: '3',
-                                      medalColor: GameColors.bronze),
-                                ],
                               ),
                             ],
                           ),

@@ -11,14 +11,9 @@ import 'package:dotw/widgets/main_menu/app_bar_main_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
-import '../cards/defensive_cards/container_block.dart';
-import '../cards/defensive_cards/dark_theme_card.dart';
-import '../cards/defensive_cards/gesturedetector_on_pan_update.dart';
 import '../cards/defensive_cards/margin.dart';
 import '../cards/defensive_cards/widget_test_card.dart';
 import '../cards/offensive_cards/flutter_web.dart';
-import '../cards/offensive_cards/game_breaking_bug.dart';
-import '../cards/offensive_cards/padding_attack.dart';
 import '../cards/offensive_cards/simple_click.dart';
 import 'game_screen.dart';
 

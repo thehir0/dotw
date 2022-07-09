@@ -17,7 +17,7 @@ Player buildStarterPlayer() {
     hp: 5.obs,
     block: 0.obs,
     name: 'Player',
-    energyMax: 3.obs,
+    energyMax: 5.obs,
     handSize: 5.obs,
     deck: (List<GameCard>.of([
       Margin(),

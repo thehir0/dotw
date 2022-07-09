@@ -442,7 +442,7 @@ class _GameScreenState extends State<GameScreen> {
                           },
                           child: Text('Continue'.tr),
                         ),
-                        room % 5 == 0
+                        room % 3 == 0
                             ? Obx(
                                 () => ElevatedButton(
                                   onPressed: !enteredShop.isFalse

@@ -37,7 +37,7 @@ If this is your first time in the game, then using the register button you can c
 
 ### Profile
 
-<img width="258" alt="Снимок экрана 2022-07-07 в 22 35 28" src="https://user-images.githubusercontent.com/70011787/177857573-12744f98-2421-43de-bf27-9b1615aec6d2.png">
+<img width="210" alt="Снимок экрана 2022-07-09 в 03 46 27" src="https://user-images.githubusercontent.com/70011787/178085311-3ba878ec-342b-4dd2-898b-1c3477b935d5.png">
 
 As soon as you log into your account, your profile will appear instead of the Login button. By clicking on it you will see the username and statistics of the game for all time. You can also set a profile avatar for yourself or log out of your profile.
 
@@ -84,14 +84,14 @@ The Play button will take you to the game itself. The game page consists of 9 ma
 
 ### Shop
 
-...
+<img width="298" alt="Снимок экрана 2022-07-09 в 03 44 33" src="https://user-images.githubusercontent.com/70011787/178085257-43732e8c-9457-4589-9400-ec57a3e05498.png">
+
 
 Every fifth level completed will allow you to go to the store, where you will have the opportunity to heal or increase the maximum amount of energy and health. You will also be offered 6 random cards that you can buy into your deck. Each purchase of permanent improvements, as well as each subsequent store will increase the price of all purchases.
 
 ### Death Screen
 
-<img width="272" alt="Снимок экрана 2022-07-07 в 22 45 41" src="https://user-images.githubusercontent.com/70011787/177859208-43148162-9316-4ab7-88a3-c1cbdeeae038.png">
-
+<img width="234" alt="Снимок экрана 2022-07-09 в 03 43 52" src="https://user-images.githubusercontent.com/70011787/178085214-9e2250ad-e2cd-4d9b-96a3-1897da5e89e9.png">
 
 Every time you die, you will see the death screen. Your points will be written on it and the ability to exit to the main menu.
 
@@ -109,6 +109,7 @@ Every time you die, you will see the death screen. Your points will be written o
 - Some fancy animations
 - Custom App Icon
 - Code is neat and clear
+- Widget tests
 
 
 ## How to build:

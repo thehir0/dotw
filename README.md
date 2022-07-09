@@ -111,6 +111,8 @@ Every time you die, you will see the death screen. Your points will be written o
 - Widget tests
 
 
-## How to build:
+## How to build
+For Android: download APK and open it
+For iOS: download Runner and run through the xcode workspace
 
 [Install APK and IOS Runner](https://drive.google.com/drive/folders/1ChvFtK1_So_Xt0HxDwVHXYgYmfL6QEMu?usp=sharing)

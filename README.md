@@ -94,7 +94,7 @@ Every fifth level completed will allow you to go to the store, where you will ha
 
 Every time you die, you will see the death screen. Your points will be written on it and the ability to exit to the main menu.
 
-## Deisgn:
+## Design:
 
 [Figma game design](https://www.figma.com/file/ydNP6FriNaOLZ0nW4YL92x/Game?node-id=16%3A38)
 
@@ -112,7 +112,7 @@ Every time you die, you will see the death screen. Your points will be written o
 - Some fancy animations
 - Custom App Icon
 - Code is neat and clear
-- Widget tests
+- Unit and Widget tests
 
 
 ## How to build

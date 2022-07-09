@@ -209,15 +209,16 @@ class _LeaderboardState extends State<Leaderboard> {
                     ],
                   );
                 } else {
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 }
               },
             )
-          : Text(
+          : Center(
+              child: Text(
               'Unable to load Leaderboard, because no internet connection found'
                   .tr,
               style: const TextStyle(color: Colors.black),
-            ),
+            )),
     );
   }
 }

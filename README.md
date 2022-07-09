@@ -37,7 +37,7 @@ If this is your first time in the game, then using the register button you can c
 
 ### Profile
 
-<img width="214" alt="Снимок экрана 2022-07-09 в 03 47 34" src="https://user-images.githubusercontent.com/70011787/178085377-e77e52b5-f0b6-4960-9768-556c51c9eb64.png">
+<img width="214" alt="Снимок экрана 2022-07-09 в 03 49 31" src="https://user-images.githubusercontent.com/70011787/178085433-9c6adb60-e981-48b3-80f8-4119cd1614ec.png">
 
 As soon as you log into your account, your profile will appear instead of the Login button. By clicking on it you will see the username and statistics of the game for all time. You can also set a profile avatar for yourself or log out of your profile.
 
@@ -45,11 +45,11 @@ As soon as you log into your account, your profile will appear instead of the Lo
 
 <img width="300" alt="Снимок экрана 2022-07-09 в 03 46 59" src="https://user-images.githubusercontent.com/70011787/178085341-27467756-4767-433b-8b44-cc5e3136a622.png">
 
-The leaderboard shows the best players of all time. Each time you finish a run, you get a certain number of points, depending on how many useful actions you have performed.
+The leaderboard shows the best players of all time. Each time you finish a run, you get a certain number of points, depending on how many useful actions you have performed. All scores goes to Firebase.
 
 ### Settings:
 
-<img width="373" alt="Снимок экрана 2022-07-07 в 22 26 34" src="https://user-images.githubusercontent.com/70011787/177856307-462b79f8-ee85-4206-8b0f-1eb99a6e3b47.png">
+<img width="214" alt="Снимок экрана 2022-07-09 в 03 47 34" src="https://user-images.githubusercontent.com/70011787/178085377-e77e52b5-f0b6-4960-9768-556c51c9eb64.png">
 
 In the settings you can choose Russian or English. Every page in the application is translated into both languages (not counting proper names, which are always displayed in English. For example, the names of enemies).
 

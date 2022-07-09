@@ -94,6 +94,10 @@ Every fifth level completed will allow you to go to the store, where you will ha
 
 Every time you die, you will see the death screen. Your points will be written on it and the ability to exit to the main menu.
 
+## Deisgn:
+
+[Game Design](https://www.figma.com/file/ydNP6FriNaOLZ0nW4YL92x/Game?node-id=16%3A38)
+
 ## List of Features:
 
 - Splash Screen for both IOS and Android

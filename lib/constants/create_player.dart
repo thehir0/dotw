@@ -9,7 +9,7 @@ import '../cards/card.dart';
 
 Player buildStarterPlayer() {
   return Player(
-    energy: 3.obs,
+    energy: 5.obs,
     dmg: 1.obs,
     description: 'You',
     hpMax: 5.obs,

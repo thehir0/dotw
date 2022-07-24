@@ -177,6 +177,8 @@ class _GameScreenState extends State<GameScreen> {
                                           if (player.energy.value >=
                                               card.cost) {
                                             card.play(player, enemies[index]);
+                                            hand.remove(card);
+                                            player.usedCards.add(card);
                                             player.energy.value -= card.cost;
                                             bool victory = true;
                                             for (final enemy in enemies) {
@@ -188,9 +190,8 @@ class _GameScreenState extends State<GameScreen> {
                                             if (victory) {
                                               showYouWin(context);
                                             }
-
-                                            hand.remove(card);
                                           }
+                                          user?.cardsPlayed.value++;
                                         }
                                       : (GameCard card) {}),
                                 )),
@@ -253,12 +254,16 @@ class _GameScreenState extends State<GameScreen> {
                             enemy.move(player, turn);
                           }
                           if (player.isDead.isTrue) {
+                            user?.died.value++;
                             showDeathDialog(context);
                           }
+                          player.usedCards.addAll(hand);
+                          hand.clear();
+                          hand.addAll(player.getHand());
                           player.block.value = 0;
                           player.energy.value = player.energyMax.value;
                           turn++;
-                          hand.value = player.getHand().obs;
+                          user?.turnsFinished.value++;
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Colors.transparent,
@@ -315,8 +320,8 @@ class _GameScreenState extends State<GameScreen> {
       style: ElevatedButton.styleFrom(primary: GameColors.barColor),
       child: Text(
         'Exit to main menu'.tr,
-        style: GoogleFonts.vt323(
-            textStyle: const TextStyle(fontSize: 30), color: Colors.redAccent),
+        style: const TextStyle(
+            fontSize: 14, fontFamily: beaufort, color: Colors.redAccent),
       ),
       onPressed: () {
         Get.back();
@@ -335,14 +340,16 @@ class _GameScreenState extends State<GameScreen> {
             children: [
               Text(
                 'You DIED'.tr,
-                style: GoogleFonts.vt323(
-                    textStyle: const TextStyle(fontSize: 50),
+                style: const TextStyle(
+                    fontSize: 50,
+                    fontFamily: beaufort,
                     color: Colors.redAccent),
               ),
               Text(
                 '${'Score:'.tr}${player.score}',
-                style: GoogleFonts.vt323(
-                    textStyle: const TextStyle(fontSize: 20),
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontFamily: beaufort,
                     color: Colors.redAccent),
               ),
               closeButton,
@@ -425,15 +432,17 @@ class _GameScreenState extends State<GameScreen> {
                             player.energy.value = player.energyMax.value;
                             turn = 0;
                             room++;
+                            player.usedCards.addAll(hand);
+                            hand.clear();
                             player.reassembleDeck();
-                            hand.value = player.getHand();
+                            hand.addAll(player.getHand());
                             enteredShop.value = false;
                             controller.stop();
                             Get.back();
                           },
                           child: Text('Continue'.tr),
                         ),
-                        room % 5 == 0
+                        room % 3 == 0
                             ? Obx(
                                 () => ElevatedButton(
                                   onPressed: !enteredShop.isFalse

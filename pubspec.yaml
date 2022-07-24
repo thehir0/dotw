@@ -92,6 +92,9 @@ flutter:
   - assets/icon/heart.png
   - assets/icon/coin.png
   - assets/icon/energy.png
+  - assets/icon/heart_shop.png
+  - assets/icon/thunder_shop.png
+  - assets/icon/coin_shop.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

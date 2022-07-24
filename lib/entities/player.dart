@@ -34,12 +34,10 @@ class Player extends Entity {
     var hand = List<GameCard>.empty().obs;
     while (hand.length < handSize.value) {
       if (deck.isEmpty) {
-        deck.addAll(usedCards);
-        usedCards.clear();
+        reassembleDeck();
       }
       var randomCard = (deck..shuffle()).first;
       deck.remove(randomCard);
-      usedCards.add(randomCard);
       hand.add(randomCard);
     }
     return hand;

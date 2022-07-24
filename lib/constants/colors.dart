@@ -11,6 +11,8 @@ class GameColors {
   static const Color pastel = Color.fromRGBO(255, 252, 217, 1);
   static const Color red1 = Color.fromRGBO(219, 73, 53, 1);
   static const Color blue1 = Color.fromRGBO(65, 102, 245, 1);
+  static const Color silver = Color.fromRGBO(192, 192, 192, 1);
+  static const Color bronze = Color.fromRGBO(205, 127, 50, 1);
 }
 
 class Gradients {

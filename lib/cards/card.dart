@@ -4,7 +4,7 @@ import 'package:dotw/constants/fonts.dart';
 import 'package:dotw/entities/enemies/enemy.dart';
 import 'package:dotw/entities/player.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 
 import '../constants/colors.dart';
 
@@ -40,10 +40,10 @@ abstract class GameCard {
     String typeCard = '';
     if (this is OffensiveCard) {
       color = GameColors.red1;
-      typeCard = 'Attack card';
+      typeCard = 'Attack card'.tr;
     } else {
       color = Colors.blue;
-      typeCard = 'Defence card';
+      typeCard = 'Defence card'.tr;
     }
     return Container(
       decoration: BoxDecoration(
@@ -76,7 +76,10 @@ abstract class GameCard {
                   color: GameColors.pastel,
                   child: Text(
                     typeCard,
-                    style: const TextStyle(fontSize: 10, fontFamily: gillSans),
+                    style: const TextStyle(
+                        fontSize: 10,
+                        fontFamily: gillSans,
+                        color: Colors.black),
                   ),
                 ),
               ],
@@ -94,7 +97,8 @@ abstract class GameCard {
               color: GameColors.pastel,
               child: Text(
                 title,
-                style: const TextStyle(fontSize: 7, fontFamily: gillSans),
+                style: const TextStyle(
+                    fontSize: 7, fontFamily: gillSans, color: Colors.black),
               ),
             ),
             Container(
@@ -104,7 +108,8 @@ abstract class GameCard {
               padding: const EdgeInsets.all(3),
               child: Text(
                 description,
-                style: const TextStyle(fontSize: 6, fontFamily: gillSans),
+                style: const TextStyle(
+                    fontSize: 6, fontFamily: gillSans, color: Colors.black),
               ),
             ),
           ],

@@ -2,10 +2,19 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dotw/constants/colors.dart';
 import 'package:dotw/constants/fonts.dart';
+import 'package:dotw/entities/enemies/circular_progress_indicator_enemy.dart';
+import 'package:dotw/entities/enemies/container_enemy.dart';
+import 'package:dotw/entities/enemies/elevated_button_enemy.dart';
+import 'package:dotw/entities/enemies/icon_enemy.dart';
+import 'package:dotw/entities/enemies/text_field_enemy.dart';
 import 'package:dotw/widgets/main_menu/app_bar_main_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
+import '../cards/defensive_cards/margin.dart';
+import '../cards/defensive_cards/widget_test_card.dart';
+import '../cards/offensive_cards/flutter_web.dart';
+import '../cards/offensive_cards/simple_click.dart';
 import 'game_screen.dart';
 
 class MainMenu extends StatefulWidget {
@@ -97,7 +106,10 @@ class _MainMenuState extends State<MainMenu> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      key: const ValueKey('DeckButton'),
+                      onPressed: () {
+                        showDeckDialog(context);
+                      },
                       style: ElevatedButton.styleFrom(
                           primary: Colors.transparent,
                           shadowColor: Colors.transparent),
@@ -119,7 +131,10 @@ class _MainMenuState extends State<MainMenu> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      key: const ValueKey('EnemiesButton'),
+                      onPressed: () {
+                        showEnemiesDialog(context);
+                      },
                       style: ElevatedButton.styleFrom(
                           primary: Colors.transparent,
                           shadowColor: Colors.transparent),
@@ -134,5 +149,110 @@ class _MainMenuState extends State<MainMenu> {
             ],
           ),
         ));
+  }
+
+  void showDeckDialog(BuildContext context) {
+    final AlertDialog alert = AlertDialog(
+      key: const ValueKey('DeckDialog'),
+      backgroundColor: Colors.black54,
+      elevation: 0,
+      content: SizedBox(
+        height: 155,
+        width: 100,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.all(4.0),
+          children: <Widget>[
+            Margin().render(),
+            const SizedBox(width: 10),
+            Margin().render(),
+            const SizedBox(width: 10),
+            Margin().render(),
+            const SizedBox(width: 10),
+            WidgetTestCard().render(),
+            const SizedBox(width: 10),
+            WidgetTestCard().render(),
+            const SizedBox(width: 10),
+            SimpleClick().render(),
+            const SizedBox(width: 10),
+            SimpleClick().render(),
+            const SizedBox(width: 10),
+            SimpleClick().render(),
+            const SizedBox(width: 10),
+            FlutterWeb().render(),
+            const SizedBox(width: 10),
+            FlutterWeb().render(),
+            const SizedBox(width: 10),
+          ],
+        ),
+      ),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  void showEnemiesDialog(BuildContext context) {
+    final AlertDialog alert = AlertDialog(
+      key: const ValueKey('EnemiesDialog'),
+      backgroundColor: Colors.white,
+      elevation: 0,
+      content: SizedBox(
+        height: 120,
+        width: 100,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.all(4.0),
+          children: <Widget>[
+            Column(
+              children: [
+                const Text('Icon Enemy'),
+                IconEnemy().render,
+              ],
+            ),
+            Column(
+              children: [
+                const Text('CPI Enemy'),
+                CircularProgressIndicatorEnemy().render,
+              ],
+            ),
+            const SizedBox(width: 15),
+            Column(
+              children: [
+                const Text('Container Enemy'),
+                ContainerEnemy().render,
+              ],
+            ),
+            const SizedBox(width: 15),
+            Column(
+              children: [
+                const Text('Elevated Button Enemy'),
+                ElevatedButtonEnemy().render,
+              ],
+            ),
+            const SizedBox(width: 15),
+            Column(
+              children: [
+                const Text('Text Field Enemy'),
+                TextFieldEnemy().render,
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }

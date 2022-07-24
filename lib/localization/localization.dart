@@ -5,7 +5,7 @@ class Languages extends Translations {
   Map<String, Map<String, String>> get keys => {
         'ru_RU': {
           'greeting': 'Привет',
-          'Play': 'Играть',
+          'Play!': 'Играть',
           'Login': 'Войти',
           'Leaderboard': 'Рекорды',
           'Log out': 'Выйти',
@@ -19,7 +19,7 @@ class Languages extends Translations {
           'Register': 'Зарегистрироваться',
           'Back to Login page': 'Назад ко Входу',
           '*dead*': '*мертвый*',
-          'End turn': 'Конец хода',
+          'Next turn': 'Конец хода',
           'Score:': 'Очки:',
           'You DIED': 'Ты УМЕР',
           'Exit to main menu': 'Главное меню',
@@ -28,13 +28,17 @@ class Languages extends Translations {
           'No Internet Connection! Your progress won\'t be saved':
               'Нет Интернета! Ваш прогресс будет утерян',
           'Reconnected to the Internet': 'Переподключение к Интернету',
+          'Attack card': 'Атакующая',
+          'Defence card': 'Защитная',
+          'High score:': 'Рекорд:',
+          'Choose Language:': 'Выберите язык:'
         },
         'ja_JP': {
           'greeting': 'こんにちは',
         },
         'en_US': {
           'greeting': 'Hello',
-          'Play': 'Play',
+          'Play!': 'Play!',
           'Login': 'Login',
           'Leaderboard': 'Leaderboard',
           'Log out': 'Log out',
@@ -48,7 +52,7 @@ class Languages extends Translations {
           'Register': 'Register',
           'Back to Login page': 'Back to Login page',
           '*dead*': '*dead*',
-          'End turn': 'End turn',
+          'Next turn': 'Next turn',
           'Score:': 'Score:',
           'You DIED': 'You DIED',
           'Exit to main menu': 'Exit to main menu',
@@ -57,6 +61,10 @@ class Languages extends Translations {
           'No Internet Connection! Your progress won\'t be saved':
               'No Internet Connection! Your progress won\'t be saved',
           'Reconnected to the Internet': 'Reconnected to the Internet',
+          'Attack card': 'Attack card',
+          'Defence card': 'Defence card',
+          'High score:': 'High score:',
+          'Choose Language:': 'Choose Language:',
         },
       };
 }

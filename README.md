@@ -16,9 +16,9 @@ When you enter the game, you get to the main page:
 
 (4) Play button will send you to Game Screen and allow to play the game itself.
 
-(5) Show the starter deck of cards.
+(5) Show all possible card list.
 
-(6) Show information about widgets you met during the game.
+(6) Show information about all enemies widgets.
 
 
  ### Login page:
@@ -37,20 +37,19 @@ If this is your first time in the game, then using the register button you can c
 
 ### Profile
 
-<img width="258" alt="Снимок экрана 2022-07-07 в 22 35 28" src="https://user-images.githubusercontent.com/70011787/177857573-12744f98-2421-43de-bf27-9b1615aec6d2.png">
+<img width="214" alt="Снимок экрана 2022-07-09 в 03 49 31" src="https://user-images.githubusercontent.com/70011787/178085433-9c6adb60-e981-48b3-80f8-4119cd1614ec.png">
 
 As soon as you log into your account, your profile will appear instead of the Login button. By clicking on it you will see the username and statistics of the game for all time. You can also set a profile avatar for yourself or log out of your profile.
 
 ### Leaderboard page:
 
-<img width="309" alt="Снимок экрана 2022-07-07 в 23 54 23" src="https://user-images.githubusercontent.com/70011787/177869609-852704b8-18b0-4909-81dd-0fe00592b018.png">
+<img width="300" alt="Снимок экрана 2022-07-09 в 03 46 59" src="https://user-images.githubusercontent.com/70011787/178085341-27467756-4767-433b-8b44-cc5e3136a622.png">
 
-
-The leaderboard shows the best players of all time. Each time you finish a rгт, you get a certain number of points, depending on how many useful actions you have performed.
+The leaderboard shows the best players of all time. Each time you finish a run, you get a certain number of points, depending on how many useful actions you have performed. All scores goes to Firebase.
 
 ### Settings:
 
-<img width="373" alt="Снимок экрана 2022-07-07 в 22 26 34" src="https://user-images.githubusercontent.com/70011787/177856307-462b79f8-ee85-4206-8b0f-1eb99a6e3b47.png">
+<img width="214" alt="Снимок экрана 2022-07-09 в 03 47 34" src="https://user-images.githubusercontent.com/70011787/178085377-e77e52b5-f0b6-4960-9768-556c51c9eb64.png">
 
 In the settings you can choose Russian or English. Every page in the application is translated into both languages (not counting proper names, which are always displayed in English. For example, the names of enemies).
 
@@ -84,16 +83,20 @@ The Play button will take you to the game itself. The game page consists of 9 ma
 
 ### Shop
 
-...
+<img width="298" alt="Снимок экрана 2022-07-09 в 03 44 33" src="https://user-images.githubusercontent.com/70011787/178085257-43732e8c-9457-4589-9400-ec57a3e05498.png">
+
 
 Every fifth level completed will allow you to go to the store, where you will have the opportunity to heal or increase the maximum amount of energy and health. You will also be offered 6 random cards that you can buy into your deck. Each purchase of permanent improvements, as well as each subsequent store will increase the price of all purchases.
 
 ### Death Screen
 
-<img width="272" alt="Снимок экрана 2022-07-07 в 22 45 41" src="https://user-images.githubusercontent.com/70011787/177859208-43148162-9316-4ab7-88a3-c1cbdeeae038.png">
-
+<img width="234" alt="Снимок экрана 2022-07-09 в 03 43 52" src="https://user-images.githubusercontent.com/70011787/178085214-9e2250ad-e2cd-4d9b-96a3-1897da5e89e9.png">
 
 Every time you die, you will see the death screen. Your points will be written on it and the ability to exit to the main menu.
+
+## Design:
+
+[Figma game design](https://www.figma.com/file/ydNP6FriNaOLZ0nW4YL92x/Game?node-id=16%3A38)
 
 ## List of Features:
 
@@ -109,8 +112,12 @@ Every time you die, you will see the death screen. Your points will be written o
 - Some fancy animations
 - Custom App Icon
 - Code is neat and clear
+- Unit and Widget tests
 
 
-## How to build:
+## How to build
+For Android: download APK and open it
+
+For iOS: download Runner and run through the xcode workspace
 
 [Install APK and IOS Runner](https://drive.google.com/drive/folders/1ChvFtK1_So_Xt0HxDwVHXYgYmfL6QEMu?usp=sharing)

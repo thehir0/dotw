@@ -23,6 +23,7 @@ AppBar buildAppBarMainMenu(BuildContext context) {
             color: Colors.white,
           )),
       IconButton(
+          key: const ValueKey('SettingsButton'),
           onPressed: () {
             settings(context);
           },
@@ -247,7 +248,7 @@ class LeftAppBarState extends State<LeftAppBar> {
                   ),
                 ),
                 Obx(() => Text(
-                      'High score: ${user?.record}',
+                      '${'High score:'.tr}${user?.record}',
                       style: const TextStyle(
                           color: Colors.white,
                           fontFamily: gillSans,
@@ -262,9 +263,9 @@ class LeftAppBarState extends State<LeftAppBar> {
   Widget unLoggedAppBar() {
     return TextButton(
         onPressed: () => Get.to(const LogInScreen()),
-        child: const Text(
-          'Login',
-          style: TextStyle(
+        child: Text(
+          'Login'.tr,
+          style: const TextStyle(
               fontFamily: beaufort, color: Colors.white, fontSize: 32),
         ));
   }
